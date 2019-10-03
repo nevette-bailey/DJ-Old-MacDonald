@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import instrumentRow from 'instrumentRow';
+import InstrumentRow from './InstrumentRow';
 import PropTypes from 'prop-types';
 
 class Grid extends React.Component {
@@ -16,8 +16,8 @@ class Grid extends React.Component {
 
   render() {
     return (
-      <div>
-        {/* <instrumentRow /> */}
+      <div className="wrapper">
+        <InstrumentRow />
         <button onClick={this.handleClick} className="button">
           {this.state.isToggleOn ? '>' : '||'}
         </button>
