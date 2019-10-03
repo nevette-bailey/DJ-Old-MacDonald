@@ -35,7 +35,7 @@ export default function sounds(state = { sound1: initialArr }, action) {
   switch (action.type) {
     case UPDATE_SOUND: {
       const soundId = action.soundId;
-      const thisSound = state[soundId];
+      const thisSound = [...state[soundId]];
       thisSound[action.arrIndex]
         ? (thisSound[action.arrIndex] = false)
         : (thisSound[action.arrIndex] = true);
