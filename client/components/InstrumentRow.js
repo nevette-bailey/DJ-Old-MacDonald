@@ -28,6 +28,9 @@ class InstrumentRow extends React.Component {
   }
 
   toggleSwitch = event => {
+    // the className of the div corresponds to its position in the data array
+    // but that might be a really janky way to do this
+    console.log('toggle switch!');
     let idx = event.target.className;
     let newData = [...this.state.data];
     newData[idx] = !newData[idx];
