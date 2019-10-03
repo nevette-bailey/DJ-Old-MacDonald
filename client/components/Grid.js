@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 // import instrumentRow from 'instrumentRow';
 import PropTypes from 'prop-types';
 
-class Toggle extends React.Component {
+class Grid extends React.Component {
   constructor() {
     super();
     this.state = { isToggleOn: true };
@@ -17,12 +17,13 @@ class Toggle extends React.Component {
   render() {
     return (
       <div>
-        <button onClick={this.handleClick}>
-          {this.state.isToggleOn ? 'ON' : 'OFF'}
+        {/* <instrumentRow /> */}
+        <button onClick={this.handleClick} className="button">
+          {this.state.isToggleOn ? '>' : '||'}
         </button>
       </div>
     );
   }
 }
 
-export default Toggle;
+export default Grid;
