@@ -3,9 +3,9 @@ import { createLogger } from 'redux-logger';
 import thunkMiddleware from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import user from './reducers/user';
-import sound from './reducers/sound';
+import sounds from './reducers/sounds';
 
-const reducer = combineReducers({ user, sound });
+const reducer = combineReducers({ user, sounds });
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
 );

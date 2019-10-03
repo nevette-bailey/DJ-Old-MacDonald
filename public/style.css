@@ -29,12 +29,15 @@ form div {
 .row div {
   flex: 1;
   margin: 5px;
-  background-color: tomato;
   text-align: center;
   height: 50px;
   width: 50px;
 }
 
-.on {
+.false {
+  background-color: tomato;
+}
+
+.true {
   background-color: aquamarine;
 }
