@@ -20,11 +20,24 @@ form div {
   display: inline-block;
 }
 
-.button {
-  background-color: white;
-  color: black;
-  border: 2px solid #555555;
-  border-radius: 25%;
-  padding: 15px 32px;
-  font-size: 16px;
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.row div {
+  flex: 1;
+  margin: 5px;
+  text-align: center;
+  height: 50px;
+  width: 50px;
+}
+
+.false {
+  background-color: tomato;
+}
+
+.true {
+  background-color: aquamarine;
 }
