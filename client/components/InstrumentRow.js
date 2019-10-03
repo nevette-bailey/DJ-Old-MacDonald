@@ -24,14 +24,22 @@ class InstrumentRow extends React.Component {
         false
       ]
     };
+    // this.toggleSwitch = this.toggleSwitch.bind(this);
   }
+
+  toggleSwitch = event => {
+    let idx = event.target.className;
+    let newData = [...this.state.data];
+    newData[idx] = !newData[idx];
+    this.setState({data: newData});
+  };
 
   render() {
     let divArray = [...this.state.data];
     return (
       <div className="row">
-        {divArray.map((div, idx) => {
-          return <div className={idx} key={idx} />;
+        {divArray.map((status, idx) => {
+          return <div className={idx} key={idx} onClick={this.toggleSwitch} />;
         })}
       </div>
     );

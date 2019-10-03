@@ -34,3 +34,7 @@ form div {
   height: 50px;
   width: 50px;
 }
+
+.on {
+  background-color: aquamarine;
+}
