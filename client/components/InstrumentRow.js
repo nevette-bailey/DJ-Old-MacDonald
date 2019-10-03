@@ -38,6 +38,7 @@ class InstrumentRow extends React.Component {
   };
 
   render() {
+    console.log('State!!!', this.state.data);
     let divArray = [...this.state.data];
     return (
       <div className="row">

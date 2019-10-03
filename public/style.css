@@ -29,13 +29,10 @@ form div {
 .row div {
   flex: 1;
   margin: 5px;
+  background-color: tomato;
   text-align: center;
   height: 50px;
   width: 50px;
-}
-
-.off {
-  background-color: tomato;
 }
 
 .on {
