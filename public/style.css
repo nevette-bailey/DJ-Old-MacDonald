@@ -19,3 +19,25 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.row div {
+  flex: 1;
+  margin: 5px;
+  text-align: center;
+  height: 50px;
+  width: 50px;
+}
+
+.false {
+  background-color: tomato;
+}
+
+.true {
+  background-color: aquamarine;
+}
