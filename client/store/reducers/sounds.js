@@ -1,4 +1,4 @@
-import { UPDATE_SOUND, UPDATE_SOUND_ERROR } from './index';
+import { UPDATE_SOUND, UPDATE_SOUND_ERROR, RESET_SOUND } from './index';
 
 //action creators
 export const updateSound = (soundId, arrIndex) => ({
@@ -12,6 +12,10 @@ export const updateSoundError = error => ({
   error
 });
 
+export const resetSound = () => ({
+  type: RESET_SOUND
+});
+
 //thunk creators - currently not making any calls to backend, no Axios
 export const updateSoundThunk = (soundId, arrIndex) => {
   return dispatch => {
@@ -20,6 +24,12 @@ export const updateSoundThunk = (soundId, arrIndex) => {
     } catch (error) {
       dispatch(updateSoundError(error));
     }
+  };
+};
+
+export const resetSoundThunk = () => {
+  return dispatch => {
+    dispatch(resetSoundThunk());
   };
 };
 
@@ -41,6 +51,9 @@ export default function sounds(state = { sound1: initialArr }, action) {
         : (thisSound[action.arrIndex] = true);
 
       return { ...state, [soundId]: thisSound };
+    }
+    case RESET_SOUND: {
+      return { sound1: initialArr };
     }
     default:
       return state;
