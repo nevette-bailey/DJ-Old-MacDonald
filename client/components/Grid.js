@@ -20,10 +20,14 @@ class Grid extends React.Component {
     return (
       <div className="wrapper">
         <InstrumentRow />
-        <button onClick={this.handleClick} className="button">
+        <button type="submit" onClick={this.handleClick} className="button">
           {this.state.isToggleOn ? '>' : '||'}
         </button>
-        <button onClick={() => this.props.resetSoundThunk()} className="button">
+        <button
+          type="submit"
+          onClick={() => this.props.resetSoundThunk()}
+          className="button"
+        >
           <img src="https://img.icons8.com/ios-filled/18/000000/recurring-appointment.png" />
         </button>
       </div>
