@@ -1,11 +1,12 @@
 import React from 'react';
-import { updateSound } from '../store/reducers/sounds';
+import { updateSoundThunk } from '../store/reducers/sounds';
 import { connect } from 'react-redux';
 const Tone = require('Tone');
 
 class InstrumentRow extends React.Component {
   // toggleSwitch = event => {
   //
+  // }
   // };
   // const synth = new Tone.Player('https://actions.google.com/sounds/v1/animals/animal_squealing.ogg', function(){}).toMaster();
   // makeSound() {
@@ -17,6 +18,7 @@ class InstrumentRow extends React.Component {
   // }
 
   onClickFunction(soundId, idx) {
+<<<<<<< HEAD
     this.props.updateSound(soundId, idx);
 
     const synth = new Tone.Player({
@@ -26,6 +28,10 @@ class InstrumentRow extends React.Component {
     }).toMaster();
     if (!this.props.sound1[idx]) synth.start();
     if (this.props.sound1[idx]) synth.stop();
+=======
+    this.props.updateSoundThunk(soundId, idx);
+    if (!this.props.sound1[idx]) this.makeSound();
+>>>>>>> 7936f7f7f127ef9a7e042142400efb9a4f9170dc
   }
 
   render() {
@@ -38,6 +44,7 @@ class InstrumentRow extends React.Component {
               data-index={idx}
               key={idx}
               value={elem}
+              // onClick={() => this.props.updateSoundThunk('sound1', idx)}
               onClick={() => this.onClickFunction('sound1', idx)}
             />
           );
@@ -55,7 +62,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    updateSound: (soundId, arrIndex) => dispatch(updateSound(soundId, arrIndex))
+    updateSoundThunk: (soundId, arrIndex) =>
+      dispatch(updateSoundThunk(soundId, arrIndex))
   };
 };
 
