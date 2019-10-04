@@ -7,14 +7,25 @@ class InstrumentRow extends React.Component {
   // toggleSwitch = event => {
   //
   // };
-  makeSound() {
-    const synth = new Tone.MembraneSynth().toMaster();
-    synth.triggerAttackRelease('C4', '4n');
-  }
+  // const synth = new Tone.Player('https://actions.google.com/sounds/v1/animals/animal_squealing.ogg', function(){}).toMaster();
+  // makeSound() {
+  //   this.synth.start();
+  // }
+
+  // stopSound() {
+  //   this.synth.stop()
+  // }
 
   onClickFunction(soundId, idx) {
     this.props.updateSound(soundId, idx);
-    if (!this.props.sound1[idx]) this.makeSound();
+
+    const synth = new Tone.Player({
+      url: 'https://actions.google.com/sounds/v1/animals/animal_squealing.ogg',
+      autostart: true,
+      loopEnd: 1
+    }).toMaster();
+    if (!this.props.sound1[idx]) synth.start();
+    if (this.props.sound1[idx]) synth.stop();
   }
 
   render() {
