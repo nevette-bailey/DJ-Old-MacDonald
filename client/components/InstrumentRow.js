@@ -1,11 +1,12 @@
 import React from 'react';
-import { updateSound } from '../store/reducers/sounds';
+import { updateSoundThunk } from '../store/reducers/sounds';
 import { connect } from 'react-redux';
 const Tone = require('Tone');
 
 class InstrumentRow extends React.Component {
   // toggleSwitch = event => {
   //
+  // }
   // };
   makeSound() {
     const synth = new Tone.MembraneSynth().toMaster();
@@ -13,7 +14,7 @@ class InstrumentRow extends React.Component {
   }
 
   onClickFunction(soundId, idx) {
-    this.props.updateSound(soundId, idx);
+    this.props.updateSoundThunk(soundId, idx);
     if (!this.props.sound1[idx]) this.makeSound();
   }
 
@@ -27,6 +28,7 @@ class InstrumentRow extends React.Component {
               data-index={idx}
               key={idx}
               value={elem}
+              // onClick={() => this.props.updateSoundThunk('sound1', idx)}
               onClick={() => this.onClickFunction('sound1', idx)}
             />
           );
@@ -44,7 +46,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    updateSound: (soundId, arrIndex) => dispatch(updateSound(soundId, arrIndex))
+    updateSoundThunk: (soundId, arrIndex) =>
+      dispatch(updateSoundThunk(soundId, arrIndex))
   };
 };
 
