@@ -9,11 +9,12 @@ class InstrumentRow extends React.Component {
   // };
   makeSound() {
     const synth = new Tone.MembraneSynth().toMaster();
-    synth.triggerAttackRelease('C2', '8n');
+    synth.triggerAttackRelease('C4', '4n');
   }
 
   onClickFunction(soundId, idx) {
     this.props.updateSound(soundId, idx);
+    if (!this.props.sound1[idx]) this.makeSound();
   }
 
   render() {
