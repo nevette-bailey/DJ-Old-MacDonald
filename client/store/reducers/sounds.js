@@ -29,7 +29,7 @@ export const updateSoundThunk = (soundId, arrIndex) => {
 
 export const resetSoundThunk = () => {
   return dispatch => {
-    dispatch(resetSoundThunk());
+    dispatch(resetSound());
   };
 };
 

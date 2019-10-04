@@ -1,11 +1,11 @@
 import React from 'react';
-import { updateSound } from '../store/reducers/sounds';
+import { updateSoundThunk } from '../store/reducers/sounds';
 import { connect } from 'react-redux';
 
 class InstrumentRow extends React.Component {
   // toggleSwitch = event => {
   //
-  // };
+  // }
 
   render() {
     return (
@@ -17,7 +17,7 @@ class InstrumentRow extends React.Component {
               data-index={idx}
               key={idx}
               value={elem}
-              onClick={() => this.props.updateSound('sound1', idx)}
+              onClick={() => this.props.updateSoundThunk('sound1', idx)}
             />
           );
         })}
@@ -34,7 +34,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    updateSound: (soundId, arrIndex) => dispatch(updateSound(soundId, arrIndex))
+    updateSoundThunk: (soundId, arrIndex) =>
+      dispatch(updateSoundThunk(soundId, arrIndex))
   };
 };
 
