@@ -1,61 +1,24 @@
 import React from 'react';
-import { updateSound } from '../store/reducers/sounds';
+import { updateSoundThunk } from '../store/reducers/sounds';
 import { connect } from 'react-redux';
+const Tone = require('Tone');
 
 class InstrumentRow extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      bool: false
-    };
+  // toggleSwitch = event => {
+  //
+  // }
+  // };
+  makeSound() {
+    const synth = new Tone.MembraneSynth().toMaster();
+    synth.triggerAttackRelease('C4', '4n');
   }
-  //   this.state = {
-  //     // name: '',
-  //     // data: [
-  //     //   false,
-  //     //   false,
-  //     //   false,
-  //     //   false,
-  //     //   false,
-  //     //   false,
-  //     //   false,
-  //     //   false,
-  //     //   false,
-  //     //   false,
-  //     //   false,
-  //     //   false,
-  //     //   false,
-  //     //   false,
-  //     //   false,
-  //     //   false
-  //     // ]
-  //   };
-  //   // this.toggleSwitch = this.toggleSwitch.bind(this);
-  // }
-  // componentDidMount() {
-  //   this.setState();
-  // }
 
-  toggleSwitch = event => {
-    // the className of the div corresponds to its position in the data array
-    // but that might be a really janky way to do this
-    console.log(event.target.getAttribute('data-index'), 'toggle switch!');
-    const idx = event.target.getAttribute('data-index');
-    // let idx = event.target.className;
-    // let newData = [...this.state.data];
-    // newData[idx] = !newData[idx];
-    // this.setState({ data: newData });
-    this.props.updateSound('sound1', idx);
-    // if (this.props.sound1) {
-    // console.log(this.props.sound1, 'SOUND1')}
-    console.log('CLASS NAME', event.target);
-    this.setState({ bool: true });
-  };
+  onClickFunction(soundId, idx) {
+    this.props.updateSoundThunk(soundId, idx);
+    if (!this.props.sound1[idx]) this.makeSound();
+  }
 
   render() {
-    // console.log('State!!!', this.state.data);
-    // let divArray = [...this.state.data];
-    console.log(this.props.sound1, 'PROPS');
     return (
       <div className="row">
         {this.props.sound1.map((elem, idx) => {
@@ -64,7 +27,9 @@ class InstrumentRow extends React.Component {
               className={`${elem}`}
               data-index={idx}
               key={idx}
-              onClick={this.toggleSwitch}
+              value={elem}
+              // onClick={() => this.props.updateSoundThunk('sound1', idx)}
+              onClick={() => this.onClickFunction('sound1', idx)}
             />
           );
         })}
@@ -81,7 +46,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    updateSound: (soundId, arrIndex) => dispatch(updateSound(soundId, arrIndex))
+    updateSoundThunk: (soundId, arrIndex) =>
+      dispatch(updateSoundThunk(soundId, arrIndex))
   };
 };
 

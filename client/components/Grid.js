@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-// import instrumentRow from 'instrumentRow';
-import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import InstrumentRow from './InstrumentRow';
+import { resetSoundThunk } from '../store/reducers/sounds';
 
 class Grid extends React.Component {
   constructor() {
     super();
     this.state = { isToggleOn: true };
+    this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick = () => {
@@ -16,14 +18,27 @@ class Grid extends React.Component {
 
   render() {
     return (
-      <div>
-        {/* <instrumentRow /> */}
-        <button onClick={this.handleClick} className="button">
+      <div className="wrapper">
+        <InstrumentRow />
+        <button type="submit" onClick={this.handleClick} className="button">
           {this.state.isToggleOn ? '>' : '||'}
+        </button>
+        <button
+          type="submit"
+          onClick={() => this.props.resetSoundThunk()}
+          className="button"
+        >
+          <img src="https://img.icons8.com/ios-filled/18/000000/recurring-appointment.png" />
         </button>
       </div>
     );
   }
 }
 
-export default Grid;
+const mapDispatchToProps = dispatch => {
+  return {
+    resetSoundThunk: () => dispatch(resetSoundThunk())
+  };
+};
+
+export default connect(null, mapDispatchToProps)(Grid);
