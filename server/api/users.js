@@ -1,6 +1,6 @@
-const router = require('express').Router()
-const {User} = require('../db/models')
-module.exports = router
+const router = require('express').Router();
+const { User, Loop } = require('../db/models');
+module.exports = router;
 
 router.get('/', async (req, res, next) => {
   try {
@@ -9,9 +9,32 @@ router.get('/', async (req, res, next) => {
       // users' passwords are encrypted, it won't help if we just
       // send everything to anyone who asks!
       attributes: ['id', 'email']
-    })
-    res.json(users)
+    });
+    res.json(users);
   } catch (err) {
-    next(err)
+    next(err);
   }
-})
+});
+//post a track to specific user
+router.post('/loops', async (req, res, next) => {
+  try {
+    //association will generate a user_loop tabld
+
+    const newloop = await Loop.findOrCreate({
+      //create new loop in our loop model
+      where: {
+        title: req.body.title,
+        sound1: req.body.sound1 // sound1 for now. SoundId later?
+      }
+    });
+    console.log('this is req.body.userId', typeof req.body.userId);
+    const user = await User.findByPk(req.body.userId);
+    console.log('%%%%new loop', newloop);
+    await newloop[0].setUser(user);
+    //userId was created autommatically due to association
+
+    res.json(newloop.id);
+  } catch (err) {
+    next(err);
+  }
+});
