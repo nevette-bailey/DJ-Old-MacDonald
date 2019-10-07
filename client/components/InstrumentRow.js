@@ -10,51 +10,37 @@ class InstrumentRow extends React.Component {
       sound1: new Tone.Player({
         url: 'https://actions.google.com/sounds/v1/animals/dog_barking.ogg',
         autostart: true,
-        // time: '1'
         loop: true,
         loopStart: 0.42,
         loopEnd: 1
-        // mute: false
       }).toMaster(),
-      sound2: new Tone.MembraneSynth().toMaster()
+      sound2: new Tone.PolySynth().toMaster()
     };
   }
-  // toggleSwitch = event => {
-  //
-  // }
 
   componentDidMount() {
-    //   this.setState({ sound1: { mute: true } });
-    //   this.state.sound1.start();
-    //   this.state.sound1.stop();
     this.state.sound1.sync();
   }
 
   onClickFunction(soundId, idx) {
-    // update boolean value of box in redux state
-
     // check whether sound should be triggered
     if (!this.props.sound1[idx] && this.state.sound1.loaded) {
       //play imported sound when box is clicked
-
       this.state.sound1.restart();
-      this.state.sound2.triggerAttackRelease('C4', '4n');
+      this.state.sound2.triggerAttackRelease('C4', '8n');
       Tone.Transport.start();
-      this.state.sound1.stop('8n');
 
-      // Tone.Transport.stop('4n');
-
-      // Tone.Transport.clear();
-
-      //create a sound when box is clicked
-      // this.synth.triggerAttackRelease('C4', '4n');
+      //stops playing the looping clip of the imported sound
+      this.state.sound1.stop(0.5);
+      console.log(Tone.Transport.state, 'STATE');
     } else {
       this.state.sound1.stop();
-      Tone.Transport.stop();
-      Tone.Transport.clear();
-
-      // Tone.Transport.stop();
+      if (Tone.Transport.state === 'started') {
+        Tone.Transport.stop();
+        console.log(Tone.Transport.state, 'STATE 2');
+      }
     }
+    // update boolean value of box in redux state
     this.props.updateSoundThunk(soundId, idx);
   }
 
