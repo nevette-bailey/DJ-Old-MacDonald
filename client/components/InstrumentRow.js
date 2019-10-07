@@ -12,8 +12,8 @@ class InstrumentRow extends React.Component {
         autostart: true,
         // time: '1'
         loop: true,
-        loopStart: 0,
-        loopEnd: 2
+        loopStart: 0.42,
+        loopEnd: 1
         // mute: false
       }).toMaster(),
       sound2: new Tone.MembraneSynth().toMaster()
