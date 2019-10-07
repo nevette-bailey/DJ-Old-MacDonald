@@ -2,10 +2,8 @@ import {
   UPDATE_SOUND,
   UPDATE_SOUND_ERROR,
   RESET_SOUND,
-  GET_SOUND,
-  SAVE_SOUND
+  GET_SOUND
 } from './index';
-import axios from 'axios';
 
 //action creators
 export const updateSound = (soundId, arrIndex) => ({

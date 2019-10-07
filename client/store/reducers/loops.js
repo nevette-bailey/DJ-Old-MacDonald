@@ -18,7 +18,10 @@ export const saveLoopThunk = (sound, loopId) => {
   };
 };
 
-export default function loops(state = null, action) {
+const initialState = {
+  id: null
+};
+export default function loops(state = initialState, action) {
   switch (action.type) {
     case SAVE_LOOP: {
       return action.id;
