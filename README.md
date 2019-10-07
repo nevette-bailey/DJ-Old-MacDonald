@@ -10,4 +10,4 @@ Run `npm install` and then `npm run start-dev` to get started on further develop
 
 ## Deployment
 
-Deployed on Heroku at [heroku-link]:
+Deployed on Heroku at [heroku-link]: https://dj-old-macdonald.herokuapp.com/grid
