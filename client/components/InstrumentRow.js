@@ -10,9 +10,10 @@ class InstrumentRow extends React.Component {
       sound1: new Tone.Player({
         url: 'https://actions.google.com/sounds/v1/animals/dog_barking.ogg',
         autostart: true,
-        time: '1'
-        // loop: true,
-        // loopEnd: 1,
+        // time: '1'
+        loop: true,
+        loopStart: 0,
+        loopEnd: 2
         // mute: false
       }).toMaster(),
       sound2: new Tone.MembraneSynth().toMaster()
@@ -34,8 +35,8 @@ class InstrumentRow extends React.Component {
     // check whether sound should be triggered
     if (!this.props.sound1[idx] && this.state.sound1.loaded) {
       //play imported sound when box is clicked
-      this.state.sound1.start(0);
-      this.state.sound1.stop('2n');
+      this.state.sound1.start();
+      // this.state.sound1.stop('2n');
 
       //create a sound when box is clicked
       // this.synth.triggerAttackRelease('C4', '4n');
