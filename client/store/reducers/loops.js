@@ -1,4 +1,4 @@
-import SAVE_LOOP from './index';
+import { SAVE_LOOP } from './index';
 import axios from 'axios';
 
 export const saveLoop = id => ({
