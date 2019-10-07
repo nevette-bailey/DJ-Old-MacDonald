@@ -11,7 +11,7 @@ class InstrumentRow extends React.Component {
         url: 'https://actions.google.com/sounds/v1/animals/dog_barking.ogg',
         autostart: true,
         loop: true,
-        loopStart: 0.42,
+        loopStart: 0.4,
         loopEnd: 1
       }).toMaster(),
       sound2: new Tone.PolySynth().toMaster()
@@ -20,6 +20,7 @@ class InstrumentRow extends React.Component {
 
   componentDidMount() {
     this.state.sound1.sync();
+    // this.state.sound2.sync();
   }
 
   onClickFunction(soundId, idx) {
@@ -27,17 +28,16 @@ class InstrumentRow extends React.Component {
     if (!this.props.sound1[idx] && this.state.sound1.loaded) {
       //play imported sound when box is clicked
       this.state.sound1.restart();
-      this.state.sound2.triggerAttackRelease('C4', '8n');
+      // this.state.sound2.triggerAttackRelease('C4', '8n');
       Tone.Transport.start();
 
       //stops playing the looping clip of the imported sound
-      this.state.sound1.stop(0.5);
-      console.log(Tone.Transport.state, 'STATE');
+      // setTimeout(function () {this.state.sound1.stop()}, 600)
+      this.state.sound1.stop(0.6);
     } else {
       this.state.sound1.stop();
       if (Tone.Transport.state === 'started') {
         Tone.Transport.stop();
-        console.log(Tone.Transport.state, 'STATE 2');
       }
     }
     // update boolean value of box in redux state
