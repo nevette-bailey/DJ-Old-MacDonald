@@ -20,19 +20,20 @@ router.post('/loops', async (req, res, next) => {
   try {
     //association will generate a user_loop tabld
 
-    const loop = await Loop.findOrCreate({
+    const newloop = await Loop.findOrCreate({
       //create new loop in our loop model
       where: {
         title: req.body.title,
         sound1: req.body.sound1 // sound1 for now. SoundId later?
       }
     });
-
+    console.log('this is req.body.userId', typeof req.body.userId);
+    const user = await User.findByPk(req.body.userId);
+    console.log('%%%%new loop', newloop);
+    await newloop[0].setUser(user);
     //userId was created autommatically due to association
 
-    const currentUser = await User.findByPk(req.body.userId);
-    await currentUser.addLoop(loop[0]);
-    res.json(loop[0]);
+    res.json(newloop.id);
   } catch (err) {
     next(err);
   }
