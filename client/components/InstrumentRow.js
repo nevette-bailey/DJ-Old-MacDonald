@@ -23,11 +23,12 @@ class InstrumentRow extends React.Component {
   //
   // }
 
-  // componentDidMount() {
-  //   this.setState({ sound1: { mute: true } });
-  //   this.state.sound1.start();
-  //   this.state.sound1.stop();
-  // }
+  componentDidMount() {
+    //   this.setState({ sound1: { mute: true } });
+    //   this.state.sound1.start();
+    //   this.state.sound1.stop();
+    this.state.sound1.sync();
+  }
 
   onClickFunction(soundId, idx) {
     // update boolean value of box in redux state
@@ -35,13 +36,24 @@ class InstrumentRow extends React.Component {
     // check whether sound should be triggered
     if (!this.props.sound1[idx] && this.state.sound1.loaded) {
       //play imported sound when box is clicked
-      this.state.sound1.start();
-      // this.state.sound1.stop('2n');
+
+      this.state.sound1.restart();
+      this.state.sound2.triggerAttackRelease('C4', '4n');
+      Tone.Transport.start();
+      this.state.sound1.stop('8n');
+
+      // Tone.Transport.stop('4n');
+
+      // Tone.Transport.clear();
 
       //create a sound when box is clicked
       // this.synth.triggerAttackRelease('C4', '4n');
     } else {
       this.state.sound1.stop();
+      Tone.Transport.stop();
+      Tone.Transport.clear();
+
+      // Tone.Transport.stop();
     }
     this.props.updateSoundThunk(soundId, idx);
   }
