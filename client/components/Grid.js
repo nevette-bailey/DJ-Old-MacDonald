@@ -6,15 +6,13 @@ const Tone = require('Tone');
 
 // this is just a helper function that transforms an array of true/false values into a note (if true) or null (if false). A note represents a beat and null represents a rest
 function createNotes(soundState, note) {
-  let notes = [];
-  for (let i = 0; i < soundState.length; i++) {
-    if (soundState[i]) {
-      notes.push(note);
+  return soundState.map(beat => {
+    if (beat) {
+      return note;
     } else {
-      notes.push(null);
+      return null;
     }
-  }
-  return notes;
+  });
 }
 
 class Grid extends React.Component {
@@ -27,26 +25,11 @@ class Grid extends React.Component {
     this.handleReset = this.handleReset.bind(this);
   }
 
-  // This is essentially the same function as the helper function above. Not sure if there's a reason to use one over the other, which is why I'm leaving this commented out in the code for now.
-  // Accepts an array of true/false values and a note (e.g. 'C4')
-  // and returns an array containing note/null
-  // where null represents a rest and a note is a beat
-  // createNotes(soundState, note) {
-  //   let notes = [];
-  //   for (let i = 0; i < soundState.length; i++) {
-  //     if (soundState[i]) {
-  //       notes.push(note);
-  //     } else {
-  //       notes.push(null);
-  //     }
-  //   }
-  //   return notes;
-  // }
-
   playSounds() {
     const { sound1 } = this.props.sounds;
     let notes = createNotes(sound1, 'C4');
-    const synth = new Tone.MembraneSynth().toMaster();
+    const synth = new Tone.Synth().toMaster();
+    const synth2 = new Tone.Synth().toMaster();
 
     const synthPart = new Tone.Sequence(
       function(time, note) {
@@ -55,8 +38,34 @@ class Grid extends React.Component {
       notes,
       '8n'
     );
+    const synthPart2 = new Tone.Sequence(
+      function(time, note) {
+        synth2.triggerAttackRelease(note, '10hz', time);
+      },
+      [
+        'G4',
+        'G4',
+        'G4',
+        null,
+        null,
+        null,
+        'G4',
+        'G4',
+        'G4',
+        null,
+        null,
+        null,
+        'G4',
+        'G4',
+        'G4',
+        'G4'
+      ],
+      '8n'
+    );
     synthPart.start();
+    synthPart2.start();
     Tone.Transport.start();
+    console.log(Tone.Transport.state);
   }
 
   handleReset() {
