@@ -21,6 +21,21 @@ class InstrumentRow extends React.Component {
         loop: true,
         loopStart: 13.2,
         loopEnd: 14.2
+      }).toMaster(),
+      sound4: new Tone.Player({
+        url: 'https://actions.google.com/sounds/v1/cartoon/clown_horn.ogg',
+        autostart: true,
+        loop: true,
+        loopStart: 0,
+        loopEnd: 1
+      }).toMaster(),
+      sound5: new Tone.Player({
+        url:
+          'https://actions.google.com/sounds/v1/animals/animal_squealing.ogg',
+        autostart: true,
+        loop: true,
+        loopStart: 1,
+        loopEnd: 2.5
       }).toMaster()
     };
   }
@@ -30,7 +45,9 @@ class InstrumentRow extends React.Component {
     if (
       !this.props.sound1[idx] &&
       this.state.sound1.loaded &&
-      this.state.sound3.loaded
+      this.state.sound3.loaded &&
+      this.state.sound4.loaded &&
+      this.state.sound5.loaded
     ) {
       //play imported sound when box is clicked
       // this.state.sound1.restart(undefined, undefined, 0.6);
@@ -39,7 +56,9 @@ class InstrumentRow extends React.Component {
 
       const seq = new Tone.Sequence(function(time, note) {}, [
         this.state.sound1.restart(undefined, undefined, 0.6),
-        this.state.sound3.restart(undefined, undefined, 1)
+        this.state.sound3.restart(undefined, undefined, 1),
+        this.state.sound4.restart(undefined, undefined, 1),
+        this.state.sound5.restart(undefined, undefined, 1.5)
       ]);
     }
     // update boolean value of box in redux state
