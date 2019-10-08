@@ -10,8 +10,15 @@ class InstrumentRow extends React.Component {
   }
 
   onClickFunction(soundId, idx) {
+    console.log('SEQUENCE', this.props.sequence);
+    console.log('click function!');
     this.props.updateSoundThunk(soundId, idx);
-    if (!this.props.sound[idx]) this.makeSound();
+    if (!this.props.sound[idx]) {
+      this.makeSound();
+      this.props.sequence.add(idx, this.props.note);
+    } else {
+      this.props.sequence.add(idx, null);
+    }
   }
 
   render() {

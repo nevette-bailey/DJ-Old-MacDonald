@@ -27,6 +27,7 @@ class Sequence extends React.Component {
       }),
       '8n'
     );
+    // synthPart1.loop = false;
     return <Grid sequence={synthPart1} />;
   }
 }

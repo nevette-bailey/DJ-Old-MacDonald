@@ -21,29 +21,6 @@ class Grid extends React.Component {
     this.state = {
       isToggleOn: true
     };
-    // this.synth = new Tone.Synth().toMaster();
-    // // this.synths = [
-    // //   new Tone.Synth().toMaster(),
-    // //   new Tone.Synth().toMaster(),
-    // //   new Tone.Synth().toMaster(),
-    // //   new Tone.Synth().toMaster()
-    // // ];
-    // this.repeat = (time, beat) => {
-    //   console.log('INSIDE REPEAT ', this.synth);
-    //   let note;
-    //   if (beat) {
-    //     note = 'C4';
-    //   } else {
-    //     note = null;
-    //   }
-    //   this.synth.triggerAttackRelease(note, '10hz', time);
-    // };
-    // this.sequence = new Tone.Sequence(
-    //   this.repeat,
-    //   this.props.sounds.sound1,
-    //   '8n'
-    // );
-
     this.handleClick = this.handleClick.bind(this);
     this.playSounds = this.playSounds.bind(this);
     this.handleReset = this.handleReset.bind(this);
@@ -124,6 +101,7 @@ class Grid extends React.Component {
           name="sound1"
           sound={this.props.sounds.sound1}
           note="C4"
+          sequence={this.props.sequence}
         />
         <InstrumentRow
           name="sound2"
