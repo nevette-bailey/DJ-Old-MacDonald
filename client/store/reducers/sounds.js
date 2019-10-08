@@ -52,12 +52,15 @@ export const resetSoundThunk = () => {
 // //to create an initial state for sounds once we have more than one sound
 const initialArr = Array(16).fill(false);
 
-// const soundsInitialState = {
-//   sound1: initialArr.fill(false)
-// };
+const soundsInitialState = {
+  sound1: Array(16).fill(false),
+  sound2: Array(16).fill(false),
+  sound3: Array(16).fill(false),
+  sound4: Array(16).fill(false)
+};
 
 //sub-reducer for sound
-export default function sounds(state = { sound1: initialArr }, action) {
+export default function sounds(state = soundsInitialState, action) {
   switch (action.type) {
     case GET_SOUND: {
       return state;
@@ -72,7 +75,7 @@ export default function sounds(state = { sound1: initialArr }, action) {
       return { ...state, [soundId]: thisSound };
     }
     case RESET_SOUND: {
-      return { sound1: initialArr };
+      return soundsInitialState;
     }
     default:
       return state;

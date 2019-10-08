@@ -15,11 +15,19 @@ router.get('/', async (req, res, next) => {
     next(err);
   }
 });
-//post a track to specific user
+
+router.get('/loops', async (req, res, next) => {
+  try {
+    const allLoops = await Loop.findAll({ where: { userId: req.user.id } });
+
+    res.json(allLoops);
+  } catch (err) {
+    next(err);
+  }
+});
+
 router.post('/loops', async (req, res, next) => {
   try {
-    //association will generate a user_loop tabld
-
     const newloop = await Loop.findOrCreate({
       //create new loop in our loop model
       where: {
