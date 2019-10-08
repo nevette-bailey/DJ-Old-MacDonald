@@ -64,7 +64,11 @@ class Grid extends React.Component {
     //   ],
     //   '8n'
     // );
-    this.props.sequence.start();
+    this.props.sequence1.start();
+    this.props.sequence2.start();
+    this.props.sequence3.start();
+    this.props.sequence4.start();
+
     // synthPart2.start();
     // this.sequence.start();
     Tone.Transport.start();
@@ -101,22 +105,25 @@ class Grid extends React.Component {
           name="sound1"
           sound={this.props.sounds.sound1}
           note="C4"
-          sequence={this.props.sequence}
+          sequence={this.props.sequence1}
         />
         <InstrumentRow
           name="sound2"
           sound={this.props.sounds.sound2}
           note="D4"
+          sequence={this.props.sequence2}
         />
         <InstrumentRow
           name="sound3"
           sound={this.props.sounds.sound3}
           note="E4"
+          sequence={this.props.sequence3}
         />
         <InstrumentRow
           name="sound4"
           sound={this.props.sounds.sound4}
           note="F4"
+          sequence={this.props.sequence4}
         />
         <button type="submit" onClick={this.handleClick} className="button">
           {this.state.isToggleOn ? '>' : '||'}

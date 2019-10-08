@@ -7,7 +7,10 @@ class Sequence extends React.Component {
   constructor() {
     super();
     this.state = {
-      synth1: new Tone.Synth().toMaster()
+      synth1: new Tone.Synth().toMaster(),
+      synth2: new Tone.Synth().toMaster(),
+      synth3: new Tone.Synth().toMaster(),
+      synth4: new Tone.Synth().toMaster()
     };
   }
 
@@ -27,8 +30,60 @@ class Sequence extends React.Component {
       }),
       '8n'
     );
-    // synthPart1.loop = false;
-    return <Grid sequence={synthPart1} />;
+
+    const synth2 = this.state.synth2;
+    const synthPart2 = new Tone.Sequence(
+      function(time, note) {
+        synth2.triggerAttackRelease(note, '10hz', time);
+      },
+      this.props.sounds.sound2.map(elem => {
+        if (elem) {
+          return 'D4';
+        } else {
+          return null;
+        }
+      }),
+      '8n'
+    );
+
+    const synth3 = this.state.synth3;
+    const synthPart3 = new Tone.Sequence(
+      function(time, note) {
+        synth3.triggerAttackRelease(note, '10hz', time);
+      },
+      this.props.sounds.sound3.map(elem => {
+        if (elem) {
+          return 'E4';
+        } else {
+          return null;
+        }
+      }),
+      '8n'
+    );
+
+    const synth4 = this.state.synth4;
+    const synthPart4 = new Tone.Sequence(
+      function(time, note) {
+        synth4.triggerAttackRelease(note, '10hz', time);
+      },
+      this.props.sounds.sound4.map(elem => {
+        if (elem) {
+          return 'F4';
+        } else {
+          return null;
+        }
+      }),
+      '8n'
+    );
+
+    return (
+      <Grid
+        sequence1={synthPart1}
+        sequence2={synthPart2}
+        sequence3={synthPart3}
+        sequence4={synthPart4}
+      />
+    );
   }
 }
 
