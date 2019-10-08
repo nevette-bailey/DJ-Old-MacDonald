@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import InstrumentRow from './InstrumentRow';
+import InstrumentRow from './InstrumentRow_ExternalSounds';
 import { resetSoundThunk, getSoundThunk } from '../store/reducers/sounds';
 const Tone = require('Tone');
 
