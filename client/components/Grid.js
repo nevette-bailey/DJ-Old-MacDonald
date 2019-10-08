@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import InstrumentRow from './InstrumentRow';
-import { resetSoundThunk, getSoundThunk } from '../store/reducers/sounds';
+import { resetSoundThunk } from '../store/reducers/sounds';
 const Tone = require('Tone');
 
 // this is just a helper function that transforms an array of true/false values into a note (if true) or null (if false). A note represents a beat and null represents a rest
@@ -51,19 +51,18 @@ class Grid extends React.Component {
   }
 
   playSounds() {
-    const { sound1 } = this.props.sounds;
-    let notes = createNotes(sound1, 'C4');
-    const synth = new Tone.Synth().toMaster();
-    const synth2 = new Tone.Synth().toMaster();
+    // const { sound1 } = this.props.sounds;
+    // let notes = createNotes(sound1, 'C4');
+    // const synth = new Tone.Synth().toMaster();
+    // const synth2 = new Tone.Synth().toMaster();
 
-    const synthPart = new Tone.Sequence(
-      function(time, note) {
-        synth.triggerAttackRelease(note, '10hz', time);
-      },
-      notes,
-      '8n'
-    );
-
+    // const synthPart = new Tone.Sequence(
+    //   function(time, note) {
+    //     synth.triggerAttackRelease(note, '10hz', time);
+    //   },
+    //   notes,
+    //   '8n'
+    // );
     // const synthPart2 = new Tone.Sequence(
     //   function(time, note) {
     //     synth2.triggerAttackRelease(note, '10hz', time);
@@ -88,7 +87,7 @@ class Grid extends React.Component {
     //   ],
     //   '8n'
     // );
-    synthPart.start();
+    this.props.sequence.start();
     // synthPart2.start();
     // this.sequence.start();
     Tone.Transport.start();
@@ -109,7 +108,7 @@ class Grid extends React.Component {
     } else {
       // Stops the sequence if one is playing
       Tone.Transport.stop();
-      Tone.Transport.cancel();
+      // Tone.Transport.cancel();
     }
     this.setState(prevState => ({
       isToggleOn: !prevState.isToggleOn
@@ -118,6 +117,7 @@ class Grid extends React.Component {
 
   render() {
     console.dir(Tone.Transport);
+    console.log('MY PROPSSSS', this.props);
     return (
       <div className="wrapper">
         <InstrumentRow

@@ -15,7 +15,7 @@ class InstrumentRow extends React.Component {
   }
 
   render() {
-    console.log(this.props.sound);
+    // console.log(this.props.sound);
     return (
       <div className="row">
         {this.props.sound.map((elem, idx) => {
