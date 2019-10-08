@@ -4,32 +4,35 @@ import { connect } from 'react-redux';
 const Tone = require('Tone');
 
 class InstrumentRow extends React.Component {
-  // toggleSwitch = event => {
-  //
-  // }
-  // };
   makeSound() {
     const synth = new Tone.MembraneSynth().toMaster();
-    synth.triggerAttackRelease('C4', '4n');
+    synth.triggerAttackRelease(this.props.note, '8n');
   }
 
   onClickFunction(soundId, idx) {
+    console.log('SEQUENCE', this.props.sequence);
+    console.log('click function!');
     this.props.updateSoundThunk(soundId, idx);
-    if (!this.props.sound1[idx]) this.makeSound();
+    if (!this.props.sound[idx]) {
+      this.makeSound();
+      this.props.sequence.add(idx, this.props.note);
+    } else {
+      this.props.sequence.add(idx, null);
+    }
   }
 
   render() {
+    // console.log(this.props.sound);
     return (
       <div className="row">
-        {this.props.sound1.map((elem, idx) => {
+        {this.props.sound.map((elem, idx) => {
           return (
             <div
               className={`${elem}`}
               data-index={idx}
               key={idx}
               value={elem}
-              // onClick={() => this.props.updateSoundThunk('sound1', idx)}
-              onClick={() => this.onClickFunction('sound1', idx)}
+              onClick={() => this.onClickFunction(this.props.name, idx)}
             />
           );
         })}
@@ -38,12 +41,6 @@ class InstrumentRow extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    sound1: state.sounds.sound1
-  };
-};
-
 const mapDispatchToProps = dispatch => {
   return {
     updateSoundThunk: (soundId, arrIndex) =>
@@ -51,4 +48,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(InstrumentRow);
+export default connect(null, mapDispatchToProps)(InstrumentRow);

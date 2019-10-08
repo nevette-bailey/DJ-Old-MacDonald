@@ -1,62 +1,78 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import InstrumentRow from './InstrumentRow';
-import { resetSoundThunk, getSoundThunk } from '../store/reducers/sounds';
+import { resetSoundThunk } from '../store/reducers/sounds';
 const Tone = require('Tone');
 
 // this is just a helper function that transforms an array of true/false values into a note (if true) or null (if false). A note represents a beat and null represents a rest
 function createNotes(soundState, note) {
-  let notes = [];
-  for (let i = 0; i < soundState.length; i++) {
-    if (soundState[i]) {
-      notes.push(note);
+  return soundState.map(beat => {
+    if (beat) {
+      return note;
     } else {
-      notes.push(null);
+      return null;
     }
-  }
-  return notes;
+  });
 }
 
 class Grid extends React.Component {
-  constructor() {
-    super();
-    this.state = { isToggleOn: true };
+  constructor(props) {
+    super(props);
+    this.state = {
+      isToggleOn: true
+    };
     this.handleClick = this.handleClick.bind(this);
     this.playSounds = this.playSounds.bind(this);
-    // this.createNotes = this.createNotes.bind(this);
     this.handleReset = this.handleReset.bind(this);
+    // this.repeat = this.repeat.bind(this);
   }
 
-  // This is essentially the same function as the helper function above. Not sure if there's a reason to use one over the other, which is why I'm leaving this commented out in the code for now.
-  // Accepts an array of true/false values and a note (e.g. 'C4')
-  // and returns an array containing note/null
-  // where null represents a rest and a note is a beat
-  // createNotes(soundState, note) {
-  //   let notes = [];
-  //   for (let i = 0; i < soundState.length; i++) {
-  //     if (soundState[i]) {
-  //       notes.push(note);
-  //     } else {
-  //       notes.push(null);
-  //     }
-  //   }
-  //   return notes;
-  // }
-
   playSounds() {
-    const { sound1 } = this.props.sounds;
-    let notes = createNotes(sound1, 'C4');
-    const synth = new Tone.MembraneSynth().toMaster();
+    // const { sound1 } = this.props.sounds;
+    // let notes = createNotes(sound1, 'C4');
+    // const synth = new Tone.Synth().toMaster();
+    // const synth2 = new Tone.Synth().toMaster();
 
-    const synthPart = new Tone.Sequence(
-      function(time, note) {
-        synth.triggerAttackRelease(note, '10hz', time);
-      },
-      notes,
-      '8n'
-    );
-    synthPart.start();
+    // const synthPart = new Tone.Sequence(
+    //   function(time, note) {
+    //     synth.triggerAttackRelease(note, '10hz', time);
+    //   },
+    //   notes,
+    //   '8n'
+    // );
+    // const synthPart2 = new Tone.Sequence(
+    //   function(time, note) {
+    //     synth2.triggerAttackRelease(note, '10hz', time);
+    //   },
+    //   [
+    //     'G4',
+    //     'G4',
+    //     'G4',
+    //     null,
+    //     null,
+    //     null,
+    //     'G4',
+    //     'G4',
+    //     'G4',
+    //     null,
+    //     null,
+    //     null,
+    //     'G4',
+    //     'G4',
+    //     'G4',
+    //     'G4'
+    //   ],
+    //   '8n'
+    // );
+    this.props.sequence1.start();
+    this.props.sequence2.start();
+    this.props.sequence3.start();
+    this.props.sequence4.start();
+
+    // synthPart2.start();
+    // this.sequence.start();
     Tone.Transport.start();
+    console.log(Tone.Transport.state);
   }
 
   handleReset() {
@@ -73,6 +89,7 @@ class Grid extends React.Component {
     } else {
       // Stops the sequence if one is playing
       Tone.Transport.stop();
+      // Tone.Transport.cancel();
     }
     this.setState(prevState => ({
       isToggleOn: !prevState.isToggleOn
@@ -81,9 +98,33 @@ class Grid extends React.Component {
 
   render() {
     console.dir(Tone.Transport);
+    console.log('MY PROPSSSS IN GRID: ', this.props);
     return (
       <div className="wrapper">
-        <InstrumentRow />
+        <InstrumentRow
+          name="sound1"
+          sound={this.props.sounds.sound1}
+          note="C4"
+          sequence={this.props.sequence1}
+        />
+        <InstrumentRow
+          name="sound2"
+          sound={this.props.sounds.sound2}
+          note="D4"
+          sequence={this.props.sequence2}
+        />
+        <InstrumentRow
+          name="sound3"
+          sound={this.props.sounds.sound3}
+          note="E4"
+          sequence={this.props.sequence3}
+        />
+        <InstrumentRow
+          name="sound4"
+          sound={this.props.sounds.sound4}
+          note="F4"
+          sequence={this.props.sequence4}
+        />
         <button type="submit" onClick={this.handleClick} className="button">
           {this.state.isToggleOn ? '>' : '||'}
         </button>
