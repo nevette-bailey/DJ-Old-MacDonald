@@ -1,19 +1,24 @@
 import { SAVE_LOOP } from './index';
 import axios from 'axios';
 
-export const saveLoop = id => ({
+const saveLoop = id => ({
   type: SAVE_LOOP,
   id
 });
 
 export const saveLoopThunk = (sound, loopId) => {
   return async dispatch => {
-    if (!loopId) {
-      const { data } = await axios.post('/api/loops/', sound);
-      dispatch(saveLoop(data.id));
-    } else {
-      const { data } = await axios.put('/api/loops/', sound);
-      dispatch(saveLoop(data.id));
+    try {
+      sound.title = '';
+      if (!loopId) {
+        const { data } = await axios.post('/api/users/loops/', sound);
+        dispatch(saveLoop(data.id));
+      } else {
+        const { data } = await axios.put('/api/users/loops/', sound);
+        dispatch(saveLoop(data.id));
+      }
+    } catch (err) {
+      console.log(err);
     }
   };
 };
