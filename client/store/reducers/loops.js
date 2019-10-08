@@ -6,7 +6,7 @@ export const saveLoop = id => ({
   id
 });
 
-export const gotLoops = allLoops => ({
+export const getLoops = allLoops => ({
   type: GET_LOOPS,
   allLoops
 });
@@ -27,7 +27,7 @@ export const gotLoopsThunk = () => async dispatch => {
   try {
     const { data } = await axios.get('/api/users/loops');
     console.log("what's happening", data);
-    dispatch(gotLoops(data));
+    dispatch(getLoops(data));
   } catch (err) {
     console.log(err);
   }
@@ -35,7 +35,7 @@ export const gotLoopsThunk = () => async dispatch => {
 
 const initialState = {
   id: null,
-  userLoops: []
+  allLoops: []
 };
 export default function loops(state = initialState, action) {
   switch (action.type) {
@@ -43,7 +43,7 @@ export default function loops(state = initialState, action) {
       return action.id;
     }
     case GET_LOOPS: {
-      return { ...state, userLoops: action.userLoops };
+      return { ...state, allLoops: action.allLoops };
     }
     default:
       return state;

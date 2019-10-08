@@ -11,10 +11,10 @@ class UserHome extends React.Component {
     super(props);
   }
   componentDidMount() {
-    this.props.getLoops();
+    this.props.gotLoopsThunk();
   }
   render() {
-    console.log('**** here is the props', this.props);
+    // console.log('**** here is the props', this.props.allLoops);
     // const { email } = this.props.email;
 
     return (
@@ -22,8 +22,8 @@ class UserHome extends React.Component {
         <div>
           <h2>Welcome, {this.props.email} !</h2>
         </div>
-        <div className="loops-contanier">
-          <h3>Here are your loops:</h3>
+        <div>
+          <h3>Here are your Loops:</h3>
         </div>
       </div>
     );
@@ -33,20 +33,20 @@ class UserHome extends React.Component {
 /**
  * CONTAINER
  */
-const mapState = state => ({
-  email: state.user.email,
-  userLoops: state.userLoops
+const mapStateToProps = state => ({
+  email: state.user,
+  allLoops: state.loops
 });
 
-const mapDispatch = dispatch => ({
-  getLoops: () => dispatch(gotLoopsThunk())
+const mapDispatchToProps = dispatch => ({
+  gotLoopsThunk: () => dispatch(gotLoopsThunk())
 });
 
-export default connect(mapState, mapDispatch)(UserHome);
+export default connect(mapStateToProps, mapDispatchToProps)(UserHome);
 
 /**
  * PROP TYPES
  */
-UserHome.propTypes = {
-  email: PropTypes.string
-};
+// UserHome.propTypes = {
+//   email: PropTypes.string
+// };
