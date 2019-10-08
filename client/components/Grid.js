@@ -117,7 +117,7 @@ class Grid extends React.Component {
 
   render() {
     console.dir(Tone.Transport);
-    console.log('MY PROPSSSS', this.props);
+    console.log('MY PROPSSSS IN GRID: ', this.props);
     return (
       <div className="wrapper">
         <InstrumentRow
