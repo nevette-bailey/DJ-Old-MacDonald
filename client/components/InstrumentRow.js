@@ -33,9 +33,14 @@ class InstrumentRow extends React.Component {
       this.state.sound3.loaded
     ) {
       //play imported sound when box is clicked
-      this.state.sound1.restart(undefined, undefined, 0.6);
-      this.state.sound3.restart(undefined, undefined, 1);
-      this.state.sound2.triggerAttackRelease('C2', '8n');
+      // this.state.sound1.restart(undefined, undefined, 0.6);
+      // this.state.sound3.restart(undefined, undefined, 1);
+      // this.state.sound2.triggerAttackRelease('C2', '8n');
+
+      const seq = new Tone.Sequence(function(time, note) {}, [
+        this.state.sound1.restart(undefined, undefined, 0.6),
+        this.state.sound3.restart(undefined, undefined, 1)
+      ]);
     }
     // update boolean value of box in redux state
     this.props.updateSoundThunk(soundId, idx);
