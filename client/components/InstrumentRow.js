@@ -18,17 +18,11 @@ class InstrumentRow extends React.Component {
     };
   }
 
-  componentDidMount() {
-    this.state.sound1.sync();
-    // this.state.sound2.sync();
-  }
-
   onClickFunction(soundId, idx) {
     // check whether sound should be triggered
     if (!this.props.sound1[idx] && this.state.sound1.loaded) {
       //play imported sound when box is clicked
       this.state.sound1.restart(undefined, undefined, 0.6);
-      this.state.sound2.triggerAttackRelease('C4', '8n');
     }
     // update boolean value of box in redux state
     this.props.updateSoundThunk(soundId, idx);
