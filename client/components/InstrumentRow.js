@@ -14,15 +14,27 @@ class InstrumentRow extends React.Component {
         loopStart: 0.4,
         loopEnd: 1
       }).toMaster(),
-      sound2: new Tone.PolySynth().toMaster()
+      sound2: new Tone.PolySynth().toMaster(),
+      sound3: new Tone.Player({
+        url: 'https://actions.google.com/sounds/v1/animals/crow_call.ogg',
+        autostart: true,
+        loop: true,
+        loopStart: 13.2,
+        loopEnd: 14.2
+      }).toMaster()
     };
   }
 
   onClickFunction(soundId, idx) {
     // check whether sound should be triggered
-    if (!this.props.sound1[idx] && this.state.sound1.loaded) {
+    if (
+      !this.props.sound1[idx] &&
+      this.state.sound1.loaded &&
+      this.state.sound3.loaded
+    ) {
       //play imported sound when box is clicked
       this.state.sound1.restart(undefined, undefined, 0.6);
+      this.state.sound3.restart(undefined, undefined, 1);
     }
     // update boolean value of box in redux state
     this.props.updateSoundThunk(soundId, idx);
