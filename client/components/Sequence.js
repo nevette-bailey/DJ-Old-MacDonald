@@ -10,7 +10,13 @@ class Sequence extends React.Component {
       synth1: new Tone.Synth().toMaster(),
       synth2: new Tone.Synth().toMaster(),
       synth3: new Tone.Synth().toMaster(),
-      synth4: new Tone.Synth().toMaster()
+      synth4: new Tone.Player({
+        url: 'https://actions.google.com/sounds/v1/animals/dog_barking.ogg',
+        autostart: false,
+        loop: true,
+        loopStart: 0.4,
+        loopEnd: 1
+      }).toMaster()
     };
   }
 
@@ -63,12 +69,10 @@ class Sequence extends React.Component {
 
     const synth4 = this.state.synth4;
     const synthPart4 = new Tone.Sequence(
-      function(time, note) {
-        synth4.triggerAttackRelease(note, '10hz', time);
-      },
+      function(time, note) {},
       this.props.sounds.sound4.map(elem => {
         if (elem) {
-          return 'F4';
+          // return synth4.restart(undefined, undefined, 0.6);
         } else {
           return null;
         }
@@ -82,6 +86,7 @@ class Sequence extends React.Component {
         sequence2={synthPart2}
         sequence3={synthPart3}
         sequence4={synthPart4}
+        synth4={synth4}
       />
     );
   }

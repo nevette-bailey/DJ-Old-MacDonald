@@ -122,7 +122,7 @@ class Grid extends React.Component {
         <InstrumentRow
           name="sound4"
           sound={this.props.sounds.sound4}
-          note="F4"
+          note={this.props.synth4}
           sequence={this.props.sequence4}
         />
         <button type="submit" onClick={this.handleClick} className="button">

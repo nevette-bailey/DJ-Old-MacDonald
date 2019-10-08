@@ -5,20 +5,23 @@ const Tone = require('Tone');
 
 class InstrumentRow extends React.Component {
   makeSound() {
-    const synth = new Tone.MembraneSynth().toMaster();
-    synth.triggerAttackRelease(this.props.note, '8n');
+    let note = this.props.note;
+    if (note.state && note.loaded) {
+      note.start(undefined, undefined, 0.6);
+    } else if (!note.state) {
+      const synth = new Tone.MembraneSynth().toMaster();
+      synth.triggerAttackRelease(note, '8n');
+    }
   }
 
   onClickFunction(soundId, idx) {
-    console.log('SEQUENCE', this.props.sequence);
-    console.log('click function!');
-    this.props.updateSoundThunk(soundId, idx);
     if (!this.props.sound[idx]) {
       this.makeSound();
       this.props.sequence.add(idx, this.props.note);
     } else {
       this.props.sequence.add(idx, null);
     }
+    this.props.updateSoundThunk(soundId, idx);
   }
 
   render() {
