@@ -6,6 +6,7 @@ import { Login, Signup, UserHome } from './components';
 import { me } from './store';
 import InstrumentRow from './components/InstrumentRow';
 import Grid from './components/Grid';
+import SaveButton from './components/SaveButton';
 
 /**
  * COMPONENT
@@ -25,6 +26,7 @@ class Routes extends Component {
         <Route path="/signup" component={Signup} />
         <Route path="/instrumentrow" component={InstrumentRow} />
         <Route path="/grid" component={Grid} />
+        <Route path="/savebutton" component={SaveButton} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
