@@ -16,13 +16,38 @@ function createNotes(soundState, note) {
 }
 
 class Grid extends React.Component {
-  constructor() {
-    super();
-    this.state = { isToggleOn: true };
+  constructor(props) {
+    super(props);
+    this.state = {
+      isToggleOn: true
+    };
+    // this.synth = new Tone.Synth().toMaster();
+    // // this.synths = [
+    // //   new Tone.Synth().toMaster(),
+    // //   new Tone.Synth().toMaster(),
+    // //   new Tone.Synth().toMaster(),
+    // //   new Tone.Synth().toMaster()
+    // // ];
+    // this.repeat = (time, beat) => {
+    //   console.log('INSIDE REPEAT ', this.synth);
+    //   let note;
+    //   if (beat) {
+    //     note = 'C4';
+    //   } else {
+    //     note = null;
+    //   }
+    //   this.synth.triggerAttackRelease(note, '10hz', time);
+    // };
+    // this.sequence = new Tone.Sequence(
+    //   this.repeat,
+    //   this.props.sounds.sound1,
+    //   '8n'
+    // );
+
     this.handleClick = this.handleClick.bind(this);
     this.playSounds = this.playSounds.bind(this);
-    // this.createNotes = this.createNotes.bind(this);
     this.handleReset = this.handleReset.bind(this);
+    // this.repeat = this.repeat.bind(this);
   }
 
   playSounds() {
@@ -38,32 +63,34 @@ class Grid extends React.Component {
       notes,
       '8n'
     );
-    const synthPart2 = new Tone.Sequence(
-      function(time, note) {
-        synth2.triggerAttackRelease(note, '10hz', time);
-      },
-      [
-        'G4',
-        'G4',
-        'G4',
-        null,
-        null,
-        null,
-        'G4',
-        'G4',
-        'G4',
-        null,
-        null,
-        null,
-        'G4',
-        'G4',
-        'G4',
-        'G4'
-      ],
-      '8n'
-    );
+
+    // const synthPart2 = new Tone.Sequence(
+    //   function(time, note) {
+    //     synth2.triggerAttackRelease(note, '10hz', time);
+    //   },
+    //   [
+    //     'G4',
+    //     'G4',
+    //     'G4',
+    //     null,
+    //     null,
+    //     null,
+    //     'G4',
+    //     'G4',
+    //     'G4',
+    //     null,
+    //     null,
+    //     null,
+    //     'G4',
+    //     'G4',
+    //     'G4',
+    //     'G4'
+    //   ],
+    //   '8n'
+    // );
     synthPart.start();
-    synthPart2.start();
+    // synthPart2.start();
+    // this.sequence.start();
     Tone.Transport.start();
     console.log(Tone.Transport.state);
   }
@@ -82,6 +109,7 @@ class Grid extends React.Component {
     } else {
       // Stops the sequence if one is playing
       Tone.Transport.stop();
+      Tone.Transport.cancel();
     }
     this.setState(prevState => ({
       isToggleOn: !prevState.isToggleOn
@@ -92,7 +120,26 @@ class Grid extends React.Component {
     console.dir(Tone.Transport);
     return (
       <div className="wrapper">
-        <InstrumentRow />
+        <InstrumentRow
+          name="sound1"
+          sound={this.props.sounds.sound1}
+          note="C4"
+        />
+        <InstrumentRow
+          name="sound2"
+          sound={this.props.sounds.sound2}
+          note="D4"
+        />
+        <InstrumentRow
+          name="sound3"
+          sound={this.props.sounds.sound3}
+          note="E4"
+        />
+        <InstrumentRow
+          name="sound4"
+          sound={this.props.sounds.sound4}
+          note="F4"
+        />
         <button type="submit" onClick={this.handleClick} className="button">
           {this.state.isToggleOn ? '>' : '||'}
         </button>
