@@ -28,7 +28,7 @@ class SaveButton extends Component {
 const mapStateToProps = state => {
   return {
     sounds: state.sounds,
-    loopId: state.loopId
+    loopId: state.loops.id
   };
 };
 

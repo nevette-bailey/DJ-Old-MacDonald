@@ -20,13 +20,13 @@ export const saveLoopThunk = (sound, loopId) => {
   return async dispatch => {
     try {
       sound.title = '';
-      if (!loopId) {
+      if (loopId === null) {
         const { data } = await axios.post('/api/loops/', sound);
-        console.log(data);
         dispatch(saveLoop(data));
       } else {
         // we still need to write a put route
-        const { data } = await axios.put('/api/loops/', sound);
+
+        const { data } = await axios.put(`/api/loops/${loopId}`, sound);
         dispatch(saveLoop(data));
       }
     } catch (err) {
