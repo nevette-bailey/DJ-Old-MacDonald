@@ -10,7 +10,20 @@ label {
   display: block;
 }
 
-nav a {
+.nav-wrapper {
+  margin: 0;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+nav div {
+  margin: auto 20px;
+}
+
+.nav-links a {
   display: inline-block;
   margin: 1em;
 }
@@ -44,6 +57,7 @@ form div {
 
 .wrapper {
   text-align: center;
+  margin: 10px;
 }
 
 .button {
