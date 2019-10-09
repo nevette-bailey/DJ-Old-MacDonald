@@ -16,23 +16,54 @@ router.get('/', async (req, res, next) => {
   }
 });
 
+// router.post('/', async (req, res, next) => {
+//   try {
+//     const newloop = await Loop.findOrCreate({
+//       //create new loop in our loop model
+//       where: {
+//         title: req.body.title,
+//         sound1: req.body.sound1,
+//         sound2: req.body.sound2,
+//         sound3: req.body.sound3,
+//         sound4: req.body.sound4,
+//         sound5: req.body.sound5,
+//         sound6: req.body.sound6,
+//         sound7: req.body.sound7,
+//         sound8: req.body.sound8
+//       }
+//     });
+
+//     // const user = await User.findByPk(req.body.userId);
+//     const user = await User.findByPk(req.user.id);
+
+//     await newloop[0].setUser(user);
+//     //userId was created autommatically due to association
+
+//     res.json(newloop[0]);
+//   } catch (err) {
+//     next(err);
+//   }
+// });
+
 router.post('/', async (req, res, next) => {
   try {
-    const newloop = await Loop.findOrCreate({
+    const newloop = await Loop.create({
       //create new loop in our loop model
-      where: {
-        title: req.body.title,
-        sound1: req.body.sound1 // sound1 for now. SoundId later?
-      }
+      title: req.body.title,
+      sound1: req.body.sound1,
+      sound2: req.body.sound2,
+      sound3: req.body.sound3,
+      sound4: req.body.sound4,
+      sound5: req.body.sound5,
+      sound6: req.body.sound6,
+      sound7: req.body.sound7,
+      sound8: req.body.sound8
     });
-
     // const user = await User.findByPk(req.body.userId);
     const user = await User.findByPk(req.user.id);
-
-    await newloop[0].setUser(user);
+    await newloop.setUser(user);
     //userId was created autommatically due to association
-
-    res.json(newloop[0]);
+    res.json(newloop);
   } catch (err) {
     next(err);
   }
@@ -46,8 +77,34 @@ router.get('/:id', async (req, res, next) => {
         id: req.params.id
       }
     });
-
     res.json(oneLoop);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.put('/:id', async (req, res, next) => {
+  try {
+    console.log('INSIDE PUT: ', req.body);
+    console.log('USERID', req.user.id);
+    console.log('loop id: ', req.params.id);
+    const [numAffectedRows, affectedRows] = await Loop.update(
+      {
+        title: req.body.title,
+        sound1: req.body.sound1,
+        sound2: req.body.sound2,
+        sound3: req.body.sound3
+      },
+      {
+        where: {
+          userId: req.user.id,
+          id: req.params.id
+        },
+        returning: true,
+        plain: true
+      }
+    );
+    res.status(204).send();
   } catch (err) {
     next(err);
   }
