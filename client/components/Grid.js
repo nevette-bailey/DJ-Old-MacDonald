@@ -79,13 +79,14 @@ class Grid extends React.Component {
   // };
 
   render() {
+    const sequences = this.props.sequences;
     return (
       <div className="wrapper">
         <InstrumentRow
           name="sound1"
           sound={this.props.sounds.sound1}
           note="C4"
-          sequence={this.props.sequence1}
+          sequence={this.props.sequences.sequence1}
         />
         <InstrumentRow
           name="sound2"
@@ -104,6 +105,7 @@ class Grid extends React.Component {
           sound={this.props.sounds.sound4}
           note={this.props.synth4}
           duration={0.6}
+          sequenceName="sequence4"
           sequence={this.props.sequence4}
         />
         <div className="buttons">

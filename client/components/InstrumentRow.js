@@ -1,5 +1,6 @@
 import React from 'react';
 import { updateSoundThunk } from '../store/reducers/sounds';
+import { updateOneSequenceThunk } from '../store/reducers/sequences';
 import { connect } from 'react-redux';
 const Tone = require('Tone');
 
@@ -14,11 +15,16 @@ class InstrumentRow extends React.Component {
     }
   }
 
-  onClickFunction(soundId, idx) {
+  onClickFunction(soundId, idx, sequenceName) {
     if (!this.props.sound[idx]) {
       this.makeSound();
       if (this.props.note.state && this.props.note.loaded) {
-        this.props.sequence.add(idx, this.props.duration);
+        this.props.updateOneSequenceThunk(
+          sequenceName,
+          idx,
+          this.props.duration
+        );
+        // this.props.sequence.add(idx, this.props.duration);
       } else {
         this.props.sequence.add(idx, this.props.note);
       }
@@ -38,7 +44,13 @@ class InstrumentRow extends React.Component {
               data-index={idx}
               key={idx}
               value={elem}
-              onClick={() => this.onClickFunction(this.props.name, idx)}
+              onClick={() =>
+                this.onClickFunction(
+                  this.props.name,
+                  idx,
+                  this.props.sequenceName
+                )
+              }
             />
           );
         })}
@@ -50,7 +62,9 @@ class InstrumentRow extends React.Component {
 const mapDispatchToProps = dispatch => {
   return {
     updateSoundThunk: (soundId, arrIndex) =>
-      dispatch(updateSoundThunk(soundId, arrIndex))
+      dispatch(updateSoundThunk(soundId, arrIndex)),
+    updateOneSequenceThunk: (sequence, idx, param) =>
+      dispatch(updateOneSequenceThunk(sequence, idx, param))
   };
 };
 
