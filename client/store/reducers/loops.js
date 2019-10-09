@@ -6,9 +6,8 @@ const saveLoop = id => ({
   id
 });
 
-const createNewLoop = newLoop => ({
-  type: CREATE_NEW_LOOP,
-  newLoop
+const createNewLoop = () => ({
+  type: CREATE_NEW_LOOP
 });
 
 export const saveLoopThunk = (sound, loopId) => {
@@ -27,6 +26,10 @@ export const saveLoopThunk = (sound, loopId) => {
     }
   };
 };
+//???????
+export const createNewLoopThunk = () => async dispatch => {
+  dispatch(createNewLoop());
+};
 
 const initialState = {
   id: null
@@ -35,6 +38,9 @@ export default function loops(state = initialState, action) {
   switch (action.type) {
     case SAVE_LOOP: {
       return action.id;
+    }
+    case CREATE_NEW_LOOP: {
+      return;
     }
     default:
       return state;
