@@ -1,9 +1,14 @@
-import { SAVE_LOOP } from './index';
+import { SAVE_LOOP, CREATE_NEW_LOOP } from './index';
 import axios from 'axios';
 
 const saveLoop = id => ({
   type: SAVE_LOOP,
   id
+});
+
+const createNewLoop = newLoop => ({
+  type: CREATE_NEW_LOOP,
+  newLoop
 });
 
 export const saveLoopThunk = (sound, loopId) => {
@@ -21,6 +26,10 @@ export const saveLoopThunk = (sound, loopId) => {
       console.log(err);
     }
   };
+};
+
+export const createNewLoopThunk = () => {
+  
 };
 
 const initialState = {
