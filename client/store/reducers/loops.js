@@ -28,10 +28,6 @@ export const saveLoopThunk = (sound, loopId) => {
   };
 };
 
-export const createNewLoopThunk = () => {
-  
-};
-
 const initialState = {
   id: null
 };
