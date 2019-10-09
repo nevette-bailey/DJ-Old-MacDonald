@@ -33,7 +33,7 @@ export const saveLoopThunk = (sound, loopId) => {
 };
 
 export const createNewLoopThunk = () => dispatch => {
-  dispatch(resetSound());
+  dispatch(resetSound()); //import resetSound and use it here to reset the state
   dispatch(createNewLoop());
 };
 
