@@ -11,3 +11,6 @@ export const RESET_SOUND = 'RESET_SOUND';
 export const SAVE_LOOP = 'SAVE_LOOP';
 export const GET_LOOPS = 'GET_LOOPS';
 export const CREATE_NEW_LOOP = 'CREATE_NEW_LOOP';
+
+export const UPDATE_SEQUENCES = 'UPDATE_SEQUENCES';
+export const UPDATE_SEQUENCES_ERROR = 'UPDATE_SEQUENCES_ERROR';

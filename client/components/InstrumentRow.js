@@ -15,7 +15,6 @@ class InstrumentRow extends React.Component {
   }
 
   onClickFunction(soundId, idx) {
-    console.log('PROPS HERE', this.props);
     if (!this.props.sound[idx]) {
       this.makeSound();
       if (this.props.note.state && this.props.note.loaded) {
@@ -30,7 +29,6 @@ class InstrumentRow extends React.Component {
   }
 
   render() {
-    // console.log(this.props.sound);
     return (
       <div className="row">
         {this.props.sound.map((elem, idx) => {

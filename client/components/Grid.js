@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import InstrumentRow from './InstrumentRow';
 import { resetSoundThunk } from '../store/reducers/sounds';
+import { updateSequencesThunk } from '../store/reducers/sequences';
 import Tempo from '../components/Tempo';
 import SaveButton from '../components/SaveButton';
 import { timingSafeEqual } from 'crypto';
@@ -11,18 +12,31 @@ class Grid extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isToggleOn: true
+      isToggleOn: true,
+      isPlaying: false
     };
     this.handleClick = this.handleClick.bind(this);
     this.playSounds = this.playSounds.bind(this);
     this.handleReset = this.handleReset.bind(this);
   }
 
+  componentDidUpdate() {
+    console.log('isPlaying', this.state.isPlaying);
+    if (this.state.isPlaying) {
+      this.props.sequences.sequence1.start();
+      this.props.sequences.sequence2.start();
+      this.props.sequences.sequence3.start();
+      this.props.sequences.sequence4.start();
+
+      Tone.Transport.start();
+    }
+  }
+
   playSounds() {
-    this.props.sequence1.start();
-    this.props.sequence2.start();
-    this.props.sequence3.start();
-    this.props.sequence4.start();
+    this.props.sequences.sequence1.start();
+    this.props.sequences.sequence2.start();
+    this.props.sequences.sequence3.start();
+    this.props.sequences.sequence4.start();
 
     Tone.Transport.start();
   }
@@ -35,13 +49,20 @@ class Grid extends React.Component {
   }
 
   handleClick = () => {
+    const sequences = {
+      sequence1: this.props.sequence1,
+      sequence2: this.props.sequence2,
+      sequence3: this.props.sequence3,
+      sequence4: this.props.sequence4
+    };
     if (this.state.isToggleOn) {
       // plays the sequence if nothing is playing
-      // send sequences to redux state here
-      this.playSounds();
+      this.props.updateSequencesThunk(sequences);
+      this.setState({ isPlaying: true });
     } else {
       // Stops the sequence if one is playing
       Tone.Transport.stop();
+      this.setState({ isPlaying: false });
       // Tone.Transport.cancel();
     }
     this.setState(prevState => ({
@@ -102,14 +123,15 @@ class Grid extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    sounds: state.sounds
-    //import sequences from redux store here
+    sounds: state.sounds,
+    sequences: state.sequences
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    resetSoundThunk: () => dispatch(resetSoundThunk())
+    resetSoundThunk: () => dispatch(resetSoundThunk()),
+    updateSequencesThunk: sequences => dispatch(updateSequencesThunk(sequences))
   };
 };
 
