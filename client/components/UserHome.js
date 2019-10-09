@@ -14,10 +14,6 @@ class UserHome extends React.Component {
     this.props.gotLoopsThunk();
   }
   render() {
-    const s1 = this.props.loops[0];
-    console.log('**** here is the sound1 array', s1);
-    // const { email } = this.props.email;
-
     return (
       <div>
         <div>

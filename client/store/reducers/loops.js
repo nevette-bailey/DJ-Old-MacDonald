@@ -26,7 +26,6 @@ export const saveLoopThunk = (sound, loopId) => {
 export const gotLoopsThunk = () => async dispatch => {
   try {
     const { data } = await axios.get('/api/users/loops');
-    console.log("what's happening", data);
     dispatch(getLoops(data));
   } catch (err) {
     console.log(err);
