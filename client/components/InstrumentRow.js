@@ -7,7 +7,7 @@ class InstrumentRow extends React.Component {
   makeSound() {
     let note = this.props.note;
     if (note.state && note.loaded) {
-      note.start(undefined, undefined, 0.6);
+      note.start(undefined, undefined, this.props.duration);
     } else if (!note.state) {
       const synth = new Tone.MembraneSynth().toMaster();
       synth.triggerAttackRelease(note, '8n');
@@ -15,9 +15,14 @@ class InstrumentRow extends React.Component {
   }
 
   onClickFunction(soundId, idx) {
+    console.log('PROPS HERE', this.props);
     if (!this.props.sound[idx]) {
       this.makeSound();
-      this.props.sequence.add(idx, this.props.note);
+      if (this.props.note.state && this.props.note.loaded) {
+        this.props.sequence.add(idx, this.props.duration);
+      } else {
+        this.props.sequence.add(idx, this.props.note);
+      }
     } else {
       this.props.sequence.add(idx, null);
     }

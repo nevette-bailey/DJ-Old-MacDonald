@@ -21,7 +21,6 @@ class Sequence extends React.Component {
   }
 
   render() {
-    console.log('SEQ RENDER: ', this.state);
     const synth1 = this.state.synth1;
     const synthPart1 = new Tone.Sequence(
       function(time, note) {
@@ -69,10 +68,12 @@ class Sequence extends React.Component {
 
     const synth4 = this.state.synth4;
     const synthPart4 = new Tone.Sequence(
-      function(time, note) {},
+      function(time, duration) {
+        synth4.restart(undefined, undefined, duration);
+      },
       this.props.sounds.sound4.map(elem => {
         if (elem) {
-          // return synth4.restart(undefined, undefined, 0.6);
+          return 0.6;
         } else {
           return null;
         }

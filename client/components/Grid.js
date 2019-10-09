@@ -98,7 +98,6 @@ class Grid extends React.Component {
 
   render() {
     console.dir(Tone.Transport);
-    console.log('MY PROPSSSS IN GRID: ', this.props);
     return (
       <div className="wrapper">
         <InstrumentRow
@@ -123,6 +122,7 @@ class Grid extends React.Component {
           name="sound4"
           sound={this.props.sounds.sound4}
           note={this.props.synth4}
+          duration={0.6}
           sequence={this.props.sequence4}
         />
         <button type="submit" onClick={this.handleClick} className="button">
