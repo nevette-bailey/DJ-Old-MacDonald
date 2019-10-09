@@ -10,8 +10,6 @@ class CreateNewLoopButton extends Component {
   handleSubmit(event) {
     event.preventDefault();
     this.props.createNewLoopThunk();
-    // onClick={this.handleSubmit}
-    close();
   }
   render() {
     return (
@@ -31,10 +29,16 @@ class CreateNewLoopButton extends Component {
               </a>
 
               <div className="content">
-                Do you want to save the current loop?
+                Do you want to save the current loop before creating a new one?
               </div>
               <div className="actions">
-                <button className="button" type="button">
+                <button
+                  className="button"
+                  type="button"
+                  onClick={() => {
+                    close();
+                  }}
+                >
                   Yes
                 </button>
 
