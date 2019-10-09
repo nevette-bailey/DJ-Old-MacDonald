@@ -14,7 +14,8 @@ class UserHome extends React.Component {
     this.props.gotLoopsThunk();
   }
   render() {
-    // console.log('**** here is the props', this.props.allLoops);
+    const s1 = this.props.loops[0];
+    console.log('**** here is the sound1 array', s1);
     // const { email } = this.props.email;
 
     return (
@@ -22,8 +23,24 @@ class UserHome extends React.Component {
         <div>
           <h2>Welcome, {this.props.email} !</h2>
         </div>
-        <div>
+        <div className="loops-container">
           <h3>Here are your Loops:</h3>
+          {this.props.loops ? (
+            this.props.loops.map(loop => {
+              return (
+                <div className="single-loop" key={loop.id}>
+                  <h4>Loop ID: {loop.id}</h4>
+
+                  <h4>Loop Title: {loop.title}</h4>
+                  {/* sound1 for now  */}
+                  <h4>Loop Sound: {loop.sound1}</h4>
+                  <br />
+                </div>
+              );
+            })
+          ) : (
+            <div>No loops saved.</div>
+          )}
         </div>
       </div>
     );
@@ -34,8 +51,8 @@ class UserHome extends React.Component {
  * CONTAINER
  */
 const mapStateToProps = state => ({
-  email: state.user,
-  allLoops: state.loops
+  email: state.user.email,
+  loops: state.loops.allLoops
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -47,6 +64,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(UserHome);
 /**
  * PROP TYPES
  */
-// UserHome.propTypes = {
-//   email: PropTypes.string
-// };
+UserHome.propTypes = {
+  email: PropTypes.string
+};
