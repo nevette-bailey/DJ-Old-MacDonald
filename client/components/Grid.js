@@ -86,18 +86,21 @@ class Grid extends React.Component {
           name="sound1"
           sound={this.props.sounds.sound1}
           note="C4"
+          sequenceName="sequence1"
           sequence={this.props.sequences.sequence1}
         />
         <InstrumentRow
           name="sound2"
           sound={this.props.sounds.sound2}
           note="D4"
+          sequenceName="sequence2"
           sequence={this.props.sequence2}
         />
         <InstrumentRow
           name="sound3"
           sound={this.props.sounds.sound3}
           note="E4"
+          sequenceName="sequence3"
           sequence={this.props.sequence3}
         />
         <InstrumentRow

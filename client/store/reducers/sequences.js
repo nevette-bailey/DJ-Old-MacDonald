@@ -56,11 +56,14 @@ export default function sequences(state = {}, action) {
     case UPDATE_SEQUENCES:
       return action.sequences;
     case UPDATE_ONE_SEQUENCE: {
-      console.log('STATE', state[action.sequence]);
-      const thisSequence = Object.create(state[action.sequence]);
-      console.log('thisSequence', thisSequence);
-      thisSequence.__proto__.add(action.idx, action.param);
-      return { ...state, [action.sequence]: thisSequence.__proto__ };
+      if (state[action.sequence]) {
+        const thisSequence = Object.create(state[action.sequence]);
+        const thisSequenceProto = Object.getPrototypeOf(thisSequence);
+        thisSequenceProto.add(action.idx, action.param);
+        return { ...state, [action.sequence]: thisSequenceProto };
+      } else {
+        return state;
+      }
     }
     default:
       return state;
