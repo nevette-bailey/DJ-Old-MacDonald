@@ -2,6 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import InstrumentRow from './InstrumentRow';
 import { resetSoundThunk } from '../store/reducers/sounds';
+import Tempo from '../components/Tempo';
+import SaveButton from '../components/SaveButton';
+import { timingSafeEqual } from 'crypto';
 const Tone = require('Tone');
 
 // this is just a helper function that transforms an array of true/false values into a note (if true) or null (if false). A note represents a beat and null represents a rest
@@ -96,8 +99,17 @@ class Grid extends React.Component {
     }));
   };
 
+  // setTempo = () => {
+  //   Tone.transport.bmp.value = 180
+  // }
+  // handleSliderChange = e => {
+  //   this.setState({ [bmp]: e.value });
+  //   Tone.Transport.bmp.value = value;
+  // };
+
   render() {
     console.dir(Tone.Transport);
+    console.log(Tone.Transport.bpm);
     console.log('MY PROPSSSS IN GRID: ', this.props);
     return (
       <div className="wrapper">
@@ -125,12 +137,16 @@ class Grid extends React.Component {
           note="F4"
           sequence={this.props.sequence4}
         />
-        <button type="submit" onClick={this.handleClick} className="button">
-          {this.state.isToggleOn ? '>' : '||'}
-        </button>
-        <button type="submit" onClick={this.handleReset} className="button">
-          <img src="https://img.icons8.com/ios-filled/18/000000/recurring-appointment.png" />
-        </button>
+        <div className="buttons">
+          <button type="submit" onClick={this.handleClick} className="button">
+            {this.state.isToggleOn ? '>' : '||'}
+          </button>
+          <button type="submit" onClick={this.handleReset} className="button">
+            <img src="https://img.icons8.com/ios-filled/18/000000/recurring-appointment.png" />
+          </button>
+          <Tempo onChange={this.handleSliderChange} />
+          <SaveButton />
+        </div>
       </div>
     );
   }

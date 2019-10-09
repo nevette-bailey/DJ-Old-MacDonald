@@ -9,6 +9,34 @@ const Loop = db.define('loop', {
   sound1: {
     type: Sequelize.ARRAY(Sequelize.BOOLEAN),
     allowNull: false
+  },
+  sound2: {
+    type: Sequelize.ARRAY(Sequelize.BOOLEAN),
+    allowNull: false
+  },
+  sound3: {
+    type: Sequelize.ARRAY(Sequelize.BOOLEAN),
+    allowNull: false
+  },
+  sound4: {
+    type: Sequelize.ARRAY(Sequelize.BOOLEAN),
+    allowNull: false
+  },
+  sound5: {
+    type: Sequelize.ARRAY(Sequelize.BOOLEAN),
+    allowNull: false
+  },
+  sound6: {
+    type: Sequelize.ARRAY(Sequelize.BOOLEAN),
+    allowNull: true
+  },
+  sound7: {
+    type: Sequelize.ARRAY(Sequelize.BOOLEAN),
+    allowNull: true
+  },
+  sound8: {
+    type: Sequelize.ARRAY(Sequelize.BOOLEAN),
+    allowNull: true
   }
 });
 
