@@ -1,4 +1,4 @@
-import { SAVE_LOOP, CREATE_NEW_LOOP } from './index';
+import { SAVE_LOOP, GET_LOOPS, CREATE_NEW_LOOP } from './index';
 import axios from 'axios';
 
 const saveLoop = id => ({
@@ -8,6 +8,11 @@ const saveLoop = id => ({
 
 const createNewLoop = () => ({
   type: CREATE_NEW_LOOP
+});
+
+export const getLoops = allLoops => ({
+  type: GET_LOOPS,
+  allLoops
 });
 
 export const saveLoopThunk = (sound, loopId) => {
@@ -26,13 +31,23 @@ export const saveLoopThunk = (sound, loopId) => {
     }
   };
 };
-//???????
+
 export const createNewLoopThunk = () => async dispatch => {
   dispatch(createNewLoop());
 };
 
+export const gotLoopsThunk = () => async dispatch => {
+  try {
+    const { data } = await axios.get('/api/users/loops');
+    dispatch(getLoops(data));
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 const initialState = {
-  id: null
+  id: null,
+  allLoops: []
 };
 export default function loops(state = initialState, action) {
   switch (action.type) {
@@ -41,6 +56,9 @@ export default function loops(state = initialState, action) {
     }
     case CREATE_NEW_LOOP: {
       return;
+    }
+    case GET_LOOPS: {
+      return { ...state, allLoops: action.allLoops };
     }
     default:
       return state;
