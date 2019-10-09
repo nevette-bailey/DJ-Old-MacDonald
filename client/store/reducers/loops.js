@@ -1,9 +1,10 @@
 import { SAVE_LOOP, GET_LOOPS, CREATE_NEW_LOOP } from './index';
 import axios from 'axios';
 import { resetSound } from './sounds';
-const saveLoop = id => ({
+
+const saveLoop = savedLoop => ({
   type: SAVE_LOOP,
-  id
+  savedLoop
 });
 
 const createNewLoop = () => ({
@@ -20,11 +21,13 @@ export const saveLoopThunk = (sound, loopId) => {
     try {
       sound.title = '';
       if (!loopId) {
-        const { data } = await axios.post('/api/users/loops/', sound);
-        dispatch(saveLoop(data.id));
+        const { data } = await axios.post('/api/loops/', sound);
+        console.log(data);
+        dispatch(saveLoop(data));
       } else {
-        const { data } = await axios.put('/api/users/loops/', sound);
-        dispatch(saveLoop(data.id));
+        // we still need to write a put route
+        const { data } = await axios.put('/api/loops/', sound);
+        dispatch(saveLoop(data));
       }
     } catch (err) {
       console.log(err);
@@ -39,7 +42,7 @@ export const createNewLoopThunk = () => dispatch => {
 
 export const gotLoopsThunk = () => async dispatch => {
   try {
-    const { data } = await axios.get('/api/users/loops');
+    const { data } = await axios.get('/api/loops/');
     dispatch(getLoops(data));
   } catch (err) {
     console.log(err);
@@ -50,10 +53,11 @@ const initialState = {
   id: null,
   allLoops: []
 };
+
 export default function loops(state = initialState, action) {
   switch (action.type) {
     case SAVE_LOOP: {
-      return action.id;
+      return { ...state, id: action.savedLoop.id };
     }
     case CREATE_NEW_LOOP: {
       return { ...state, id: null };
