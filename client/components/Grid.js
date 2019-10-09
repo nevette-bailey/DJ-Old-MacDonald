@@ -2,6 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import InstrumentRow from './InstrumentRow';
 import { resetSoundThunk } from '../store/reducers/sounds';
+import Tempo from '../components/Tempo';
+import SaveButton from '../components/SaveButton';
+import { timingSafeEqual } from 'crypto';
 const Tone = require('Tone');
 
 class Grid extends React.Component {
@@ -46,6 +49,14 @@ class Grid extends React.Component {
     }));
   };
 
+  // setTempo = () => {
+  //   Tone.transport.bmp.value = 180
+  // }
+  // handleSliderChange = e => {
+  //   this.setState({ [bmp]: e.value });
+  //   Tone.Transport.bmp.value = value;
+  // };
+
   render() {
     return (
       <div className="wrapper">
@@ -74,12 +85,16 @@ class Grid extends React.Component {
           duration={0.6}
           sequence={this.props.sequence4}
         />
-        <button type="submit" onClick={this.handleClick} className="button">
-          {this.state.isToggleOn ? '>' : '||'}
-        </button>
-        <button type="submit" onClick={this.handleReset} className="button">
-          <img src="https://img.icons8.com/ios-filled/18/000000/recurring-appointment.png" />
-        </button>
+        <div className="buttons">
+          <button type="submit" onClick={this.handleClick} className="button">
+            {this.state.isToggleOn ? '>' : '||'}
+          </button>
+          <button type="submit" onClick={this.handleReset} className="button">
+            <img src="https://img.icons8.com/ios-filled/18/000000/recurring-appointment.png" />
+          </button>
+          <Tempo onChange={this.handleSliderChange} />
+          <SaveButton />
+        </div>
       </div>
     );
   }

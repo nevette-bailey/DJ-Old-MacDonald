@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Grid from './Grid';
+import Tempo from './Tempo';
 const Tone = require('Tone');
 
 class Sequence extends React.Component {
