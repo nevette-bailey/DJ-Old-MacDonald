@@ -18,7 +18,7 @@ class SaveButton extends Component {
     return (
       <div>
         <button type="submit" onClick={this.handleSubmit} className="button">
-          SAVE
+          Save
         </button>
       </div>
     );

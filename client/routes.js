@@ -8,6 +8,7 @@ import InstrumentRow from './components/InstrumentRow';
 import Grid from './components/Grid';
 import Sequence from './components/Sequence';
 import SaveButton from './components/SaveButton';
+import Tempo from './components/Tempo';
 
 /**
  * COMPONENT
@@ -28,6 +29,7 @@ class Routes extends Component {
         <Route path="/instrumentrow" component={InstrumentRow} />
         <Route path="/grid" component={Sequence} />
         <Route path="/savebutton" component={SaveButton} />
+        <Route path="/tempo" component={Tempo} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
