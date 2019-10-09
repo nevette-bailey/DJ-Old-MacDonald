@@ -24,13 +24,11 @@ class InstrumentRow extends React.Component {
           idx,
           this.props.duration
         );
-        // this.props.sequence.add(idx, this.props.duration);
       } else {
         this.props.updateOneSequenceThunk(sequenceName, idx, this.props.note);
-        // this.props.sequence.add(idx, this.props.note);
       }
     } else {
-      this.props.sequence.add(idx, null);
+      this.props.updateOneSequenceThunk(sequenceName, idx, null);
     }
     this.props.updateSoundThunk(soundId, idx);
   }
