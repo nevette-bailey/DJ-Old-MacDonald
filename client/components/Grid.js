@@ -4,17 +4,6 @@ import InstrumentRow from './InstrumentRow';
 import { resetSoundThunk } from '../store/reducers/sounds';
 const Tone = require('Tone');
 
-// this is just a helper function that transforms an array of true/false values into a note (if true) or null (if false). A note represents a beat and null represents a rest
-function createNotes(soundState, note) {
-  return soundState.map(beat => {
-    if (beat) {
-      return note;
-    } else {
-      return null;
-    }
-  });
-}
-
 class Grid extends React.Component {
   constructor(props) {
     super(props);
@@ -24,7 +13,6 @@ class Grid extends React.Component {
     this.handleClick = this.handleClick.bind(this);
     this.playSounds = this.playSounds.bind(this);
     this.handleReset = this.handleReset.bind(this);
-    // this.repeat = this.repeat.bind(this);
   }
 
   playSounds() {
@@ -46,6 +34,7 @@ class Grid extends React.Component {
   handleClick = () => {
     if (this.state.isToggleOn) {
       // plays the sequence if nothing is playing
+      // send sequences to redux state here
       this.playSounds();
     } else {
       // Stops the sequence if one is playing
@@ -98,8 +87,8 @@ class Grid extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    // sounds is { sound1: [Array 16]}
     sounds: state.sounds
+    //import sequences from redux store here
   };
 };
 
