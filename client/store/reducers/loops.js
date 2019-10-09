@@ -1,6 +1,6 @@
 import { SAVE_LOOP, GET_LOOPS, CREATE_NEW_LOOP } from './index';
 import axios from 'axios';
-
+import { resetSound } from './sounds';
 const saveLoop = id => ({
   type: SAVE_LOOP,
   id
@@ -32,7 +32,8 @@ export const saveLoopThunk = (sound, loopId) => {
   };
 };
 
-export const createNewLoopThunk = () => async dispatch => {
+export const createNewLoopThunk = () => dispatch => {
+  dispatch(resetSound());
   dispatch(createNewLoop());
 };
 
@@ -55,7 +56,7 @@ export default function loops(state = initialState, action) {
       return action.id;
     }
     case CREATE_NEW_LOOP: {
-      return;
+      return { ...state, id: null };
     }
     case GET_LOOPS: {
       return { ...state, allLoops: action.allLoops };
