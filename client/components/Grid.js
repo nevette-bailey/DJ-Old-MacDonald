@@ -28,51 +28,12 @@ class Grid extends React.Component {
   }
 
   playSounds() {
-    // const { sound1 } = this.props.sounds;
-    // let notes = createNotes(sound1, 'C4');
-    // const synth = new Tone.Synth().toMaster();
-    // const synth2 = new Tone.Synth().toMaster();
-
-    // const synthPart = new Tone.Sequence(
-    //   function(time, note) {
-    //     synth.triggerAttackRelease(note, '10hz', time);
-    //   },
-    //   notes,
-    //   '8n'
-    // );
-    // const synthPart2 = new Tone.Sequence(
-    //   function(time, note) {
-    //     synth2.triggerAttackRelease(note, '10hz', time);
-    //   },
-    //   [
-    //     'G4',
-    //     'G4',
-    //     'G4',
-    //     null,
-    //     null,
-    //     null,
-    //     'G4',
-    //     'G4',
-    //     'G4',
-    //     null,
-    //     null,
-    //     null,
-    //     'G4',
-    //     'G4',
-    //     'G4',
-    //     'G4'
-    //   ],
-    //   '8n'
-    // );
     this.props.sequence1.start();
     this.props.sequence2.start();
     this.props.sequence3.start();
     this.props.sequence4.start();
 
-    // synthPart2.start();
-    // this.sequence.start();
     Tone.Transport.start();
-    console.log(Tone.Transport.state);
   }
 
   handleReset() {
@@ -97,7 +58,6 @@ class Grid extends React.Component {
   };
 
   render() {
-    console.dir(Tone.Transport);
     return (
       <div className="wrapper">
         <InstrumentRow
