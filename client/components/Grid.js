@@ -30,6 +30,7 @@ class Grid extends React.Component {
       this.props.sequences.sequence5.start();
       this.props.sequences.sequence6.start();
       this.props.sequences.sequence7.start();
+      this.props.sequences.sequence8.start();
 
       Tone.Transport.bpm.value = this.props.tempo;
       this.props.recorder.start();
@@ -52,7 +53,8 @@ class Grid extends React.Component {
       sequence4: this.props.sequence4,
       sequence5: this.props.sequence5,
       sequence6: this.props.sequence6,
-      sequence7: this.props.sequence7
+      sequence7: this.props.sequence7,
+      sequence8: this.props.sequence8
     };
     if (this.state.isToggleOn) {
       // plays the sequence if nothing is playing
@@ -133,6 +135,14 @@ class Grid extends React.Component {
           duration={1}
           sequenceName="sequence7"
           sequence={this.props.sequence7}
+        />
+        <InstrumentRow
+          name="sound8"
+          sound={this.props.sounds.sound8}
+          note={this.props.synth8}
+          duration={1}
+          sequenceName="sequence8"
+          sequence={this.props.sequence8}
         />
         <div className="buttons">
           <button type="submit" onClick={this.handleClick} className="button">

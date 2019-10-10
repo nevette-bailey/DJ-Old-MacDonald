@@ -30,11 +30,19 @@ class Sequence extends React.Component {
       }).toMaster(),
       synth7: new Tone.Player({
         url:
-          'https://actions.google.com/sounds/v1/animals/animal_squealing.ogg',
+          'https://actions.google.com/sounds/v1/animals/animal_hiss_and_rattle.ogg',
         autostart: false,
         loop: true,
-        loopStart: 1.5,
-        loopEnd: 2.5
+        loopStart: 0,
+        loopEnd: 1
+      }).toMaster(),
+      synth8: new Tone.Player({
+        url: 'https://actions.google.com/sounds/v1/animals/owl_hooting.ogg',
+        autostart: false,
+        loop: true,
+        loopStart: 16,
+        loopEnd: 17,
+        volume: 25
       }).toMaster()
     };
   }
@@ -145,6 +153,21 @@ class Sequence extends React.Component {
       '8n'
     );
 
+    const synth8 = this.state.synth8;
+    const synthPart8 = new Tone.Sequence(
+      function(time, duration) {
+        synth8.restart(undefined, undefined, duration);
+      },
+      this.props.sounds.sound8.map(elem => {
+        if (elem) {
+          return 1;
+        } else {
+          return null;
+        }
+      }),
+      '8n'
+    );
+
     const destination = Tone.context.createMediaStreamDestination();
     this.state.synth1.connect(destination);
     this.state.synth2.connect(destination);
@@ -153,6 +176,7 @@ class Sequence extends React.Component {
     this.state.synth5.connect(destination);
     this.state.synth6.connect(destination);
     this.state.synth7.connect(destination);
+    this.state.synth8.connect(destination);
 
     const recorder = new MediaRecorder(destination.stream);
     const chunks = [];
@@ -172,9 +196,11 @@ class Sequence extends React.Component {
           sequence5={synthPart5}
           sequence6={synthPart6}
           sequence7={synthPart7}
+          sequence8={synthPart8}
           synth5={synth5}
           synth6={synth6}
           synth7={synth7}
+          synth8={synth8}
           recorder={recorder}
         />
         <AudioPlayer src={this.state.audioSRC} />
