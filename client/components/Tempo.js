@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { updateTempoThunk } from '../store/reducers/tempo';
 const Tone = require('Tone');
 
 class Tempo extends Component {
   constructor() {
     super();
     this.state = {
-      defaultValue: 120
+      defaultValue: 160
     };
   }
 
   handleChange = e => {
     this.setState({ defaultValue: e.target.value });
+    this.props.updateTempoThunk(e.target.value);
   };
 
   render() {
@@ -18,9 +21,9 @@ class Tempo extends Component {
       <div className="slidecontainer">
         <input
           type="range"
-          min="0"
-          max="240"
-          defaultValue="120"
+          min="40"
+          max="280"
+          defaultValue="160"
           className="slider"
           id="myRange"
           onChange={this.handleChange}
@@ -32,4 +35,10 @@ class Tempo extends Component {
   }
 }
 
-export default Tempo;
+const mapDispatchToProps = dispatch => {
+  return {
+    updateTempoThunk: tempo => dispatch(updateTempoThunk(tempo))
+  };
+};
+
+export default connect(null, mapDispatchToProps)(Tempo);

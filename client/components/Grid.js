@@ -29,6 +29,7 @@ class Grid extends React.Component {
       this.props.sequences.sequence3.start();
       this.props.sequences.sequence4.start();
 
+      Tone.Transport.bpm.value = this.props.tempo;
       Tone.Transport.start();
     }
   }
@@ -131,7 +132,8 @@ class Grid extends React.Component {
 const mapStateToProps = state => {
   return {
     sounds: state.sounds,
-    sequences: state.sequences
+    sequences: state.sequences,
+    tempo: state.tempo
   };
 };
 
