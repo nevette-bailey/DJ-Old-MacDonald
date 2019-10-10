@@ -107,13 +107,7 @@ class Sequence extends React.Component {
           synth4={synth4}
           recorder={recorder}
         />
-        <AudioPlayer
-          synth1={this.state.synth1}
-          synth2={this.state.synth2}
-          synth3={this.state.synth3}
-          synth4={this.state.synth4}
-          src={this.state.audioSRC}
-        />
+        <AudioPlayer src={this.state.audioSRC} />
       </div>
     );
   }
