@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Grid from './Grid';
+import Tempo from './Tempo';
 const Tone = require('Tone');
 
 class Sequence extends React.Component {
@@ -10,12 +11,17 @@ class Sequence extends React.Component {
       synth1: new Tone.Synth().toMaster(),
       synth2: new Tone.Synth().toMaster(),
       synth3: new Tone.Synth().toMaster(),
-      synth4: new Tone.Synth().toMaster()
+      synth4: new Tone.Player({
+        url: 'https://actions.google.com/sounds/v1/animals/dog_barking.ogg',
+        autostart: false,
+        loop: true,
+        loopStart: 0.4,
+        loopEnd: 1
+      }).toMaster()
     };
   }
 
   render() {
-    console.log('SEQ RENDER: ', this.state);
     const synth1 = this.state.synth1;
     const synthPart1 = new Tone.Sequence(
       function(time, note) {
@@ -63,12 +69,12 @@ class Sequence extends React.Component {
 
     const synth4 = this.state.synth4;
     const synthPart4 = new Tone.Sequence(
-      function(time, note) {
-        synth4.triggerAttackRelease(note, '10hz', time);
+      function(time, duration) {
+        synth4.restart(undefined, undefined, duration);
       },
       this.props.sounds.sound4.map(elem => {
         if (elem) {
-          return 'F4';
+          return 0.6;
         } else {
           return null;
         }
@@ -82,6 +88,7 @@ class Sequence extends React.Component {
         sequence2={synthPart2}
         sequence3={synthPart3}
         sequence4={synthPart4}
+        synth4={synth4}
       />
     );
   }

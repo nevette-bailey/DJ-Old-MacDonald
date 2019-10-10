@@ -18,7 +18,7 @@ class SaveButton extends Component {
     return (
       <div>
         <button type="submit" onClick={this.handleSubmit} className="button">
-          SAVE
+          Save
         </button>
       </div>
     );
@@ -28,7 +28,7 @@ class SaveButton extends Component {
 const mapStateToProps = state => {
   return {
     sounds: state.sounds,
-    loopId: state.loopId
+    loopId: state.loops.id
   };
 };
 
