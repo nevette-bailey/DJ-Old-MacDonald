@@ -17,7 +17,6 @@ class Grid extends React.Component {
       isPlaying: false
     };
     this.handleClick = this.handleClick.bind(this);
-    this.playSounds = this.playSounds.bind(this);
     this.handleReset = this.handleReset.bind(this);
   }
 
@@ -28,20 +27,12 @@ class Grid extends React.Component {
       this.props.sequences.sequence2.start();
       this.props.sequences.sequence3.start();
       this.props.sequences.sequence4.start();
+      this.props.sequences.sequence5.start();
 
       Tone.Transport.bpm.value = this.props.tempo;
       this.props.recorder.start();
       Tone.Transport.start();
     }
-  }
-
-  playSounds() {
-    this.props.sequences.sequence1.start();
-    this.props.sequences.sequence2.start();
-    this.props.sequences.sequence3.start();
-    this.props.sequences.sequence4.start();
-
-    Tone.Transport.start();
   }
 
   handleReset() {
@@ -56,7 +47,8 @@ class Grid extends React.Component {
       sequence1: this.props.sequence1,
       sequence2: this.props.sequence2,
       sequence3: this.props.sequence3,
-      sequence4: this.props.sequence4
+      sequence4: this.props.sequence4,
+      sequence5: this.props.sequence5
     };
     if (this.state.isToggleOn) {
       // plays the sequence if nothing is playing
@@ -96,24 +88,24 @@ class Grid extends React.Component {
         <InstrumentRow
           name="sound2"
           sound={this.props.sounds.sound2}
-          note="D4"
+          note="E4"
           sequenceName="sequence2"
           sequence={this.props.sequence2}
         />
         <InstrumentRow
           name="sound3"
           sound={this.props.sounds.sound3}
-          note="E4"
+          note="G4"
           sequenceName="sequence3"
           sequence={this.props.sequence3}
         />
         <InstrumentRow
-          name="sound4"
-          sound={this.props.sounds.sound4}
-          note={this.props.synth4}
+          name="sound5"
+          sound={this.props.sounds.sound5}
+          note={this.props.synth5}
           duration={0.6}
-          sequenceName="sequence4"
-          sequence={this.props.sequence4}
+          sequenceName="sequence5"
+          sequence={this.props.sequence5}
         />
         <div className="buttons">
           <button type="submit" onClick={this.handleClick} className="button">

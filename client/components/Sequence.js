@@ -13,7 +13,8 @@ class Sequence extends React.Component {
       synth1: new Tone.Synth().toMaster(),
       synth2: new Tone.Synth().toMaster(),
       synth3: new Tone.Synth().toMaster(),
-      synth4: new Tone.Player({
+      synth4: new Tone.Synth().toMaster(),
+      synth5: new Tone.Player({
         url: 'https://actions.google.com/sounds/v1/animals/dog_barking.ogg',
         autostart: false,
         loop: true,
@@ -46,7 +47,7 @@ class Sequence extends React.Component {
       },
       this.props.sounds.sound2.map(elem => {
         if (elem) {
-          return 'D4';
+          return 'E4';
         } else {
           return null;
         }
@@ -61,7 +62,7 @@ class Sequence extends React.Component {
       },
       this.props.sounds.sound3.map(elem => {
         if (elem) {
-          return 'E4';
+          return 'G4';
         } else {
           return null;
         }
@@ -71,10 +72,25 @@ class Sequence extends React.Component {
 
     const synth4 = this.state.synth4;
     const synthPart4 = new Tone.Sequence(
-      function(time, duration) {
-        synth4.restart(undefined, undefined, duration);
+      function(time, note) {
+        synth4.triggerAttackRelease(note, '10hz', time);
       },
       this.props.sounds.sound4.map(elem => {
+        if (elem) {
+          return 'C5';
+        } else {
+          return null;
+        }
+      }),
+      '8n'
+    );
+
+    const synth5 = this.state.synth5;
+    const synthPart5 = new Tone.Sequence(
+      function(time, duration) {
+        synth5.restart(undefined, undefined, duration);
+      },
+      this.props.sounds.sound5.map(elem => {
         if (elem) {
           return 0.6;
         } else {
@@ -89,6 +105,8 @@ class Sequence extends React.Component {
     this.state.synth2.connect(destination);
     this.state.synth3.connect(destination);
     this.state.synth4.connect(destination);
+    this.state.synth5.connect(destination);
+
     const recorder = new MediaRecorder(destination.stream);
     const chunks = [];
     recorder.ondataavailable = event => chunks.push(event.data);
@@ -104,7 +122,8 @@ class Sequence extends React.Component {
           sequence2={synthPart2}
           sequence3={synthPart3}
           sequence4={synthPart4}
-          synth4={synth4}
+          sequence5={synthPart5}
+          synth5={synth5}
           recorder={recorder}
         />
         <AudioPlayer src={this.state.audioSRC} />
