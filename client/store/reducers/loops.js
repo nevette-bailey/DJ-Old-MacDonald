@@ -44,7 +44,7 @@ export const getOneLoopThunk = loopId => {
       const { data } = await axios.get(`/api/loops/${loopId}`);
       console.log(data);
       dispatch(getOneLoop(data));
-      // dispatch(getSavedSound(data));
+      dispatch(getSavedSound(data));
     } catch (err) {
       console.error(err);
     }
@@ -60,7 +60,6 @@ export const gotLoopsThunk = () => async dispatch => {
   try {
     const { data } = await axios.get('/api/loops/');
     dispatch(getLoops(data));
-    dispatch(getSavedSound(data));
   } catch (err) {
     console.log(err);
   }
