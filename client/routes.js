@@ -9,6 +9,7 @@ import Grid from './components/Grid';
 import Sequence from './components/Sequence';
 import SaveButton from './components/SaveButton';
 import Tempo from './components/Tempo';
+import NotFound from './components/NotFound';
 
 /**
  * COMPONENT
@@ -38,6 +39,7 @@ class Routes extends Component {
         )}
         {/* Displays our Login component as a fallback */}
         <Route component={Login} />
+        {/* <Route component={NotFound} /> */}
       </Switch>
     );
   }
