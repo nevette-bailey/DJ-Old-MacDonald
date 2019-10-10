@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { saveLoopThunk } from '../store/reducers/loops';
 import { connect } from 'react-redux';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 class SaveButton extends Component {
   constructor(props) {
@@ -11,7 +13,12 @@ class SaveButton extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
+
     this.props.saveLoopThunk(this.props.sounds, this.props.loopId);
+    toast('Loop Added', {
+      position: 'bottom-right',
+      autoClose: 4000
+    });
   }
 
   render() {

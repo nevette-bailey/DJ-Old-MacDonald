@@ -1,15 +1,20 @@
 import React, { Component } from 'react';
-import { createNewLoopThunk } from '../store/reducers/loops';
+import { createNewLoopThunk, saveLoopThunk } from '../store/reducers/loops';
 import { connect } from 'react-redux';
 import Popup from 'reactjs-popup';
 class CreateNewLoopButton extends Component {
   constructor(props) {
     super(props);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleCreate = this.handleCreate.bind(this);
+    this.handleSave = this.handleSave.bind(this);
   }
-  handleSubmit(event) {
+  handleCreate(event) {
     event.preventDefault();
     this.props.createNewLoopThunk();
+  }
+  handleSave(event) {
+    event.preventDefault();
+    this.props.saveLoopThunk(this.props.sounds, this.props.loopId);
   }
   render() {
     return (
@@ -17,7 +22,7 @@ class CreateNewLoopButton extends Component {
         <Popup
           trigger={
             <button className="button" type="submit">
-              CREATE NEW
+              Create New
             </button>
           }
           modal
@@ -35,7 +40,8 @@ class CreateNewLoopButton extends Component {
                 <button
                   className="button"
                   type="button"
-                  onClick={() => {
+                  onClick={event => {
+                    this.handleSave(event);
                     close();
                   }}
                 >
@@ -44,7 +50,10 @@ class CreateNewLoopButton extends Component {
 
                 <button
                   className="button"
-                  onClick={this.handleSubmit}
+                  onClick={event => {
+                    this.handleCreate(event);
+                    close();
+                  }}
                   type="submit"
                 >
                   No
@@ -57,11 +66,19 @@ class CreateNewLoopButton extends Component {
     );
   }
 }
-
+const mapStateToProps = state => {
+  return {
+    sounds: state.sounds,
+    loopId: state.loops.id
+  };
+};
 const mapDispatchToProps = dispatch => {
   return {
+    saveLoopThunk: (newLoop, id) => dispatch(saveLoopThunk(newLoop, id)),
     createNewLoopThunk: () => dispatch(createNewLoopThunk())
   };
 };
 
-export default connect(null, mapDispatchToProps)(CreateNewLoopButton);
+export default connect(mapStateToProps, mapDispatchToProps)(
+  CreateNewLoopButton
+);
