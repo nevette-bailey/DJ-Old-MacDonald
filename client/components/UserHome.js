@@ -1,9 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { gotLoopsThunk, getOneLoopThunk } from '../store/reducers/loops';
+import {
+  gotLoopsThunk,
+  getOneLoopThunk,
+  createNewLoopThunk
+} from '../store/reducers/loops';
 import SingleLoopCard from './SingleLoopCard';
-import CreateNewLoopButton from './CreateNewLoopButton';
 
 /**
  * COMPONENT
@@ -12,6 +15,7 @@ class UserHome extends React.Component {
   constructor(props) {
     super(props);
     this.handleClick = this.handleClick.bind(this);
+    this.createNewClick = this.createNewClick.bind(this);
   }
 
   componentDidMount() {
@@ -20,6 +24,11 @@ class UserHome extends React.Component {
 
   handleClick(id) {
     this.props.getOneLoopThunk(id);
+    this.props.history.push('grid');
+  }
+
+  createNewClick() {
+    this.props.createNewLoopThunk();
     this.props.history.push('grid');
   }
 
@@ -48,7 +57,13 @@ class UserHome extends React.Component {
           <div>
             <h3>You don't have any saved loops</h3>
             <p>Create one now!</p>
-            <CreateNewLoopButton />
+            <button
+              type="button"
+              className="button"
+              onClick={this.createNewClick}
+            >
+              Create New
+            </button>
           </div>
         )}
       </div>
@@ -66,7 +81,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   gotLoopsThunk: () => dispatch(gotLoopsThunk()),
-  getOneLoopThunk: id => dispatch(getOneLoopThunk(id))
+  getOneLoopThunk: id => dispatch(getOneLoopThunk(id)),
+  createNewLoopThunk: () => dispatch(createNewLoopThunk())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserHome);
