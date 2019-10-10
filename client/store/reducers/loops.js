@@ -1,4 +1,4 @@
-import { SAVE_LOOP, GET_LOOPS, CREATE_NEW_LOOP } from './index';
+import { SAVE_LOOP, GET_LOOPS, CREATE_NEW_LOOP, GET_ONE_LOOP } from './index';
 import axios from 'axios';
 import { resetSound } from './sounds';
 
@@ -16,6 +16,11 @@ export const getLoops = allLoops => ({
   allLoops
 });
 
+export const getOneLoop = id => ({
+  type: GET_ONE_LOOP,
+  id
+});
+
 export const saveLoopThunk = (sound, loopId) => {
   return async dispatch => {
     try {
@@ -24,8 +29,6 @@ export const saveLoopThunk = (sound, loopId) => {
         const { data } = await axios.post('/api/loops/', sound);
         dispatch(saveLoop(data));
       } else {
-        // we still need to write a put route
-
         const { data } = await axios.put(`/api/loops/${loopId}`, sound);
         dispatch(saveLoop(data));
       }

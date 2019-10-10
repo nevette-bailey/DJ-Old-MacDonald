@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { gotLoopsThunk } from '../store/reducers/loops';
+import SingleLoopCard from './SingleLoopCard';
 
 /**
  * COMPONENT
@@ -9,10 +10,17 @@ import { gotLoopsThunk } from '../store/reducers/loops';
 class UserHome extends React.Component {
   constructor(props) {
     super(props);
+    this.handleClick = this.handleClick.bind(this);
   }
+
   componentDidMount() {
     this.props.gotLoopsThunk();
   }
+
+  handleClick() {
+    // some code
+  }
+
   render() {
     return (
       <div>
