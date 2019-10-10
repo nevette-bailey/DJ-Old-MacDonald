@@ -11,8 +11,11 @@ class SaveButton extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
+
     this.props.saveLoopThunk(this.props.sounds, this.props.loopId);
   }
+
+  showPopup() {}
 
   render() {
     return (

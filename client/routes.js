@@ -9,7 +9,7 @@ import Grid from './components/Grid';
 import Sequence from './components/Sequence';
 import SaveButton from './components/SaveButton';
 import Tempo from './components/Tempo';
-
+import Popup from './components/Popup';
 /**
  * COMPONENT
  */
@@ -30,6 +30,7 @@ class Routes extends Component {
         <Route path="/grid" component={Sequence} />
         <Route path="/savebutton" component={SaveButton} />
         <Route path="/tempo" component={Tempo} />
+        <Route path="/popup" component={Popup} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
