@@ -5,8 +5,10 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import user from './reducers/user';
 import sounds from './reducers/sounds';
 import loops from './reducers/loops';
+import sequences from './reducers/sequences';
+import tempo from './reducers/tempo';
 
-const reducer = combineReducers({ user, sounds, loops });
+const reducer = combineReducers({ user, sounds, loops, sequences, tempo });
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
 );

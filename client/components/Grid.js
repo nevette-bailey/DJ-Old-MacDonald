@@ -2,80 +2,46 @@ import React from 'react';
 import { connect } from 'react-redux';
 import InstrumentRow from './InstrumentRow';
 import { resetSoundThunk } from '../store/reducers/sounds';
+import { updateSequencesThunk } from '../store/reducers/sequences';
 import Tempo from '../components/Tempo';
 import SaveButton from '../components/SaveButton';
+import CreateNewLoopButton from '../components/CreateNewLoopButton';
 import { timingSafeEqual } from 'crypto';
 const Tone = require('Tone');
-
-// this is just a helper function that transforms an array of true/false values into a note (if true) or null (if false). A note represents a beat and null represents a rest
-function createNotes(soundState, note) {
-  return soundState.map(beat => {
-    if (beat) {
-      return note;
-    } else {
-      return null;
-    }
-  });
-}
 
 class Grid extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isToggleOn: true
+      isToggleOn: true,
+      isPlaying: false
     };
     this.handleClick = this.handleClick.bind(this);
     this.playSounds = this.playSounds.bind(this);
     this.handleReset = this.handleReset.bind(this);
-    // this.repeat = this.repeat.bind(this);
+  }
+
+  componentDidUpdate() {
+    console.log('isPlaying', this.state.isPlaying);
+    if (this.state.isPlaying) {
+      this.props.sequences.sequence1.start();
+      this.props.sequences.sequence2.start();
+      this.props.sequences.sequence3.start();
+      this.props.sequences.sequence4.start();
+
+      Tone.Transport.bpm.value = this.props.tempo;
+      this.props.recorder.start();
+      Tone.Transport.start();
+    }
   }
 
   playSounds() {
-    // const { sound1 } = this.props.sounds;
-    // let notes = createNotes(sound1, 'C4');
-    // const synth = new Tone.Synth().toMaster();
-    // const synth2 = new Tone.Synth().toMaster();
+    this.props.sequences.sequence1.start();
+    this.props.sequences.sequence2.start();
+    this.props.sequences.sequence3.start();
+    this.props.sequences.sequence4.start();
 
-    // const synthPart = new Tone.Sequence(
-    //   function(time, note) {
-    //     synth.triggerAttackRelease(note, '10hz', time);
-    //   },
-    //   notes,
-    //   '8n'
-    // );
-    // const synthPart2 = new Tone.Sequence(
-    //   function(time, note) {
-    //     synth2.triggerAttackRelease(note, '10hz', time);
-    //   },
-    //   [
-    //     'G4',
-    //     'G4',
-    //     'G4',
-    //     null,
-    //     null,
-    //     null,
-    //     'G4',
-    //     'G4',
-    //     'G4',
-    //     null,
-    //     null,
-    //     null,
-    //     'G4',
-    //     'G4',
-    //     'G4',
-    //     'G4'
-    //   ],
-    //   '8n'
-    // );
-    this.props.sequence1.start();
-    this.props.sequence2.start();
-    this.props.sequence3.start();
-    this.props.sequence4.start();
-
-    // synthPart2.start();
-    // this.sequence.start();
     Tone.Transport.start();
-    console.log(Tone.Transport.state);
   }
 
   handleReset() {
@@ -86,12 +52,21 @@ class Grid extends React.Component {
   }
 
   handleClick = () => {
+    const sequences = {
+      sequence1: this.props.sequence1,
+      sequence2: this.props.sequence2,
+      sequence3: this.props.sequence3,
+      sequence4: this.props.sequence4
+    };
     if (this.state.isToggleOn) {
       // plays the sequence if nothing is playing
-      this.playSounds();
+      this.props.updateSequencesThunk(sequences);
+      this.setState({ isPlaying: true });
     } else {
       // Stops the sequence if one is playing
+      this.props.recorder.stop();
       Tone.Transport.stop();
+      this.setState({ isPlaying: false });
       // Tone.Transport.cancel();
     }
     this.setState(prevState => ({
@@ -108,33 +83,36 @@ class Grid extends React.Component {
   // };
 
   render() {
-    console.dir(Tone.Transport);
-    console.log(Tone.Transport.bpm);
-    console.log('MY PROPSSSS IN GRID: ', this.props);
+    const sequences = this.props.sequences;
     return (
       <div className="wrapper">
         <InstrumentRow
           name="sound1"
           sound={this.props.sounds.sound1}
           note="C4"
-          sequence={this.props.sequence1}
+          sequenceName="sequence1"
+          sequence={this.props.sequences.sequence1}
         />
         <InstrumentRow
           name="sound2"
           sound={this.props.sounds.sound2}
           note="D4"
+          sequenceName="sequence2"
           sequence={this.props.sequence2}
         />
         <InstrumentRow
           name="sound3"
           sound={this.props.sounds.sound3}
           note="E4"
+          sequenceName="sequence3"
           sequence={this.props.sequence3}
         />
         <InstrumentRow
           name="sound4"
           sound={this.props.sounds.sound4}
-          note="F4"
+          note={this.props.synth4}
+          duration={0.6}
+          sequenceName="sequence4"
           sequence={this.props.sequence4}
         />
         <div className="buttons">
@@ -146,6 +124,7 @@ class Grid extends React.Component {
           </button>
           <Tempo onChange={this.handleSliderChange} />
           <SaveButton />
+          <CreateNewLoopButton />
         </div>
       </div>
     );
@@ -154,14 +133,16 @@ class Grid extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    // sounds is { sound1: [Array 16]}
-    sounds: state.sounds
+    sounds: state.sounds,
+    sequences: state.sequences,
+    tempo: state.tempo
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    resetSoundThunk: () => dispatch(resetSoundThunk())
+    resetSoundThunk: () => dispatch(resetSoundThunk()),
+    updateSequencesThunk: sequences => dispatch(updateSequencesThunk(sequences))
   };
 };
 
