@@ -33,6 +33,31 @@ form div {
   display: inline-block;
 }
 
+.loops-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.single-loop-card {
+  background-color: #eceff1;
+  border: 1px solid #90a4ae;
+  /* border-radius: 5px; */
+  margin: 10px;
+  padding: 5px;
+  width: 300px;
+  box-shadow: 1px 1px 5px #cfd8dc;
+}
+
+.single-loop-card h3 {
+  margin: 7px;
+}
+
+.single-loop-card h3 span {
+  font-style: italic;
+}
+
 .row {
   display: flex;
   flex-direction: row;

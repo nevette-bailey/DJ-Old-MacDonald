@@ -1,7 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { gotLoopsThunk } from '../store/reducers/loops';
+import {
+  gotLoopsThunk,
+  getOneLoopThunk,
+  createNewLoopThunk
+} from '../store/reducers/loops';
+import SingleLoopCard from './SingleLoopCard';
 
 /**
  * COMPONENT
@@ -9,35 +14,58 @@ import { gotLoopsThunk } from '../store/reducers/loops';
 class UserHome extends React.Component {
   constructor(props) {
     super(props);
+    this.handleClick = this.handleClick.bind(this);
+    this.createNewClick = this.createNewClick.bind(this);
   }
+
   componentDidMount() {
     this.props.gotLoopsThunk();
   }
+
+  handleClick(id) {
+    this.props.getOneLoopThunk(id);
+    this.props.history.push('grid');
+  }
+
+  createNewClick() {
+    this.props.createNewLoopThunk();
+    this.props.history.push('grid');
+  }
+
   render() {
     return (
       <div>
         <div>
           <h2>Welcome, {this.props.email} !</h2>
         </div>
-        <div className="loops-container">
-          <h3>Here are your Loops:</h3>
-          {this.props.loops ? (
-            this.props.loops.map(loop => {
-              return (
-                <div className="single-loop" key={loop.id}>
-                  <h4>Loop ID: {loop.id}</h4>
-
-                  <h4>Loop Title: {loop.title}</h4>
-                  {/* sound1 for now  */}
-                  <h4>Loop Sound: {loop.sound1}</h4>
-                  <br />
-                </div>
-              );
-            })
-          ) : (
-            <div>No loops saved.</div>
-          )}
-        </div>
+        {this.props.loops.length !== 0 ? (
+          <div>
+            <h2>Your Loops</h2>
+            <div className="loops-container">
+              {this.props.loops.map(loop => {
+                return (
+                  <SingleLoopCard
+                    handleClick={this.handleClick}
+                    loop={loop}
+                    key={loop.id}
+                  />
+                );
+              })}
+            </div>
+          </div>
+        ) : (
+          <div>
+            <h3>You don't have any saved loops</h3>
+            <p>Create one now!</p>
+            <button
+              type="button"
+              className="button"
+              onClick={this.createNewClick}
+            >
+              Create New
+            </button>
+          </div>
+        )}
       </div>
     );
   }
@@ -52,7 +80,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  gotLoopsThunk: () => dispatch(gotLoopsThunk())
+  gotLoopsThunk: () => dispatch(gotLoopsThunk()),
+  getOneLoopThunk: id => dispatch(getOneLoopThunk(id)),
+  createNewLoopThunk: () => dispatch(createNewLoopThunk())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserHome);
