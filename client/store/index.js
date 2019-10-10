@@ -6,8 +6,9 @@ import user from './reducers/user';
 import sounds from './reducers/sounds';
 import loops from './reducers/loops';
 import sequences from './reducers/sequences';
+import tempo from './reducers/tempo';
 
-const reducer = combineReducers({ user, sounds, loops, sequences });
+const reducer = combineReducers({ user, sounds, loops, sequences, tempo });
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
 );
