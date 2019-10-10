@@ -2,12 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Grid from './Grid';
 import Tempo from './Tempo';
+import AudioPlayer from './AudioPlayer';
 const Tone = require('Tone');
 
 class Sequence extends React.Component {
   constructor() {
     super();
     this.state = {
+      audioSRC: {},
       synth1: new Tone.Synth().toMaster(),
       synth2: new Tone.Synth().toMaster(),
       synth3: new Tone.Synth().toMaster(),
@@ -82,14 +84,37 @@ class Sequence extends React.Component {
       '8n'
     );
 
+    const destination = Tone.context.createMediaStreamDestination();
+    this.state.synth1.connect(destination);
+    this.state.synth2.connect(destination);
+    this.state.synth3.connect(destination);
+    this.state.synth4.connect(destination);
+    const recorder = new MediaRecorder(destination.stream);
+    const chunks = [];
+    recorder.ondataavailable = event => chunks.push(event.data);
+    recorder.onstop = event => {
+      let blob = new Blob(chunks, { type: 'audio/ogg; codecs=opus' });
+      this.setState({ audioSRC: URL.createObjectURL(blob) });
+    };
+
     return (
-      <Grid
-        sequence1={synthPart1}
-        sequence2={synthPart2}
-        sequence3={synthPart3}
-        sequence4={synthPart4}
-        synth4={synth4}
-      />
+      <div>
+        <Grid
+          sequence1={synthPart1}
+          sequence2={synthPart2}
+          sequence3={synthPart3}
+          sequence4={synthPart4}
+          synth4={synth4}
+          recorder={recorder}
+        />
+        <AudioPlayer
+          synth1={this.state.synth1}
+          synth2={this.state.synth2}
+          synth3={this.state.synth3}
+          synth4={this.state.synth4}
+          src={this.state.audioSRC}
+        />
+      </div>
     );
   }
 }
