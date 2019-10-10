@@ -8,7 +8,17 @@ import { connect } from 'react-redux';
 // }
 
 const SingleLoopCard = props => {
-  return <div className="single-loop-card" />;
+  const id = props.loop.id;
+  const title = props.loop.title || 'Untitled';
+  return (
+    <div
+      className="single-loop-card"
+      key={props.loop.id}
+      onClick={() => props.handleClick(id)}
+    >
+      <h3>Title: {title}</h3>
+    </div>
+  );
 };
 
 export default SingleLoopCard;
