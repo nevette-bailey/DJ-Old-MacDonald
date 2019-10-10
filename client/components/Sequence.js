@@ -42,7 +42,7 @@ class Sequence extends React.Component {
         loop: true,
         loopStart: 16,
         loopEnd: 17,
-        volume: 25
+        volume: 35
       }).toMaster()
     };
   }
@@ -182,7 +182,7 @@ class Sequence extends React.Component {
     const chunks = [];
     recorder.ondataavailable = event => chunks.push(event.data);
     recorder.onstop = event => {
-      let blob = new Blob(chunks, { type: 'audio/ogg; codecs=opus' });
+      let blob = new Blob(chunks, { type: 'audio/mp4; codecs="mp4a.40.2' });
       this.setState({ audioSRC: URL.createObjectURL(blob) });
     };
 
