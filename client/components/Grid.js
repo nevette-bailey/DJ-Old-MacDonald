@@ -30,6 +30,7 @@ class Grid extends React.Component {
       this.props.sequences.sequence4.start();
 
       Tone.Transport.bpm.value = this.props.tempo;
+      this.props.recorder.start();
       Tone.Transport.start();
     }
   }
@@ -63,6 +64,7 @@ class Grid extends React.Component {
       this.setState({ isPlaying: true });
     } else {
       // Stops the sequence if one is playing
+      this.props.recorder.stop();
       Tone.Transport.stop();
       this.setState({ isPlaying: false });
       // Tone.Transport.cancel();
