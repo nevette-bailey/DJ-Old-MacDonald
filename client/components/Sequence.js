@@ -20,6 +20,21 @@ class Sequence extends React.Component {
         loop: true,
         loopStart: 0.4,
         loopEnd: 1
+      }).toMaster(),
+      synth6: new Tone.Player({
+        url: 'https://actions.google.com/sounds/v1/animals/crow_call.ogg',
+        autostart: false,
+        loop: true,
+        loopStart: 13.2,
+        loopEnd: 14.2
+      }).toMaster(),
+      synth7: new Tone.Player({
+        url:
+          'https://actions.google.com/sounds/v1/animals/animal_squealing.ogg',
+        autostart: false,
+        loop: true,
+        loopStart: 1.5,
+        loopEnd: 2.5
       }).toMaster()
     };
   }
@@ -100,12 +115,44 @@ class Sequence extends React.Component {
       '8n'
     );
 
+    const synth6 = this.state.synth6;
+    const synthPart6 = new Tone.Sequence(
+      function(time, duration) {
+        synth6.restart(undefined, undefined, duration);
+      },
+      this.props.sounds.sound6.map(elem => {
+        if (elem) {
+          return 1;
+        } else {
+          return null;
+        }
+      }),
+      '8n'
+    );
+
+    const synth7 = this.state.synth7;
+    const synthPart7 = new Tone.Sequence(
+      function(time, duration) {
+        synth7.restart(undefined, undefined, duration);
+      },
+      this.props.sounds.sound7.map(elem => {
+        if (elem) {
+          return 1;
+        } else {
+          return null;
+        }
+      }),
+      '8n'
+    );
+
     const destination = Tone.context.createMediaStreamDestination();
     this.state.synth1.connect(destination);
     this.state.synth2.connect(destination);
     this.state.synth3.connect(destination);
     this.state.synth4.connect(destination);
     this.state.synth5.connect(destination);
+    this.state.synth6.connect(destination);
+    this.state.synth7.connect(destination);
 
     const recorder = new MediaRecorder(destination.stream);
     const chunks = [];
@@ -123,7 +170,11 @@ class Sequence extends React.Component {
           sequence3={synthPart3}
           sequence4={synthPart4}
           sequence5={synthPart5}
+          sequence6={synthPart6}
+          sequence7={synthPart7}
           synth5={synth5}
+          synth6={synth6}
+          synth7={synth7}
           recorder={recorder}
         />
         <AudioPlayer src={this.state.audioSRC} />

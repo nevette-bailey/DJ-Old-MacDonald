@@ -28,6 +28,8 @@ class Grid extends React.Component {
       this.props.sequences.sequence3.start();
       this.props.sequences.sequence4.start();
       this.props.sequences.sequence5.start();
+      this.props.sequences.sequence6.start();
+      this.props.sequences.sequence7.start();
 
       Tone.Transport.bpm.value = this.props.tempo;
       this.props.recorder.start();
@@ -48,7 +50,9 @@ class Grid extends React.Component {
       sequence2: this.props.sequence2,
       sequence3: this.props.sequence3,
       sequence4: this.props.sequence4,
-      sequence5: this.props.sequence5
+      sequence5: this.props.sequence5,
+      sequence6: this.props.sequence6,
+      sequence7: this.props.sequence7
     };
     if (this.state.isToggleOn) {
       // plays the sequence if nothing is playing
@@ -100,12 +104,35 @@ class Grid extends React.Component {
           sequence={this.props.sequence3}
         />
         <InstrumentRow
+          name="sound4"
+          sound={this.props.sounds.sound4}
+          note="C5"
+          sequenceName="sequence4"
+          sequence={this.props.sequence4}
+        />
+        <InstrumentRow
           name="sound5"
           sound={this.props.sounds.sound5}
           note={this.props.synth5}
           duration={0.6}
           sequenceName="sequence5"
           sequence={this.props.sequence5}
+        />
+        <InstrumentRow
+          name="sound6"
+          sound={this.props.sounds.sound6}
+          note={this.props.synth6}
+          duration={1}
+          sequenceName="sequence6"
+          sequence={this.props.sequence6}
+        />
+        <InstrumentRow
+          name="sound7"
+          sound={this.props.sounds.sound7}
+          note={this.props.synth7}
+          duration={1}
+          sequenceName="sequence7"
+          sequence={this.props.sequence7}
         />
         <div className="buttons">
           <button type="submit" onClick={this.handleClick} className="button">
