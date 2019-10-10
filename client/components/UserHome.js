@@ -29,33 +29,28 @@ class UserHome extends React.Component {
         <div>
           <h2>Welcome, {this.props.email} !</h2>
         </div>
-        <div className="loops-container">
-          {this.props.loops ? (
-            this.props.loops.map(loop => {
-              return (
-                <SingleLoopCard
-                  handleClick={this.handleClick}
-                  loop={loop}
-                  key={loop.id}
-                />
-                // <div className="single-loop" key={loop.id}>
-                //   <h4>Loop ID: {loop.id}</h4>
-
-                //   <h4>Loop Title: {loop.title}</h4>
-                //   {/* sound1 for now  */}
-                //   <h4>Loop Sound: {loop.sound1}</h4>
-                //   <br />
-                // </div>
-              );
-            })
-          ) : (
-            <div>
-              <h3>You don't have any saved loops</h3>
-              <p>Create one now!</p>
-              <CreateNewLoopButton />
+        {this.props.loops.length !== 0 ? (
+          <div>
+            <h2>Your Loops</h2>
+            <div className="loops-container">
+              {this.props.loops.map(loop => {
+                return (
+                  <SingleLoopCard
+                    handleClick={this.handleClick}
+                    loop={loop}
+                    key={loop.id}
+                  />
+                );
+              })}
             </div>
-          )}
-        </div>
+          </div>
+        ) : (
+          <div>
+            <h3>You don't have any saved loops</h3>
+            <p>Create one now!</p>
+            <CreateNewLoopButton />
+          </div>
+        )}
       </div>
     );
   }
