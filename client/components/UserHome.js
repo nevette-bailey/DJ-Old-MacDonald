@@ -20,7 +20,7 @@ class UserHome extends React.Component {
 
   handleClick(id) {
     this.props.getOneLoopThunk(id);
-    this.history.push(null, 'sequence');
+    this.props.history.push('grid');
   }
 
   render() {
