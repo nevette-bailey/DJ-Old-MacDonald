@@ -6,6 +6,8 @@ import {
   GET_SAVED_SOUND
 } from './index';
 
+import { isNotSaved } from './loops';
+
 //action creators
 export const updateSound = (soundId, arrIndex) => ({
   type: UPDATE_SOUND,
@@ -44,6 +46,7 @@ export const updateSoundThunk = (soundId, arrIndex) => {
   return dispatch => {
     try {
       dispatch(updateSound(soundId, arrIndex));
+      dispatch(isNotSaved());
     } catch (error) {
       dispatch(updateSoundError(error));
     }
