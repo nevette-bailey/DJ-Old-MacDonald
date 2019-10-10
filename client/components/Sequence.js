@@ -13,12 +13,36 @@ class Sequence extends React.Component {
       synth1: new Tone.Synth().toMaster(),
       synth2: new Tone.Synth().toMaster(),
       synth3: new Tone.Synth().toMaster(),
-      synth4: new Tone.Player({
+      synth4: new Tone.Synth().toMaster(),
+      synth5: new Tone.Player({
         url: 'https://actions.google.com/sounds/v1/animals/dog_barking.ogg',
         autostart: false,
         loop: true,
         loopStart: 0.4,
         loopEnd: 1
+      }).toMaster(),
+      synth6: new Tone.Player({
+        url: 'https://actions.google.com/sounds/v1/animals/crow_call.ogg',
+        autostart: false,
+        loop: true,
+        loopStart: 13.2,
+        loopEnd: 14.2
+      }).toMaster(),
+      synth7: new Tone.Player({
+        url:
+          'https://actions.google.com/sounds/v1/animals/animal_hiss_and_rattle.ogg',
+        autostart: false,
+        loop: true,
+        loopStart: 0.2,
+        loopEnd: 1.2
+      }).toMaster(),
+      synth8: new Tone.Player({
+        url: 'https://actions.google.com/sounds/v1/animals/owl_hooting.ogg',
+        autostart: false,
+        loop: true,
+        loopStart: 16,
+        loopEnd: 17,
+        volume: 25
       }).toMaster()
     };
   }
@@ -46,7 +70,7 @@ class Sequence extends React.Component {
       },
       this.props.sounds.sound2.map(elem => {
         if (elem) {
-          return 'D4';
+          return 'E4';
         } else {
           return null;
         }
@@ -61,7 +85,7 @@ class Sequence extends React.Component {
       },
       this.props.sounds.sound3.map(elem => {
         if (elem) {
-          return 'E4';
+          return 'G4';
         } else {
           return null;
         }
@@ -71,12 +95,72 @@ class Sequence extends React.Component {
 
     const synth4 = this.state.synth4;
     const synthPart4 = new Tone.Sequence(
-      function(time, duration) {
-        synth4.restart(undefined, undefined, duration);
+      function(time, note) {
+        synth4.triggerAttackRelease(note, '10hz', time);
       },
       this.props.sounds.sound4.map(elem => {
         if (elem) {
+          return 'C5';
+        } else {
+          return null;
+        }
+      }),
+      '8n'
+    );
+
+    const synth5 = this.state.synth5;
+    const synthPart5 = new Tone.Sequence(
+      function(time, duration) {
+        synth5.restart(undefined, undefined, duration);
+      },
+      this.props.sounds.sound5.map(elem => {
+        if (elem) {
           return 0.6;
+        } else {
+          return null;
+        }
+      }),
+      '8n'
+    );
+
+    const synth6 = this.state.synth6;
+    const synthPart6 = new Tone.Sequence(
+      function(time, duration) {
+        synth6.restart(undefined, undefined, duration);
+      },
+      this.props.sounds.sound6.map(elem => {
+        if (elem) {
+          return 1;
+        } else {
+          return null;
+        }
+      }),
+      '8n'
+    );
+
+    const synth7 = this.state.synth7;
+    const synthPart7 = new Tone.Sequence(
+      function(time, duration) {
+        synth7.restart(undefined, undefined, duration);
+      },
+      this.props.sounds.sound7.map(elem => {
+        if (elem) {
+          return 1;
+        } else {
+          return null;
+        }
+      }),
+      '8n'
+    );
+
+    const synth8 = this.state.synth8;
+    const synthPart8 = new Tone.Sequence(
+      function(time, duration) {
+        synth8.restart(undefined, undefined, duration);
+      },
+      this.props.sounds.sound8.map(elem => {
+        if (elem) {
+          return 1;
         } else {
           return null;
         }
@@ -89,6 +173,11 @@ class Sequence extends React.Component {
     this.state.synth2.connect(destination);
     this.state.synth3.connect(destination);
     this.state.synth4.connect(destination);
+    this.state.synth5.connect(destination);
+    this.state.synth6.connect(destination);
+    this.state.synth7.connect(destination);
+    this.state.synth8.connect(destination);
+
     const recorder = new MediaRecorder(destination.stream);
     const chunks = [];
     recorder.ondataavailable = event => chunks.push(event.data);
@@ -104,16 +193,17 @@ class Sequence extends React.Component {
           sequence2={synthPart2}
           sequence3={synthPart3}
           sequence4={synthPart4}
-          synth4={synth4}
+          sequence5={synthPart5}
+          sequence6={synthPart6}
+          sequence7={synthPart7}
+          sequence8={synthPart8}
+          synth5={synth5}
+          synth6={synth6}
+          synth7={synth7}
+          synth8={synth8}
           recorder={recorder}
         />
-        <AudioPlayer
-          synth1={this.state.synth1}
-          synth2={this.state.synth2}
-          synth3={this.state.synth3}
-          synth4={this.state.synth4}
-          src={this.state.audioSRC}
-        />
+        <AudioPlayer src={this.state.audioSRC} />
       </div>
     );
   }
