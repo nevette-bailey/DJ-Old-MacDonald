@@ -101,7 +101,7 @@ export default function sounds(state = soundsInitialState, action) {
       return { ...state, [soundId]: thisSound };
     }
     case RESET_SOUND: {
-      return soundsInitialState;
+      return { ...soundsInitialState };
     }
     default:
       return state;

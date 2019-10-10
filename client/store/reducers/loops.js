@@ -87,7 +87,7 @@ export default function loops(state = initialState, action) {
       return { ...state, id: action.savedLoop.id, isSaved: true };
     }
     case CREATE_NEW_LOOP: {
-      return { ...state, id: null };
+      return { ...state, id: null, isSaved: true };
     }
     case GET_LOOPS: {
       return { ...state, allLoops: action.allLoops };
