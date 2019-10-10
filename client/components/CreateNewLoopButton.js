@@ -29,10 +29,6 @@ class CreateNewLoopButton extends Component {
         >
           {close => (
             <div className="modal">
-              <a className="close" onClick={close}>
-                &times;
-              </a>
-
               <div className="content">
                 Do you want to save the current loop before creating a new one?
               </div>
