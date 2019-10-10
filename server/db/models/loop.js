@@ -11,20 +11,20 @@ const Loop = db.define('loop', {
     allowNull: false
   },
   sound2: {
-    type: Sequelize.ARRAY(Sequelize.BOOLEAN),
-    allowNull: false
+    type: Sequelize.ARRAY(Sequelize.BOOLEAN)
+    // allowNull: false
   },
   sound3: {
-    type: Sequelize.ARRAY(Sequelize.BOOLEAN),
-    allowNull: false
+    type: Sequelize.ARRAY(Sequelize.BOOLEAN)
+    // allowNull: false
   },
   sound4: {
-    type: Sequelize.ARRAY(Sequelize.BOOLEAN),
-    allowNull: false
+    type: Sequelize.ARRAY(Sequelize.BOOLEAN)
+    // allowNull: false
   },
   sound5: {
-    type: Sequelize.ARRAY(Sequelize.BOOLEAN),
-    allowNull: false
+    type: Sequelize.ARRAY(Sequelize.BOOLEAN)
+    // allowNull: false
   },
   sound6: {
     type: Sequelize.ARRAY(Sequelize.BOOLEAN),

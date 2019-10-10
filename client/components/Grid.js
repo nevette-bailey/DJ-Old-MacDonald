@@ -5,6 +5,7 @@ import { resetSoundThunk } from '../store/reducers/sounds';
 import { updateSequencesThunk } from '../store/reducers/sequences';
 import Tempo from '../components/Tempo';
 import SaveButton from '../components/SaveButton';
+import CreateNewLoopButton from '../components/CreateNewLoopButton';
 import { timingSafeEqual } from 'crypto';
 const Tone = require('Tone');
 
@@ -120,6 +121,7 @@ class Grid extends React.Component {
           </button>
           <Tempo onChange={this.handleSliderChange} />
           <SaveButton />
+          <CreateNewLoopButton />
         </div>
       </div>
     );
