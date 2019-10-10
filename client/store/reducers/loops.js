@@ -1,4 +1,10 @@
-import { SAVE_LOOP, GET_LOOPS, CREATE_NEW_LOOP, GET_ONE_LOOP } from './index';
+import {
+  SAVE_LOOP,
+  GET_LOOPS,
+  CREATE_NEW_LOOP,
+  GET_ONE_LOOP,
+  SAVED_FALSE
+} from './index';
 import axios from 'axios';
 import { resetSound, getSavedSound } from './sounds';
 
@@ -19,6 +25,10 @@ export const getLoops = allLoops => ({
 export const getOneLoop = oneLoop => ({
   type: GET_ONE_LOOP,
   oneLoop
+});
+
+export const isNotSaved = () => ({
+  type: SAVED_FALSE
 });
 
 export const saveLoopThunk = (sound, loopId) => {
@@ -67,13 +77,14 @@ export const gotLoopsThunk = () => async dispatch => {
 
 const initialState = {
   id: null,
-  allLoops: []
+  allLoops: [],
+  isSaved: true
 };
 
 export default function loops(state = initialState, action) {
   switch (action.type) {
     case SAVE_LOOP: {
-      return { ...state, id: action.savedLoop.id };
+      return { ...state, id: action.savedLoop.id, isSaved: true };
     }
     case CREATE_NEW_LOOP: {
       return { ...state, id: null };
@@ -83,6 +94,9 @@ export default function loops(state = initialState, action) {
     }
     case GET_ONE_LOOP: {
       return { ...state, id: action.oneLoop.id };
+    }
+    case SAVED_FALSE: {
+      return { ...state, isSaved: false };
     }
     default:
       return state;

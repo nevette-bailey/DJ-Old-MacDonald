@@ -15,9 +15,11 @@ class SaveButton extends Component {
     event.preventDefault();
 
     this.props.saveLoopThunk(this.props.sounds, this.props.loopId);
+
     toast('Loop Saved!', {
       position: 'bottom-right',
       autoClose: 2000
+
     });
   }
 
