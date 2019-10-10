@@ -59,7 +59,7 @@ export default function sequences(state = {}, action) {
       if (state[action.sequence]) {
         const thisSequence = Object.create(state[action.sequence]);
         const thisSequenceProto = Object.getPrototypeOf(thisSequence);
-        thisSequenceProto.add(action.idx, action.param);
+        thisSequenceProto.at(action.idx, action.param);
         return { ...state, [action.sequence]: thisSequenceProto };
       } else {
         return state;
