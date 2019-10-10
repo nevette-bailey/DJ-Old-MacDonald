@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { gotLoopsThunk } from '../store/reducers/loops';
+import { gotLoopsThunk, getOneLoopThunk } from '../store/reducers/loops';
 import SingleLoopCard from './SingleLoopCard';
 
 /**
@@ -17,7 +17,7 @@ class UserHome extends React.Component {
     this.props.gotLoopsThunk();
   }
 
-  handleClick() {
+  handleClick(id) {
     // some code
   }
 
@@ -60,7 +60,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  gotLoopsThunk: () => dispatch(gotLoopsThunk())
+  gotLoopsThunk: () => dispatch(gotLoopsThunk()),
+  getOneLoopThunk: id => dispatch(getOneLoopThunk(id))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserHome);
