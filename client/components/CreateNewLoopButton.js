@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Popup from 'reactjs-popup';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+const Tone = require('Tone');
 
 class CreateNewLoopButton extends Component {
   constructor(props) {
@@ -14,6 +15,7 @@ class CreateNewLoopButton extends Component {
   handleCreate(event) {
     event.preventDefault();
     this.props.createNewLoopThunk();
+    Tone.Transport.cancel();
   }
   handleSave(event) {
     event.preventDefault();
@@ -23,7 +25,6 @@ class CreateNewLoopButton extends Component {
       position: 'bottom-right',
       autoClose: 2000
     });
-
   }
   render() {
     return (
