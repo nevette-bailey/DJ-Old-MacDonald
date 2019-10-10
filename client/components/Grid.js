@@ -81,7 +81,6 @@ class Grid extends React.Component {
   // };
 
   render() {
-    const sequences = this.props.sequences;
     return (
       <div className="wrapper">
         <InstrumentRow

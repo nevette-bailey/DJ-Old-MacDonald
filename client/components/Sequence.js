@@ -33,8 +33,8 @@ class Sequence extends React.Component {
           'https://actions.google.com/sounds/v1/animals/animal_hiss_and_rattle.ogg',
         autostart: false,
         loop: true,
-        loopStart: 0,
-        loopEnd: 1
+        loopStart: 0.2,
+        loopEnd: 1.2
       }).toMaster(),
       synth8: new Tone.Player({
         url: 'https://actions.google.com/sounds/v1/animals/owl_hooting.ogg',
