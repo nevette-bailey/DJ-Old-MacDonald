@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { saveLoopThunk } from '../store/reducers/loops';
 import { connect } from 'react-redux';
 import 'react-toastify/dist/ReactToastify.css';
+import { withRouter } from 'react-router-dom';
 
 class SaveButton extends Component {
   constructor(props) {
@@ -27,6 +28,7 @@ class SaveButton extends Component {
       }
     } else {
       //if not looged in and changes are made to the loops
+      console.log('historyyyyy', this.props.history);
       this.props.history.push('authpopup');
     }
   }
@@ -58,4 +60,6 @@ const mapDispatchToProps = dispatch => {
     saveLoopThunk: (newLoop, id) => dispatch(saveLoopThunk(newLoop, id))
   };
 };
-export default connect(mapStateToProps, mapDispatchToProps)(SaveButton);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(SaveButton)
+);

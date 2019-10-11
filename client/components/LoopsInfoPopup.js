@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { saveLoopThunk, getOneLoopThunk } from '../store/reducers/loops';
 import 'react-toastify/dist/ReactToastify.css';
+import { withRouter } from 'react-router-dom';
 class LoopsInfoPopup extends React.Component {
   constructor() {
     super();
@@ -30,7 +31,13 @@ class LoopsInfoPopup extends React.Component {
     //   position: 'bottom-right',
     //   autoClose: 2000
     // });
-
+    console.log(
+      'thisss',
+      this.props.sounds,
+      this.props.loopId,
+      this.state.title,
+      this.state.description
+    );
     this.props.history.push('grid');
   }
 
@@ -43,14 +50,23 @@ class LoopsInfoPopup extends React.Component {
               <h1>Details</h1>
               <span>Enter loop details below</span>
               <br />
-              <input type="title" placeholder="Title" />
-              <input type="description" placeholder="Description" />
+              <input
+                type="title"
+                placeholder="Title"
+                name="title"
+                onChange={e => this.handleChange(e)}
+              />
+              <input
+                type="description"
+                placeholder="Description"
+                name="description"
+                onChange={e => this.handleChange(e)}
+              />
               <br />
               <button
                 type="submit"
                 id="button"
-                onChange={this.handleChange}
-                onClick={this.handleSubmit}
+                onClick={e => this.handleSubmit(e)}
               >
                 Save Loop
               </button>
@@ -77,4 +93,6 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoopsInfoPopup);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(LoopsInfoPopup)
+);
