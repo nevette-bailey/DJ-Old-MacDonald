@@ -1,6 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { saveLoopThunk, getOneLoopThunk } from '../store/reducers/loops';
+import 'react-toastify/dist/ReactToastify.css';
+import { withRouter } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 class LoopsInfoPopup extends React.Component {
   constructor() {
@@ -21,13 +24,17 @@ class LoopsInfoPopup extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     this.props.saveLoopThunk(
-      this.state.title,
-      this.state.description,
       this.props.sounds,
-      this.props.loopId
+      this.props.loopId,
+      this.state.title,
+      this.state.description
     );
-    //
     this.props.history.push('grid');
+
+    toast('Loop Saved!', {
+      position: 'bottom-right',
+      autoClose: 2000
+    });
   }
 
   render() {
@@ -39,14 +46,23 @@ class LoopsInfoPopup extends React.Component {
               <h1>Details</h1>
               <span>Enter loop details below</span>
               <br />
-              <input type="title" placeholder="Title" />
-              <input type="description" placeholder="Description" />
+              <input
+                type="title"
+                placeholder="Title"
+                name="title"
+                onChange={e => this.handleChange(e)}
+              />
+              <input
+                type="description"
+                placeholder="Description"
+                name="description"
+                onChange={e => this.handleChange(e)}
+              />
               <br />
               <button
                 type="submit"
                 id="button"
-                onChange={this.handleChange}
-                onClick={this.handleSubmit}
+                onClick={e => this.handleSubmit(e)}
               >
                 Save Loop
               </button>
@@ -67,10 +83,12 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    saveLoopThunk: (title, description, sounds, loopId) =>
-      dispatch(saveLoopThunk(title, description, sounds, loopId)),
+    saveLoopThunk: (sounds, loopId, title, description) =>
+      dispatch(saveLoopThunk(sounds, loopId, title, description)),
     getOneLoopThunk: loopId => dispatch(getOneLoopThunk(loopId))
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoopsInfoPopup);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(LoopsInfoPopup)
+);

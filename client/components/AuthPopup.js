@@ -3,11 +3,10 @@ import { connect } from 'react-redux';
 import { auth } from '../store/reducers/user';
 
 class AuthPopup extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       isRightPanelVisible: true,
-      name: '',
       email: '',
       password: ''
     };
@@ -21,9 +20,8 @@ class AuthPopup extends React.Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  handleSubmit(email, password, method) {
-    //what if name is not defined
-    // this.props.auth(email, password, method);
+  handleSubmit(method, e) {
+    this.props.auth(this.state.email, this.state.password, method);
     this.props.history.push('loopsinfopopup');
     // if (!this.props.isSaved) {
     //   // ask user to input the loops detail in the form and save them
@@ -63,12 +61,12 @@ class AuthPopup extends React.Component {
                 </a>
               </div>
               <span>or use your email for registration</span>
-              <input
+              {/* <input
                 type="text"
                 name="name"
                 placeholder="Name"
                 onChange={this.handleChange}
-              />
+              /> */}
               <input
                 type="email"
                 name="email"
@@ -81,7 +79,10 @@ class AuthPopup extends React.Component {
                 placeholder="Password"
                 onChange={this.handleChange}
               />
-              <button type="submit" onClick={this.handleSubmit}>
+              <button
+                type="submit"
+                onClick={e => this.handleSubmit('/signup', e)}
+              >
                 Sign Up
               </button>
             </form>
@@ -113,7 +114,11 @@ class AuthPopup extends React.Component {
                 placeholder="Password"
                 onChange={this.handleChange}
               />
-              <button type="submit" id="button" onClick={this.handleSubmit}>
+              <button
+                type="submit"
+                id="button"
+                onClick={e => this.handleSubmit('/login', e)}
+              >
                 Sign In
               </button>
             </form>
@@ -156,9 +161,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => {
-  //method? in the statefield?
   return {
-    auth: (email, password, method) => dispatch(email, password, method)
+    auth: (email, password, method) => dispatch(auth(email, password, method))
   };
 };
 

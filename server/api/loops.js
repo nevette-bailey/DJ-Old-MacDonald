@@ -59,12 +59,18 @@ router.put('/:id', async (req, res, next) => {
     console.log('INSIDE PUT: ', req.body);
     console.log('USERID', req.user.id);
     console.log('loop id: ', req.params.id);
+    // let title = ''
+    // if(req.body.title !== undefined){
     const [numAffectedRows, affectedRows] = await Loop.update(
       {
-        title: req.body.title,
         sound1: req.body.sound1,
         sound2: req.body.sound2,
-        sound3: req.body.sound3
+        sound3: req.body.sound3,
+        sound4: req.body.sound4,
+        sound5: req.body.sound5,
+        sound6: req.body.sound6,
+        sound7: req.body.sound7,
+        sound8: req.body.sound8
       },
       {
         where: {
