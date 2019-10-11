@@ -7,6 +7,7 @@ import Tempo from '../components/Tempo';
 import SaveButton from '../components/SaveButton';
 import CreateNewLoopButton from '../components/CreateNewLoopButton';
 import { timingSafeEqual } from 'crypto';
+import AudioPlayer from '../components/AudioPlayer';
 const Tone = require('Tone');
 
 class Grid extends React.Component {
@@ -14,10 +15,12 @@ class Grid extends React.Component {
     super(props);
     this.state = {
       isToggleOn: true,
-      isPlaying: false
+      isPlaying: false,
+      isRecording: false
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleReset = this.handleReset.bind(this);
+    this.recordForExport = this.recordForExport.bind(this);
   }
 
   componentDidUpdate() {
@@ -33,7 +36,7 @@ class Grid extends React.Component {
       this.props.sequences.sequence8.start();
 
       Tone.Transport.bpm.value = this.props.tempo;
-      this.props.recorder.start();
+
       Tone.Transport.start();
     }
   }
@@ -62,7 +65,7 @@ class Grid extends React.Component {
       this.setState({ isPlaying: true });
     } else {
       // Stops the sequence if one is playing
-      this.props.recorder.stop();
+
       Tone.Transport.stop();
       this.setState({ isPlaying: false });
       // Tone.Transport.cancel();
@@ -71,7 +74,18 @@ class Grid extends React.Component {
       isToggleOn: !prevState.isToggleOn
     }));
   };
-
+  recordForExport = () => {
+    this.handleClick();
+    console.log(this.state.isRecording);
+    if (!this.state.isRecording) {
+      this.props.recorder.start();
+    } else if (this.state.isRecording) {
+      this.props.recorder.stop();
+    }
+    this.setState(prevState => ({
+      isRecording: !prevState.isRecording
+    }));
+  };
   // setTempo = () => {
   //   Tone.transport.bmp.value = 180
   // }
@@ -154,6 +168,12 @@ class Grid extends React.Component {
           <Tempo onChange={this.handleSliderChange} />
           <SaveButton />
           <CreateNewLoopButton />
+          <AudioPlayer
+            src={this.props.audioSRC}
+            record={this.recordForExport}
+            recorder={this.props.recorder}
+            isRecording={this.state.isRecording}
+          />
         </div>
       </div>
     );
