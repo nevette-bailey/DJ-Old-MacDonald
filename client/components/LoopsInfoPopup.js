@@ -39,35 +39,35 @@ class LoopsInfoPopup extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="popup-body">
         <div className="container1">
-          <div className="form-container sign-in-container">
-            <form action="#">
-              <h1>Details</h1>
-              <span>Enter loop details below</span>
-              <br />
-              <input
-                type="title"
-                placeholder="Title"
-                name="title"
-                onChange={e => this.handleChange(e)}
-              />
-              <input
-                type="description"
-                placeholder="Description"
-                name="description"
-                onChange={e => this.handleChange(e)}
-              />
-              <br />
-              <button
-                type="submit"
-                id="button"
-                onClick={e => this.handleSubmit(e)}
-              >
-                Save Loop
-              </button>
-            </form>
-          </div>
+          {/* <div className="form-container sign-in-container"> */}
+          <form action="#">
+            <h1>Details</h1>
+            <span>Enter loop details below</span>
+            <br />
+            <input
+              type="title"
+              placeholder="Title"
+              name="title"
+              onChange={e => this.handleChange(e)}
+            />
+            <input
+              type="description"
+              placeholder="Description"
+              name="description"
+              onChange={e => this.handleChange(e)}
+            />
+            <br />
+            <button
+              type="submit"
+              id="button"
+              onClick={e => this.handleSubmit(e)}
+            >
+              Save Loop
+            </button>
+          </form>
+          {/* </div> */}
         </div>
       </div>
     );

@@ -56,9 +56,6 @@ class AuthPopup extends React.Component {
                 <a href="#" className="social">
                   <i className="fab fa-google" />
                 </a>
-                <a href="#" className="social">
-                  <i className="fab fa-linkedin-in" />
-                </a>
               </div>
               <span>or use your email for registration</span>
               {/* <input
@@ -96,9 +93,6 @@ class AuthPopup extends React.Component {
                 </a>
                 <a href="#" className="social">
                   <i className="fab fa-google" />
-                </a>
-                <a href="#" className="social">
-                  <i className="fab fa-linkedin-in" />
                 </a>
               </div>
               <span>or use your account</span>
