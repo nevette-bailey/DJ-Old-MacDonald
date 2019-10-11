@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { saveLoopThunk, getOneLoopThunk } from '../store/reducers/loops';
-
+import 'react-toastify/dist/ReactToastify.css';
 class LoopsInfoPopup extends React.Component {
   constructor() {
     super();
@@ -21,12 +21,16 @@ class LoopsInfoPopup extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     this.props.saveLoopThunk(
-      this.state.title,
-      this.state.description,
       this.props.sounds,
-      this.props.loopId
+      this.props.loopId,
+      this.state.title,
+      this.state.description
     );
-    //
+    //   toast('Loop Saved!', {
+    //   position: 'bottom-right',
+    //   autoClose: 2000
+    // });
+
     this.props.history.push('grid');
   }
 
@@ -67,8 +71,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    saveLoopThunk: (title, description, sounds, loopId) =>
-      dispatch(saveLoopThunk(title, description, sounds, loopId)),
+    saveLoopThunk: (sounds, loopId, title, description) =>
+      dispatch(saveLoopThunk(sounds, loopId, title, description)),
     getOneLoopThunk: loopId => dispatch(getOneLoopThunk(loopId))
   };
 };
