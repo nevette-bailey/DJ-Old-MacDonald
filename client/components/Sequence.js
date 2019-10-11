@@ -4,6 +4,7 @@ import Grid from './Grid';
 import Tempo from './Tempo';
 import AudioPlayer from './AudioPlayer';
 const Tone = require('Tone');
+import Popup from 'reactjs-popup';
 
 class Sequence extends React.Component {
   constructor() {
@@ -205,8 +206,8 @@ class Sequence extends React.Component {
           synth7={synth7}
           synth8={synth8}
           recorder={recorder}
+          audioSRC={this.state.audioSRC}
         />
-        <AudioPlayer src={this.state.audioSRC} />
       </div>
     );
   }
