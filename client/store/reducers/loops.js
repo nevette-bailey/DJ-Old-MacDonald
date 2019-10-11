@@ -3,6 +3,7 @@ import {
   GET_LOOPS,
   CREATE_NEW_LOOP,
   GET_ONE_LOOP,
+  DELETE_LOOP,
   SAVED_FALSE
 } from './index';
 import axios from 'axios';
@@ -25,6 +26,11 @@ export const getLoops = allLoops => ({
 export const getOneLoop = oneLoop => ({
   type: GET_ONE_LOOP,
   oneLoop
+});
+
+export const deleteLoop = id => ({
+  type: DELETE_LOOP,
+  id
 });
 
 export const isNotSaved = () => ({
@@ -75,6 +81,17 @@ export const gotLoopsThunk = () => async dispatch => {
   }
 };
 
+export const deleteLoopThunk = id => {
+  return async dispatch => {
+    try {
+      await axios.delete(`/api/loops/${id}`);
+      dispatch(deleteLoop(id));
+    } catch (err) {
+      console.error(err);
+    }
+  };
+};
+
 const initialState = {
   id: null,
   allLoops: [],
@@ -94,6 +111,13 @@ export default function loops(state = initialState, action) {
     }
     case GET_ONE_LOOP: {
       return { ...state, id: action.oneLoop.id };
+    }
+    case DELETE_LOOP: {
+      {
+        const prevLoops = [...state.allLoops];
+        const updatedLoops = prevLoops.filter(loop => loop.id !== action.id);
+        return { ...state, allLoops: updatedLoops, id: null };
+      }
     }
     case SAVED_FALSE: {
       return { ...state, isSaved: false };

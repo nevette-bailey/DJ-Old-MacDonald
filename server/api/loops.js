@@ -80,3 +80,21 @@ router.put('/:id', async (req, res, next) => {
     next(err);
   }
 });
+
+router.delete('/:id', async (req, res, next) => {
+  try {
+    const numAffectedRows = await Loop.destroy({
+      where: {
+        userId: req.user.id,
+        id: req.params.id
+      }
+    });
+    if (numAffectedRows) {
+      res.status(200).send();
+    } else {
+      res.status(404).send();
+    }
+  } catch (err) {
+    next(err);
+  }
+});
