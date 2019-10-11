@@ -21,9 +21,9 @@ class AuthPopup extends React.Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  handleSubmit(name, email, password) {
-    //what if name is not defined .
-    this.props.auth(name, email, password);
+  handleSubmit(email, password, method) {
+    //what if name is not defined
+    // this.props.auth(email, password, method);
     this.props.history.push('loopsinfopopup');
     // if (!this.props.isSaved) {
     //   // ask user to input the loops detail in the form and save them
@@ -158,7 +158,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => {
   //method? in the statefield?
   return {
-    auth: (name, email, password) => dispatch(name, email, password)
+    auth: (email, password, method) => dispatch(email, password, method)
   };
 };
 

@@ -26,7 +26,7 @@ class LoopsInfoPopup extends React.Component {
       this.props.sounds,
       this.props.loopId
     );
-    this.props.getOneLoopThunk(loopId);
+    //
     this.props.history.push('grid');
   }
 
