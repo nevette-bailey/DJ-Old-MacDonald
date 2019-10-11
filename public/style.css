@@ -14,6 +14,10 @@ label {
   margin: 0;
 }
 
+.link {
+  font-size: 20px;
+}
+
 nav {
   display: flex;
   justify-content: space-between;
@@ -69,7 +73,7 @@ form div {
 }
 
 .delete-loop:hover {
-  background-color: #ef5350;
+  background-color: tomato;
   color: black;
 }
 
@@ -92,11 +96,39 @@ form div {
 }
 
 .false {
+  background-color: #607d8b;
+}
+
+.sound1.true {
   background-color: tomato;
 }
 
-.true {
+.sound2.true {
   background-color: aquamarine;
+}
+
+.sound3.true {
+  background-color: #3d5afe;
+}
+
+.sound4.true {
+  background-color: #76ff03;
+}
+
+.sound5.true {
+  background-color: #ff4081;
+}
+
+.sound6.true {
+  background-color: #6200ea;
+}
+
+.sound7.true {
+  background-color: #ffff00;
+}
+
+.sound8.true {
+  background-color: #ff6f00;
 }
 
 .wrapper {
@@ -145,7 +177,7 @@ form div {
   width: 25px;
   height: 25px;
   border-radius: 50%;
-  background: #4caf50;
+  background: #546e7a;
   cursor: pointer;
 }
 
@@ -207,8 +239,8 @@ a {
 
 button {
   border-radius: 20px;
-  border: 1px solid #ff4b2b;
-  background-color: #ff4b2b;
+  border: 1px solid tomato;
+  background-color: tomato;
   color: #ffffff;
   font-size: 12px;
   font-weight: bold;
@@ -330,9 +362,9 @@ input {
 }
 
 .overlay {
-  background: #ff416c;
-  background: -webkit-linear-gradient(to right, #ff4b2b, #ff416c);
-  background: linear-gradient(to right, #ff4b2b, #ff416c);
+  background: tomato;
+  background: -webkit-linear-gradient(to right, tomato, #de5832);
+  background: linear-gradient(to right, tomato, #de5832);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 0 0;

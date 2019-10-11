@@ -10,7 +10,7 @@ class InstrumentRow extends React.Component {
     if (note.state && note.loaded) {
       note.start(undefined, undefined, this.props.duration);
     } else if (!note.state) {
-      const synth = new Tone.MembraneSynth().toMaster();
+      const synth = new Tone.Synth().toMaster();
       synth.triggerAttackRelease(note, '8n');
     }
   }
@@ -39,7 +39,7 @@ class InstrumentRow extends React.Component {
         {this.props.sound.map((elem, idx) => {
           return (
             <div
-              className={`${elem}`}
+              className={`${elem} ${this.props.name}`}
               data-index={idx}
               key={idx}
               value={elem}

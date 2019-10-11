@@ -89,6 +89,7 @@ class Grid extends React.Component {
           note="C4"
           sequenceName="sequence1"
           sequence={this.props.sequences.sequence1}
+          id="sound1"
         />
         <InstrumentRow
           name="sound2"
