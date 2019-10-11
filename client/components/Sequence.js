@@ -19,14 +19,16 @@ class Sequence extends React.Component {
         autostart: false,
         loop: true,
         loopStart: 0.4,
-        loopEnd: 1
+        loopEnd: 1,
+        volume: 25
       }).toMaster(),
       synth6: new Tone.Player({
         url: 'https://actions.google.com/sounds/v1/animals/crow_call.ogg',
         autostart: false,
         loop: true,
         loopStart: 13.2,
-        loopEnd: 14.2
+        loopEnd: 14.2,
+        volume: 25
       }).toMaster(),
       synth7: new Tone.Player({
         url:
@@ -34,7 +36,8 @@ class Sequence extends React.Component {
         autostart: false,
         loop: true,
         loopStart: 0.2,
-        loopEnd: 1.2
+        loopEnd: 1.2,
+        volume: 25
       }).toMaster(),
       synth8: new Tone.Player({
         url: 'https://actions.google.com/sounds/v1/animals/owl_hooting.ogg',
@@ -42,7 +45,7 @@ class Sequence extends React.Component {
         loop: true,
         loopStart: 16,
         loopEnd: 17,
-        volume: 35
+        volume: 50
       }).toMaster()
     };
   }
