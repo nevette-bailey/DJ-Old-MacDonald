@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { saveLoopThunk, getOneLoopThunk } from '../store/reducers/loops';
 import 'react-toastify/dist/ReactToastify.css';
 import { withRouter } from 'react-router-dom';
+import { toast } from 'react-toastify';
+
 class LoopsInfoPopup extends React.Component {
   constructor() {
     super();
@@ -27,18 +29,12 @@ class LoopsInfoPopup extends React.Component {
       this.state.title,
       this.state.description
     );
-    //   toast('Loop Saved!', {
-    //   position: 'bottom-right',
-    //   autoClose: 2000
-    // });
-    console.log(
-      'thisss',
-      this.props.sounds,
-      this.props.loopId,
-      this.state.title,
-      this.state.description
-    );
     this.props.history.push('grid');
+
+    toast('Loop Saved!', {
+      position: 'bottom-right',
+      autoClose: 2000
+    });
   }
 
   render() {

@@ -3,6 +3,7 @@ import { saveLoopThunk } from '../store/reducers/loops';
 import { connect } from 'react-redux';
 import 'react-toastify/dist/ReactToastify.css';
 import { withRouter } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 class SaveButton extends Component {
   constructor(props) {
@@ -21,10 +22,10 @@ class SaveButton extends Component {
       } else {
         //if save an existing loop, forward the sound and id, title and description in null.
         this.props.saveLoopThunk(this.props.sounds, this.props.loopId);
-        // toast('Loop Saved!', {
-        //   position: 'bottom-right',
-        //   autoClose: 2000
-        // });
+        toast('Loop Saved!', {
+          position: 'bottom-right',
+          autoClose: 2000
+        });
       }
     } else {
       //if not looged in and changes are made to the loops
