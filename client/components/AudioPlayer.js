@@ -28,8 +28,11 @@ class AudioPlayer extends React.Component {
       >
         {close => (
           <div className="modal">
+            <a className="close" onClick={close}>
+              &times;
+            </a>
             <div className="content">
-              Press record to begin exporting current loop.
+              Press record to begin exporting current loop
             </div>
             <div className="actions">
               <button
