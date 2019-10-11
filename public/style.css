@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: 'Quicksand', sans-serif;
   background: #f6f5f7;
@@ -7,6 +11,79 @@ body {
   padding: 10px;
   /* background: #f6f5f7;
   height: 100vh; */
+}
+
+h1 {
+  font-weight: bold;
+  margin: 0;
+}
+
+h2 {
+  text-align: center;
+}
+
+p {
+  font-size: 14px;
+  font-weight: 100;
+  line-height: 20px;
+  letter-spacing: 0.5px;
+  margin: 20px 0 30px;
+}
+
+span {
+  font-size: 12px;
+}
+
+a {
+  color: #333;
+  font-size: 14px;
+  text-decoration: none;
+  margin: 15px 0;
+}
+
+button {
+  border-radius: 20px;
+  border: 1px solid tomato;
+  background-color: tomato;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 12px 45px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: transform 80ms ease-in;
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+button:focus {
+  outline: none;
+}
+
+button.ghost {
+  background-color: transparent;
+  border-color: #ffffff;
+}
+
+form {
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 50px;
+  height: 100%;
+  text-align: center;
+}
+
+input {
+  background-color: #eee;
+  border: none;
+  padding: 12px 15px;
+  margin: 8px 0;
+  width: 100%;
 }
 
 a {
@@ -69,19 +146,6 @@ form div {
 
 .card-detail-wrapper h3 {
   margin: 7px;
-}
-
-.delete-loop {
-  margin-top: 0;
-  margin-right: 2px;
-  padding-right: 5px;
-  padding-left: 5px;
-  color: #90a4ae;
-}
-
-.delete-loop:hover {
-  background-color: tomato;
-  color: black;
 }
 
 .card-detail-wrapper h3 span {
@@ -200,10 +264,6 @@ form div {
   display: flex;
 }
 
-* {
-  box-sizing: border-box;
-}
-
 /* .popup-body { */
 .popup-body {
   background: #f6f5f7;
@@ -217,6 +277,8 @@ form div {
   margin: 20px auto;
 }
 
+/*
+commented this out in case i break something by moving it to the top of the file
 h1 {
   font-weight: bold;
   margin: 0;
@@ -288,6 +350,27 @@ input {
   padding: 12px 15px;
   margin: 8px 0;
   width: 100%;
+} */
+
+.delete-loop {
+  margin-top: 0;
+  margin-right: 2px;
+  padding-right: 5px;
+  padding-left: 5px;
+  color: #90a4ae;
+  /* border-radius: 20px;
+  border: 1px solid #90a4ae;
+  background-color: #90a4ae;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 12px 45px;
+  letter-spacing: 1px;
+  text-transform: uppercase; */
+}
+
+.delete-loop:hover {
+  background-color: tomato;
+  color: black;
 }
 
 .container {
