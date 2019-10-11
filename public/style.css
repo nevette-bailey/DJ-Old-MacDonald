@@ -114,6 +114,7 @@ nav div {
 .nav-links a {
   display: inline-block;
   margin: 1em;
+  font-size: 20px;
 }
 
 form div {
