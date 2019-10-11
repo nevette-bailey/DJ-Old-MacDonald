@@ -1,5 +1,12 @@
 body {
   font-family: 'Quicksand', sans-serif;
+  background: #f6f5f7;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding: 10px;
+  /* background: #f6f5f7;
+  height: 100vh; */
 }
 
 a {
@@ -141,7 +148,6 @@ form div {
   color: black;
   border: 2px solid #555555;
   padding: 16px 32px;
-  font-size: 20px;
   top: 50%;
   margin: 10px;
   cursor: pointer;
@@ -198,15 +204,17 @@ form div {
   box-sizing: border-box;
 }
 
-body {
+/* .popup-body { */
+.popup-body {
   background: #f6f5f7;
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
+  justify-content: center;
+  /* height: 100vh; */
+  align-items: center;
   font-family: 'Quicksand', sans-serif;
-  height: 100vh;
-  margin: -20px 0 50px;
+  /* margin: -20px 0 50px; */
+  margin: 20px auto;
 }
 
 h1 {
@@ -292,15 +300,20 @@ input {
   max-width: 100%;
   min-height: 480px;
 }
+
 .container1 {
   background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   border-radius: 10px;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   position: relative;
   width: 700px;
   max-width: 100%;
-  min-height: 480px;
+  min-height: 400px;
 }
+
 .form-container {
   position: absolute;
   top: 0;
