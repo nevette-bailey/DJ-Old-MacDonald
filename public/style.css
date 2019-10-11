@@ -1,5 +1,7 @@
 body {
   font-family: 'Quicksand', sans-serif;
+  background: #f6f5f7;
+  height: 100vh;
 }
 
 a {
@@ -166,7 +168,7 @@ form div {
   box-sizing: border-box;
 }
 
-body {
+.popup-body {
   background: #f6f5f7;
   display: flex;
   justify-content: center;
@@ -174,7 +176,8 @@ body {
   flex-direction: column;
   font-family: 'Quicksand', sans-serif;
   height: 100vh;
-  margin: -20px 0 50px;
+  /* margin: -20px 0 50px; */
+  margin: 20px auto;
 }
 
 h1 {

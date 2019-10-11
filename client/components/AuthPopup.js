@@ -44,7 +44,7 @@ class AuthPopup extends React.Component {
       containerToggle = 'container right-panel-active';
     }
     return (
-      <div>
+      <div className="popup-body">
         <div className={containerToggle} id="container">
           <div className="form-container sign-up-container">
             <form action="#">
