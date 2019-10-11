@@ -14,6 +14,7 @@ export const SAVE_LOOP = 'SAVE_LOOP';
 export const GET_LOOPS = 'GET_LOOPS';
 export const GET_ONE_LOOP = 'GET_ONE_LOOP';
 export const CREATE_NEW_LOOP = 'CREATE_NEW_LOOP';
+export const DELETE_LOOP = 'DELETE_LOOP';
 export const SAVED_FALSE = 'SAVED_FALSE';
 
 export const UPDATE_SEQUENCES = 'UPDATE_SEQUENCES';

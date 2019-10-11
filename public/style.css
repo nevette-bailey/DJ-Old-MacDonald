@@ -50,11 +50,30 @@ form div {
   box-shadow: 1px 1px 5px #cfd8dc;
 }
 
-.single-loop-card h3 {
+.card-detail-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.card-detail-wrapper h3 {
   margin: 7px;
 }
 
-.single-loop-card h3 span {
+.delete-loop {
+  margin-top: 0;
+  margin-right: 2px;
+  padding-right: 5px;
+  padding-left: 5px;
+  color: #90a4ae;
+}
+
+.delete-loop:hover {
+  background-color: #ef5350;
+  color: black;
+}
+
+.card-detail-wrapper h3 span {
   font-style: italic;
 }
 

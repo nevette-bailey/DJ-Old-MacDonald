@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import {
   gotLoopsThunk,
   getOneLoopThunk,
-  createNewLoopThunk
+  createNewLoopThunk,
+  deleteLoopThunk
 } from '../store/reducers/loops';
 import SingleLoopCard from './SingleLoopCard';
 const Tone = require('Tone');
@@ -17,10 +18,16 @@ class UserHome extends React.Component {
     super(props);
     this.handleClick = this.handleClick.bind(this);
     this.createNewClick = this.createNewClick.bind(this);
+    this.deleteLoop = this.deleteLoop.bind(this);
   }
 
   componentDidMount() {
     this.props.gotLoopsThunk();
+  }
+
+  deleteLoop(event, id) {
+    this.props.deleteLoopThunk(id);
+    event.stopPropagation();
   }
 
   handleClick(id) {
@@ -49,6 +56,7 @@ class UserHome extends React.Component {
                 return (
                   <SingleLoopCard
                     handleClick={this.handleClick}
+                    deleteLoop={this.deleteLoop}
                     loop={loop}
                     key={loop.id}
                   />
@@ -85,7 +93,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   gotLoopsThunk: () => dispatch(gotLoopsThunk()),
   getOneLoopThunk: id => dispatch(getOneLoopThunk(id)),
-  createNewLoopThunk: () => dispatch(createNewLoopThunk())
+  createNewLoopThunk: () => dispatch(createNewLoopThunk()),
+  deleteLoopThunk: id => dispatch(deleteLoopThunk(id))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserHome);
