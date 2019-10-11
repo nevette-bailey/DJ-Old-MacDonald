@@ -1,6 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { isNotSaved } from '../store/reducers/loops';
 
-export default class Popup extends React.Component {
+class AuthPopup extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -15,12 +17,19 @@ export default class Popup extends React.Component {
   }
 
   handleChange(e) {
+    console.log('eeee', e.target.value);
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  handleSubmit(e) {
-    e.preventDefault();
-    //
+  handleSubmit() {
+    //do the authorization
+    this.props.history.push('loopsinfopopup');
+    // if (!this.props.isSaved) {
+    //   // ask user to input the loops detail in the form and save them
+    //redirect to the popup
+    // } else {
+    //   this.props.history.push('grid');
+    // }
   }
 
   toggleBox = () => {
@@ -46,21 +55,32 @@ export default class Popup extends React.Component {
                   <i className="fab fa-facebook-f" />
                 </a>
                 <a href="#" className="social">
-                  <i className="fab fa-google-plus-g" />
+                  <i className="fab fa-google" />
                 </a>
                 <a href="#" className="social">
                   <i className="fab fa-linkedin-in" />
                 </a>
               </div>
               <span>or use your email for registration</span>
-              <input type="text" name="Name" placeholder="Name" />
-              <input type="email" name="Email" placeholder="Email" />
-              <input type="password" name="Password" placeholder="Password" />
-              <button
-                type="submit"
+              <input
+                type="text"
+                name="name"
+                placeholder="Name"
                 onChange={this.handleChange}
-                onSubmit={this.handleSubmit}
-              >
+              />
+              <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                onChange={this.handleChange}
+              />
+              <input
+                type="password"
+                name="password"
+                placeholder="Password"
+                onChange={this.handleChange}
+              />
+              <button type="submit" onClick={this.handleSubmit}>
                 Sign Up
               </button>
             </form>
@@ -73,22 +93,26 @@ export default class Popup extends React.Component {
                   <i className="fab fa-facebook-f" />
                 </a>
                 <a href="#" className="social">
-                  <i className="fab fa-google-plus-g" />
+                  <i className="fab fa-google" />
                 </a>
                 <a href="#" className="social">
                   <i className="fab fa-linkedin-in" />
                 </a>
               </div>
               <span>or use your account</span>
-              <input type="email" placeholder="Email" />
-              <input type="password" placeholder="Password" />
-              <a href="#">Forgot your password?</a>
-              <button
-                type="submit"
-                id="button"
+              <input
+                type="email"
+                name="email"
+                placeholder="Email"
                 onChange={this.handleChange}
-                onSubmit={this.handleSubmit}
-              >
+              />
+              <input
+                type="password"
+                name="password"
+                placeholder="Password"
+                onChange={this.handleChange}
+              />
+              <button type="submit" id="button" onClick={this.handleSubmit}>
                 Sign In
               </button>
             </form>
@@ -126,3 +150,8 @@ export default class Popup extends React.Component {
     );
   }
 }
+const mapStateToProps = state => ({
+  isSaved: state.loops.isSaved
+});
+
+export default connect(mapStateToProps)(AuthPopup);
