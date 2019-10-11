@@ -186,7 +186,7 @@ class Sequence extends React.Component {
     const chunks = [];
     recorder.ondataavailable = event => chunks.push(event.data);
     recorder.onstop = event => {
-      let blob = new Blob(chunks, { type: 'audio/mp4; codecs="mp4a.40.2' });
+      let blob = new Blob(chunks, { type: 'audio/ogg; codecs="vorbis"' });
       this.setState({ audioSRC: URL.createObjectURL(blob) });
     };
 
