@@ -6,12 +6,23 @@ const SingleLoopCard = props => {
   return (
     <div
       className="single-loop-card"
-      key={props.loop.id}
       onClick={() => props.handleClick(id)}
+      key={props.loop.id}
     >
-      <h3>
-        Title: <span>{title}</span>
-      </h3>
+      <div className="card-detail-wrapper">
+        <h3>
+          Title: <span>{title}</span>
+        </h3>
+        <div>
+          <button
+            type="button"
+            className="delete-loop"
+            onClick={event => props.deleteLoop(event, id)}
+          >
+            X
+          </button>
+        </div>
+      </div>
     </div>
   );
 };

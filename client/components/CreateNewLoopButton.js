@@ -2,19 +2,31 @@ import React, { Component } from 'react';
 import { createNewLoopThunk, saveLoopThunk } from '../store/reducers/loops';
 import { connect } from 'react-redux';
 import Popup from 'reactjs-popup';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+const Tone = require('Tone');
+
 class CreateNewLoopButton extends Component {
   constructor(props) {
     super(props);
     this.handleCreate = this.handleCreate.bind(this);
     this.handleSave = this.handleSave.bind(this);
   }
+
   handleCreate(event) {
     event.preventDefault();
     this.props.createNewLoopThunk();
+    Tone.Transport.cancel();
   }
+
   handleSave(event) {
     event.preventDefault();
     this.props.saveLoopThunk(this.props.sounds, this.props.loopId);
+    this.handleCreate(event);
+    toast('Loop Saved!', {
+      position: 'bottom-right',
+      autoClose: 2000
+    });
   }
   render() {
     return (

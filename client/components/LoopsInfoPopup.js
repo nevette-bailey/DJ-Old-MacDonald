@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { saveLoopThunk } from '../store/reducers/loops';
+import { saveLoopThunk, getOneLoopThunk } from '../store/reducers/loops';
 
 class LoopsInfoPopup extends React.Component {
   constructor() {
@@ -26,6 +26,7 @@ class LoopsInfoPopup extends React.Component {
       this.props.sounds,
       this.props.loopId
     );
+    this.props.getOneLoopThunk(loopId);
     this.props.history.push('grid');
   }
 
@@ -67,7 +68,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     saveLoopThunk: (title, description, sounds, loopId) =>
-      dispatch(saveLoopThunk(title, description, sounds, loopId))
+      dispatch(saveLoopThunk(title, description, sounds, loopId)),
+    getOneLoopThunk: loopId => dispatch(getOneLoopThunk(loopId))
   };
 };
 
