@@ -7,6 +7,7 @@ import {
   createNewLoopThunk
 } from '../store/reducers/loops';
 import SingleLoopCard from './SingleLoopCard';
+const Tone = require('Tone');
 
 /**
  * COMPONENT
@@ -24,11 +25,13 @@ class UserHome extends React.Component {
 
   handleClick(id) {
     this.props.getOneLoopThunk(id);
+    Tone.Transport.cancel();
     this.props.history.push('grid');
   }
 
   createNewClick() {
     this.props.createNewLoopThunk();
+    Tone.Transport.cancel();
     this.props.history.push('grid');
   }
 
