@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { saveLoopThunk } from '../store/reducers/loops';
 import { connect } from 'react-redux';
-import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 class SaveButton extends Component {
@@ -19,9 +18,10 @@ class SaveButton extends Component {
     toast('Loop Saved!', {
       position: 'bottom-right',
       autoClose: 2000
-
     });
   }
+
+  showPopup() {}
 
   render() {
     return (

@@ -37,15 +37,16 @@ export const isNotSaved = () => ({
   type: SAVED_FALSE
 });
 
-export const saveLoopThunk = (sound, loopId) => {
+export const saveLoopThunk = (title, description, sounds, loopId) => {
   return async dispatch => {
     try {
-      sound.title = '';
+      sounds.title = title;
+      sounds.description = description;
       if (loopId === null) {
-        const { data } = await axios.post('/api/loops/', sound);
+        const { data } = await axios.post('/api/loops/', sounds);
         dispatch(saveLoop(data));
       } else {
-        const { data } = await axios.put(`/api/loops/${loopId}`, sound);
+        const { data } = await axios.put(`/api/loops/${loopId}`, sounds);
         dispatch(saveLoop(data));
       }
     } catch (err) {
