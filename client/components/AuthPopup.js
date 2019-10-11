@@ -79,6 +79,7 @@ class AuthPopup extends React.Component {
               <button
                 type="submit"
                 onClick={e => this.handleSubmit('/signup', e)}
+                id="authbutton"
               >
                 Sign Up
               </button>
@@ -110,7 +111,7 @@ class AuthPopup extends React.Component {
               />
               <button
                 type="submit"
-                id="button"
+                id="authbutton"
                 onClick={e => this.handleSubmit('/login', e)}
               >
                 Sign In
