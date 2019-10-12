@@ -38,10 +38,11 @@ class SaveButton extends Component {
 
   render() {
     return (
-      <div>
+      <div className="icontext">
         <button type="submit" onClick={this.handleSubmit} className="button">
-          Save
+          <img src="https://img.icons8.com/material-rounded/28/000000/save.png" />
         </button>
+        Save
       </div>
     );
   }

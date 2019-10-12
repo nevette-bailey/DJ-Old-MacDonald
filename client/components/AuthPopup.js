@@ -20,7 +20,10 @@ class AuthPopup extends React.Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
+  // this.props.history.push('loopsinfopopup');
   handleSubmit(method, e) {
+    e.preventDefault();
+    console.log(e);
     this.props.auth(this.state.email, this.state.password, method);
     // if a visitor is coming from regular login/signup flow, then push them to the music maker grid
     if (this.props.isSaved) {
@@ -83,6 +86,10 @@ class AuthPopup extends React.Component {
               >
                 Sign Up
               </button>
+              {this.props.error &&
+                this.props.error.response && (
+                  <div> {this.props.error.response.data} </div>
+                )}
             </form>
           </div>
           <div className="form-container sign-in-container">
@@ -111,11 +118,14 @@ class AuthPopup extends React.Component {
               />
               <button
                 type="submit"
-                id="button"
                 onClick={e => this.handleSubmit('/login', e)}
               >
                 Sign In
               </button>
+              {this.props.error &&
+                this.props.error.response && (
+                  <div> {this.props.error.response.data} </div>
+                )}
             </form>
           </div>
           <div className="overlay-container">
@@ -152,7 +162,8 @@ class AuthPopup extends React.Component {
   }
 }
 const mapStateToProps = state => ({
-  isSaved: state.loops.isSaved
+  isSaved: state.loops.isSaved,
+  error: state.user.error
 });
 
 const mapDispatchToProps = dispatch => {
