@@ -11,6 +11,7 @@ import SaveButton from './components/SaveButton';
 import Tempo from './components/Tempo';
 import AuthPopup from './components/AuthPopup';
 import LoopsInfoPopup from './components/LoopsInfoPopup';
+import Landing from './components/Landing';
 import NotFound from './components/NotFound';
 
 /**
@@ -27,6 +28,7 @@ class Routes extends Component {
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
+        <Route exact path="/" component={Landing} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/instrumentrow" component={InstrumentRow} />

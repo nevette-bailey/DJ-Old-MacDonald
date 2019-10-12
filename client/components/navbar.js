@@ -13,7 +13,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
             DJ Old MacDonald
           </Link>
         </h1>
-        <p>A hip noise-making app</p>
+        {/* <p>A hip noise-making app</p> */}
       </div>
       {isLoggedIn ? (
         <div className="nav-links">
@@ -28,10 +28,10 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
       ) : (
         <div className="nav-links">
           {/* The navbar will show these links before you log in */}
-          <Link to="/login" className="link">
+          <Link to="/authpopup" className="link">
             Login
           </Link>
-          <Link to="/signup" className="link">
+          <Link to="/authpopup" className="link">
             Sign Up
           </Link>
         </div>
