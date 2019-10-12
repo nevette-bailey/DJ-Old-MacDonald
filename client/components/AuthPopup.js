@@ -14,35 +14,41 @@ class AuthPopup extends React.Component {
     this.toggleBox = this.toggleBox.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    // this.checkError = this.checkError.bind(this);
+  }
+
+  componentDidUpdate(prevProps) {
+    // if the user successfully signs in or signs up
+    if (this.props.userId !== prevProps.userId) {
+      if (!this.props.isSaved) {
+        // AND if they came here after clicking 'save' on grid, then show them to loops info popup so they can finish saving their loop
+        this.props.history.push('loopsinfopopup');
+      } else {
+        // otherwise, redirect them to the grid so they can start using the app
+        this.props.history.push('grid');
+      }
+    }
   }
 
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  // this.props.history.push('loopsinfopopup');
   handleSubmit(method, e) {
     e.preventDefault();
     console.log(e);
     this.props.auth(this.state.email, this.state.password, method);
-    // if a visitor is coming from regular login/signup flow, then push them to the music maker grid
-    if (this.props.isSaved) {
-      this.props.history.push('grid');
-    } else {
-      // if the visitor arrived here after clicking save on grid, then show them to loops info popup so they can finish saving their loop
-      this.props.history.push('loopsinfopopup');
-    }
   }
 
   toggleBox = () => {
-    console.log('TOGGLE***', this.state.isRightPanelVisible);
     this.setState(prevState => ({
       isRightPanelVisible: !prevState.isRightPanelVisible
     }));
   };
 
   render() {
-    console.log('AUTH POPUP', console.log(this.props));
+    console.log('ERROR', this.props.error);
+    console.log('email & pw', this.state.email, this.state.password);
     let containerToggle = 'container';
     if (!this.state.isRightPanelVisible) {
       containerToggle = 'container right-panel-active';
@@ -124,7 +130,7 @@ class AuthPopup extends React.Component {
               </button>
               {this.props.error &&
                 this.props.error.response && (
-                  <div> {this.props.error.response.data} </div>
+                  <div>{this.props.error.response.data}</div>
                 )}
             </form>
           </div>
@@ -163,7 +169,8 @@ class AuthPopup extends React.Component {
 }
 const mapStateToProps = state => ({
   isSaved: state.loops.isSaved,
-  error: state.user.error
+  error: state.user.error,
+  userId: state.user.id
 });
 
 const mapDispatchToProps = dispatch => {
