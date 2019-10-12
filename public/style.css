@@ -1,3 +1,11 @@
+/* ---------------------------
+  General Site Styles
+------------------------------ */
+
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: 'Quicksand', sans-serif;
   background: #f6f5f7;
@@ -7,215 +15,6 @@ body {
   padding: 10px;
   /* background: #f6f5f7;
   height: 100vh; */
-}
-
-a {
-  text-decoration: none;
-}
-
-label {
-  display: block;
-}
-
-.nav-wrapper {
-  margin: 0;
-}
-
-.link {
-  font-size: 20px;
-}
-
-nav {
-  display: flex;
-  justify-content: space-between;
-}
-
-nav div {
-  margin: auto 20px;
-}
-
-.nav-links a {
-  display: inline-block;
-  margin: 1em;
-  font-size: 20px;
-}
-
-form div {
-  margin: 1em;
-  display: inline-block;
-}
-
-.loops-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-}
-
-.single-loop-card {
-  background-color: #eceff1;
-  border: 1px solid #90a4ae;
-  /* border-radius: 5px; */
-  margin: 10px;
-  padding: 5px;
-  width: 300px;
-  box-shadow: 1px 1px 5px #cfd8dc;
-}
-
-.card-detail-wrapper {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-.card-detail-wrapper h3 {
-  margin: 7px;
-}
-
-.delete-loop {
-  margin-top: 0;
-  margin-right: 2px;
-  padding-right: 5px;
-  padding-left: 5px;
-  color: #90a4ae;
-}
-
-.delete-loop:hover {
-  background-color: tomato;
-  color: black;
-}
-
-.card-detail-wrapper h3 span {
-  font-style: italic;
-}
-
-.row {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-}
-
-.row div {
-  flex: 1;
-  margin: 5px;
-  text-align: center;
-  height: 50px;
-  width: 50px;
-}
-
-.false {
-  background-color: #607d8b;
-}
-
-.sound1.true {
-  background-color: tomato;
-}
-
-.sound2.true {
-  background-color: aquamarine;
-}
-
-.sound3.true {
-  background-color: #3d5afe;
-}
-
-.sound4.true {
-  background-color: #76ff03;
-}
-
-.sound5.true {
-  background-color: #ff4081;
-}
-
-.sound6.true {
-  background-color: #6200ea;
-}
-
-.sound7.true {
-  background-color: #ffff00;
-}
-
-.sound8.true {
-  background-color: #ff6f00;
-}
-
-.wrapper {
-  text-align: center;
-  margin: 10px;
-}
-
-.button {
-  background-color: white;
-  color: black;
-  border: 2px solid #555555;
-  padding: 16px 32px;
-  top: 50%;
-  margin: 10px;
-  cursor: pointer;
-}
-
-.slidecontainer {
-  width: 30%;
-  margin: 0 auto;
-}
-
-.slider {
-  -webkit-appearance: none;
-  width: 100%;
-  height: 15px;
-  border-radius: 5px;
-  background: #d3d3d3;
-  outline: none;
-  opacity: 0.7;
-  -webkit-transition: 0.2s;
-  transition: opacity 0.2s;
-  text-align: center;
-  margin-bottom: 15px;
-  margin-top: 35px;
-}
-
-.slider:hover {
-  opacity: 1;
-}
-
-.slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  background: #546e7a;
-  cursor: pointer;
-}
-
-.slider::-moz-range-thumb {
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  background: #4caf50;
-  cursor: pointer;
-  text-align: center;
-}
-
-.buttons {
-  display: flex;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-/* .popup-body { */
-.popup-body {
-  background: #f6f5f7;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  /* height: 100vh; */
-  align-items: center;
-  font-family: 'Quicksand', sans-serif;
-  /* margin: -20px 0 50px; */
-  margin: 20px auto;
 }
 
 h1 {
@@ -289,6 +88,243 @@ input {
   padding: 12px 15px;
   margin: 8px 0;
   width: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+label {
+  display: block;
+}
+
+form div {
+  margin: 1em;
+  display: inline-block;
+}
+
+/* ---------------------------
+  Main Navigation Styles
+------------------------------ */
+
+nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+nav div {
+  margin: auto 20px;
+}
+
+.nav-wrapper {
+  margin: 0;
+}
+
+.link {
+  font-size: 20px;
+}
+
+.nav-links a {
+  display: inline-block;
+  margin: 1em;
+  font-size: 20px;
+}
+
+.site-title-div p {
+  margin: 2px 0;
+}
+
+/* ---------------------------
+  Saved Loops Styles
+------------------------------ */
+
+.loops-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.single-loop-card {
+  background-color: #eceff1;
+  border: 1px solid #90a4ae;
+  /* border-radius: 5px; */
+  margin: 10px;
+  padding: 5px;
+  width: 300px;
+  box-shadow: 1px 1px 5px #cfd8dc;
+}
+
+.card-detail-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.card-detail-wrapper h3 {
+  margin: 7px;
+}
+
+.card-detail-wrapper h3 span {
+  font-style: italic;
+}
+
+.delete-loop {
+  margin-top: 0;
+  margin-right: 2px;
+  padding-right: 5px;
+  padding-left: 5px;
+  color: #90a4ae;
+  /* border-radius: 20px;
+  border: 1px solid #90a4ae;
+  background-color: #90a4ae;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 12px 45px;
+  letter-spacing: 1px;
+  text-transform: uppercase; */
+}
+
+.delete-loop:hover {
+  background-color: tomato;
+  color: black;
+}
+
+/* ---------------------------
+  InstrumentRow Styles
+------------------------------ */
+
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.row div {
+  flex: 1;
+  margin: 5px;
+  text-align: center;
+  height: 50px;
+  width: 50px;
+}
+
+.false {
+  background-color: #607d8b;
+}
+
+.sound1.true {
+  background-color: tomato;
+}
+
+.sound2.true {
+  background-color: aquamarine;
+}
+
+.sound3.true {
+  background-color: #3d5afe;
+}
+
+.sound4.true {
+  background-color: #76ff03;
+}
+
+.sound5.true {
+  background-color: #ff4081;
+}
+
+.sound6.true {
+  background-color: #6200ea;
+}
+
+.sound7.true {
+  background-color: #ffff00;
+}
+
+.sound8.true {
+  background-color: #ff6f00;
+}
+
+.wrapper {
+  text-align: center;
+  margin: 10px;
+}
+
+/* ---------------------------
+  Grid button Styles ???????
+------------------------------ */
+
+.button {
+  background-color: white;
+  color: black;
+  border: 2px solid #555555;
+  padding: 16px 32px;
+  top: 50%;
+  margin: 10px;
+  cursor: pointer;
+}
+
+/* ---------------------------
+  Sign up / Login Popup Styles ???????
+------------------------------ */
+
+.slidecontainer {
+  width: 30%;
+  margin: 0 auto;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 15px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
+  text-align: center;
+  margin-bottom: 15px;
+  margin-top: 35px;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #546e7a;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #4caf50;
+  cursor: pointer;
+  text-align: center;
+}
+
+.buttons {
+  display: flex;
+}
+
+/* .popup-body { */
+.popup-body {
+  background: #f6f5f7;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* height: 100vh; */
+  align-items: center;
+  font-family: 'Quicksand', sans-serif;
+  /* margin: -20px 0 50px; */
+  margin: 20px auto;
 }
 
 .container {
@@ -442,6 +478,10 @@ input {
   width: 40px;
 }
 
+/* ---------------------------
+  CreateNewLoop Popup Styles ?
+------------------------------ */
+
 .popup {
   position: fixed;
   width: 100%;
@@ -464,6 +504,7 @@ input {
   border-radius: 20px;
   background: white;
 }
+
 .modal > .close {
   cursor: pointer;
   position: absolute;
