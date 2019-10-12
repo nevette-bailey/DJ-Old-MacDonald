@@ -328,6 +328,27 @@ nav div {
   cursor: pointer;
 }
 
+.button:disabled {
+  color: #cfd8dc;
+  border: 2px solid #cfd8dc;
+  cursor: default;
+}
+
+.disabled-button-image {
+  opacity: 0.2;
+}
+
+#playbutton {
+  background-color: white;
+  color: black;
+  border: 2px solid #555555;
+  padding: 16px 32px;
+  top: 50%;
+  margin: 10px;
+  font-size: 40;
+  cursor: pointer;
+}
+
 /* ---------------------------
   Sign up / Login Popup Styles ???????
 ------------------------------ */
@@ -379,7 +400,6 @@ nav div {
   display: flex;
 }
 
-/* .popup-body { */
 .popup-body {
   background: #f6f5f7;
   display: flex;
@@ -574,6 +594,7 @@ nav div {
   cursor: pointer;
   position: absolute;
   display: block;
+  /* padding: 20px; */
   padding: 2px 5px;
   line-height: 20px;
   right: -10px;
@@ -582,17 +603,6 @@ nav div {
   background: #ffffff;
   border-radius: 18px;
   border: 1px solid #cfcece;
-}
-
-#playbutton {
-  background-color: white;
-  color: black;
-  border: 2px solid #555555;
-  padding: 16px 32px;
-  top: 50%;
-  margin: 10px;
-  font-size: 40;
-  cursor: pointer;
 }
 
 .icontext {
