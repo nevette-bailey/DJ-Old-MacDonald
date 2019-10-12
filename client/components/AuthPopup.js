@@ -20,15 +20,19 @@ class AuthPopup extends React.Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  handleSubmit(method, e) {
-    this.props.auth(this.state.email, this.state.password, method);
-    this.props.history.push('loopsinfopopup');
-    // if (!this.props.isSaved) {
-    //   // ask user to input the loops detail in the form and save them
-    //redirect to the popup
-    // } else {
-    //   this.props.history.push('grid');
-    // }
+  async handleSubmit(method) {
+    try {
+      const response = await this.props.auth(
+        this.state.email,
+        this.state.password,
+        method
+      );
+      res.send(response);
+    } catch (error) {
+      console.log(error);
+    }
+
+    // this.props.history.push('loopsinfopopup');
   }
 
   toggleBox = () => {
@@ -82,6 +86,10 @@ class AuthPopup extends React.Component {
               >
                 Sign Up
               </button>
+              {this.props.error &&
+                this.props.error.response && (
+                  <div> {this.props.error.response.data} </div>
+                )}
             </form>
           </div>
           <div className="form-container sign-in-container">
@@ -150,7 +158,8 @@ class AuthPopup extends React.Component {
   }
 }
 const mapStateToProps = state => ({
-  isSaved: state.loops.isSaved
+  isSaved: state.loops.isSaved,
+  error: state.user.error
 });
 
 const mapDispatchToProps = dispatch => {
