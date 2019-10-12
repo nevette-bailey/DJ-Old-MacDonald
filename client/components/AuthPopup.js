@@ -14,33 +14,59 @@ class AuthPopup extends React.Component {
     this.toggleBox = this.toggleBox.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    // this.checkError = this.checkError.bind(this);
   }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.userId !== prevProps.userId) {
+      console.log('inside if statement in component did update');
+      if (!this.props.isSaved) {
+        // AND if the visitor arrived here after clicking 'save' on grid, then show them to loops info popup so they can finish saving their loop
+        this.props.history.push('loopsinfopopup');
+      } else {
+        // otherwise, redirect them to the grid so they can start using the app
+        this.props.history.push('grid');
+      }
+    }
+  }
+
+  // checkError() {
+  //   // if there are no login or signup authorization errors
+  //   if (this.props.error === undefined) {
+
+  //   }
+  // }
 
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  // this.props.history.push('loopsinfopopup');
   handleSubmit(method, e) {
+    e.preventDefault();
     this.props.auth(this.state.email, this.state.password, method);
-    // if a visitor is coming from regular login/signup flow, then push them to the music maker grid
-    if (this.props.isSaved) {
-      this.props.history.push('grid');
-    } else {
-      // if the visitor arrived here after clicking save on grid, then show them to loops info popup so they can finish saving their loop
-      this.props.history.push('loopsinfopopup');
-    }
+    // this.checkError();
+
+    // // if there are no login or signup authorization errors
+    // if (this.props.error) {
+    //   if (!this.props.isSaved) {
+    //     // AND if the visitor arrived here after clicking 'save' on grid, then show them to loops info popup so they can finish saving their loop
+    //     this.props.history.push('loopsinfopopup');
+    //   } else {
+    //     // otherwise, redirect them to the grid so they can start using the app
+    //     this.props.history.push('grid');
+    //   }
+    // }
   }
 
   toggleBox = () => {
-    console.log('TOGGLE***', this.state.isRightPanelVisible);
+    // console.log('TOGGLE***', this.state.isRightPanelVisible);
     this.setState(prevState => ({
       isRightPanelVisible: !prevState.isRightPanelVisible
     }));
   };
 
   render() {
-    console.log('AUTH POPUP', console.log(this.props));
+    console.log('ERROR', this.props.error);
     let containerToggle = 'container';
     if (!this.state.isRightPanelVisible) {
       containerToggle = 'container right-panel-active';
@@ -122,7 +148,7 @@ class AuthPopup extends React.Component {
               </button>
               {this.props.error &&
                 this.props.error.response && (
-                  <div> {this.props.error.response.data} </div>
+                  <div>{this.props.error.response.data}</div>
                 )}
             </form>
           </div>
@@ -161,7 +187,8 @@ class AuthPopup extends React.Component {
 }
 const mapStateToProps = state => ({
   isSaved: state.loops.isSaved,
-  error: state.user.error
+  error: state.user.error,
+  userId: state.user.id
 });
 
 const mapDispatchToProps = dispatch => {
