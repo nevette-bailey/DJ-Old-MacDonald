@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { createNewLoopThunk, saveLoopThunk } from '../store/reducers/loops';
 import { connect } from 'react-redux';
 import Popup from 'reactjs-popup';
+import LoopsInfoPopup from './LoopsInfoPopup';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { withRouter } from 'react-router-dom';
 const Tone = require('Tone');
 
 class CreateNewLoopButton extends Component {
@@ -11,6 +13,7 @@ class CreateNewLoopButton extends Component {
     super(props);
     this.handleCreate = this.handleCreate.bind(this);
     this.handleSave = this.handleSave.bind(this);
+    this.newLoopButton = this.newLoopButton.bind(this);
   }
 
   handleCreate(event) {
@@ -28,17 +31,31 @@ class CreateNewLoopButton extends Component {
       autoClose: 2000
     });
   }
+
+  newLoopButton() {
+    // if the grid hasn't changed and the loop is already new (i.e. loopId is null) then disable the button
+    if ((this.props.isSaved && !this.props.loopId) || !this.props.loopId) {
+      return (
+        <button className="button" type="submit" disabled>
+          <img
+            className="disabled-button-image"
+            src="https://img.icons8.com/material-rounded/26/000000/plus-math--v1.png"
+          />
+        </button>
+      );
+    } else {
+      return (
+        <button className="button" type="submit">
+          <img src="https://img.icons8.com/material-rounded/26/000000/plus-math--v1.png" />
+        </button>
+      );
+    }
+  }
+
   render() {
     return (
       <div className="icontext">
-        <Popup
-          trigger={
-            <button className="button" type="submit">
-              <img src="https://img.icons8.com/material-rounded/26/000000/plus-math--v1.png" />
-            </button>
-          }
-          modal
-        >
+        <Popup trigger={this.newLoopButton()} modal>
           {close => (
             <div className="modal">
               <div className="content">
@@ -78,7 +95,8 @@ class CreateNewLoopButton extends Component {
 const mapStateToProps = state => {
   return {
     sounds: state.sounds,
-    loopId: state.loops.id
+    loopId: state.loops.id,
+    isSaved: state.loops.isSaved
   };
 };
 const mapDispatchToProps = dispatch => {
@@ -88,6 +106,10 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  CreateNewLoopButton
+// export default connect(mapStateToProps, mapDispatchToProps)(
+//   CreateNewLoopButton
+// );
+
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(CreateNewLoopButton)
 );
