@@ -104,6 +104,71 @@ form div {
 }
 
 /* ---------------------------
+  Landing Page Styles
+------------------------------ */
+
+#landing-overlay {
+  position: fixed;
+  /* background-color: #78909c; */
+  background-color: #607d8b;
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  padding-top: 10px;
+  padding-left: 5px;
+}
+
+#landing-overlay a {
+  color: #90a4ae;
+}
+
+#landing-overlay a:hover {
+  color: #eceff1;
+}
+
+.landing-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-self: center;
+  margin: auto 0;
+}
+
+.landing-wrapper h1,
+.landing-wrapper p {
+  color: #eceff1;
+  text-align: center;
+}
+
+#landing-h1 {
+  font-family: ;
+  letter-spacing: 1.5px;
+  /* text-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22); */
+}
+
+.cta-button-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 40%;
+}
+
+#landing-cta-button {
+  /* margin-bottom: 40%; */
+  margin: 10px auto;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  cursor: pointer;
+}
+
+#landing-cta-button a {
+  color: #eceff1;
+  letter-spacing: 2px;
+}
+
+/* ---------------------------
   Main Navigation Styles
 ------------------------------ */
 

@@ -4,7 +4,8 @@ import {
   CREATE_NEW_LOOP,
   GET_ONE_LOOP,
   DELETE_LOOP,
-  SAVED_FALSE
+  SAVED_FALSE,
+  CLEAR_LOOPS
 } from './index';
 import axios from 'axios';
 import { resetSound, getSavedSound } from './sounds';
@@ -35,6 +36,10 @@ export const deleteLoop = id => ({
 
 export const isNotSaved = () => ({
   type: SAVED_FALSE
+});
+
+export const clearLoops = () => ({
+  type: CLEAR_LOOPS
 });
 
 export const saveLoopThunk = (sounds, loopId, title, description) => {
@@ -124,6 +129,9 @@ export default function loops(state = initialState, action) {
     }
     case SAVED_FALSE: {
       return { ...state, isSaved: false };
+    }
+    case CLEAR_LOOPS: {
+      return initialState;
     }
     default:
       return state;

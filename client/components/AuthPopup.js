@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { auth } from '../store/reducers/user';
+import { withRouter } from 'react-router-dom';
 
 class AuthPopup extends React.Component {
   constructor(props) {
@@ -16,19 +17,18 @@ class AuthPopup extends React.Component {
   }
 
   handleChange(e) {
-    console.log('eeee', e.target.value);
     this.setState({ [e.target.name]: e.target.value });
   }
 
   handleSubmit(method, e) {
     this.props.auth(this.state.email, this.state.password, method);
-    this.props.history.push('loopsinfopopup');
-    // if (!this.props.isSaved) {
-    //   // ask user to input the loops detail in the form and save them
-    //redirect to the popup
-    // } else {
-    //   this.props.history.push('grid');
-    // }
+    // if a visitor is coming from regular login/signup flow, then push them to the music maker grid
+    if (this.props.isSaved) {
+      this.props.history.push('grid');
+    } else {
+      // if the visitor arrived here after clicking save on grid, then show them to loops info popup so they can finish saving their loop
+      this.props.history.push('loopsinfopopup');
+    }
   }
 
   toggleBox = () => {
@@ -39,6 +39,7 @@ class AuthPopup extends React.Component {
   };
 
   render() {
+    console.log('AUTH POPUP', console.log(this.props));
     let containerToggle = 'container';
     if (!this.state.isRightPanelVisible) {
       containerToggle = 'container right-panel-active';
@@ -120,7 +121,7 @@ class AuthPopup extends React.Component {
           <div className="overlay-container">
             <div className="overlay">
               <div className="overlay-panel overlay-left">
-                <h1>Welcome Back!</h1>
+                <h1>Sign in</h1>
                 <p>To save your loops please login with your personal info</p>
                 <button
                   type="submit"
@@ -132,7 +133,7 @@ class AuthPopup extends React.Component {
                 </button>
               </div>
               <div className="overlay-panel overlay-right">
-                <h1>Hello, Friend!</h1>
+                <h1>Create an account</h1>
                 <p>Enter your personal details and save loops</p>
                 <button
                   type="submit"
@@ -160,4 +161,8 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AuthPopup);
+// export default connect(mapStateToProps, mapDispatchToProps)(AuthPopup);
+
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(AuthPopup)
+);
