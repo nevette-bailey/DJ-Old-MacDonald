@@ -1,5 +1,6 @@
 import React from 'react';
 import Popup from 'reactjs-popup';
+import loops from '../store/reducers/loops';
 const Tone = require('Tone');
 
 class AudioPlayer extends React.Component {
@@ -18,40 +19,43 @@ class AudioPlayer extends React.Component {
   };
   render() {
     return (
-      <Popup
-        trigger={
-          <button className="button" type="button">
-            Export Loop
-          </button>
-        }
-        modal
-      >
-        {close => (
-          <div className="modal">
-            <a className="close" onClick={close}>
-              &times;
-            </a>
-            <div className="content">
-              Press record to begin exporting current loop
+      <div className="icontext">
+        <Popup
+          trigger={
+            <button className="button" type="button">
+              <img src="https://img.icons8.com/ios-glyphs/26/000000/export.png" />
+            </button>
+          }
+          modal
+        >
+          {close => (
+            <div className="modal">
+              <a className="close" onClick={close}>
+                &times;
+              </a>
+              <div className="content">
+                Press record to begin exporting current loop
+              </div>
+              <div className="actions">
+                <button
+                  className="button"
+                  type="button"
+                  onClick={() => {
+                    this.recordLoop();
+                    // close();
+                  }}
+                >
+                  {this.state.isRecording ? 'Stop' : 'Record'}
+                </button>
+              </div>
+              <div>
+                <audio src={this.props.src} controls />
+              </div>
             </div>
-            <div className="actions">
-              <button
-                className="button"
-                type="button"
-                onClick={() => {
-                  this.recordLoop();
-                  // close();
-                }}
-              >
-                {this.state.isRecording ? 'Stop' : 'Record'}
-              </button>
-            </div>
-            <div>
-              <audio src={this.props.src} controls />
-            </div>
-          </div>
-        )}
-      </Popup>
+          )}
+        </Popup>
+        Export loop
+      </div>
     );
   }
 }

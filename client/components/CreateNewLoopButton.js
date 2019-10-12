@@ -30,11 +30,11 @@ class CreateNewLoopButton extends Component {
   }
   render() {
     return (
-      <div>
+      <div className="icontext">
         <Popup
           trigger={
             <button className="button" type="submit">
-              Create New
+              <img src="https://img.icons8.com/material-rounded/26/000000/plus-math--v1.png" />
             </button>
           }
           modal
@@ -70,6 +70,7 @@ class CreateNewLoopButton extends Component {
             </div>
           )}
         </Popup>
+        Create new
       </div>
     );
   }

@@ -22,6 +22,8 @@ class AuthPopup extends React.Component {
 
   // this.props.history.push('loopsinfopopup');
   handleSubmit(method, e) {
+    e.preventDefault();
+    console.log(e);
     this.props.auth(this.state.email, this.state.password, method);
     // if a visitor is coming from regular login/signup flow, then push them to the music maker grid
     if (this.props.isSaved) {
