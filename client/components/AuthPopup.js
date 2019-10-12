@@ -120,6 +120,10 @@ class AuthPopup extends React.Component {
               >
                 Sign In
               </button>
+              {this.props.error &&
+                this.props.error.response && (
+                  <div> {this.props.error.response.data} </div>
+                )}
             </form>
           </div>
           <div className="overlay-container">
