@@ -18,10 +18,10 @@ class AuthPopup extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
+    // if the user successfully signs in or signs up
     if (this.props.userId !== prevProps.userId) {
-      console.log('inside if statement in component did update');
       if (!this.props.isSaved) {
-        // AND if the visitor arrived here after clicking 'save' on grid, then show them to loops info popup so they can finish saving their loop
+        // AND if they came here after clicking 'save' on grid, then show them to loops info popup so they can finish saving their loop
         this.props.history.push('loopsinfopopup');
       } else {
         // otherwise, redirect them to the grid so they can start using the app
@@ -30,13 +30,6 @@ class AuthPopup extends React.Component {
     }
   }
 
-  // checkError() {
-  //   // if there are no login or signup authorization errors
-  //   if (this.props.error === undefined) {
-
-  //   }
-  // }
-
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
@@ -44,22 +37,9 @@ class AuthPopup extends React.Component {
   handleSubmit(method, e) {
     e.preventDefault();
     this.props.auth(this.state.email, this.state.password, method);
-    // this.checkError();
-
-    // // if there are no login or signup authorization errors
-    // if (this.props.error) {
-    //   if (!this.props.isSaved) {
-    //     // AND if the visitor arrived here after clicking 'save' on grid, then show them to loops info popup so they can finish saving their loop
-    //     this.props.history.push('loopsinfopopup');
-    //   } else {
-    //     // otherwise, redirect them to the grid so they can start using the app
-    //     this.props.history.push('grid');
-    //   }
-    // }
   }
 
   toggleBox = () => {
-    // console.log('TOGGLE***', this.state.isRightPanelVisible);
     this.setState(prevState => ({
       isRightPanelVisible: !prevState.isRightPanelVisible
     }));
@@ -67,6 +47,7 @@ class AuthPopup extends React.Component {
 
   render() {
     console.log('ERROR', this.props.error);
+    console.log('email & pw', this.state.email, this.state.password);
     let containerToggle = 'container';
     if (!this.state.isRightPanelVisible) {
       containerToggle = 'container right-panel-active';
