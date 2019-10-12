@@ -159,12 +159,22 @@ class Grid extends React.Component {
           sequence={this.props.sequence8}
         />
         <div className="buttons">
-          <button type="submit" onClick={this.handleClick} className="button">
-            {this.state.isToggleOn ? '>' : '||'}
-          </button>
-          <button type="submit" onClick={this.handleReset} className="button">
-            <img src="https://img.icons8.com/ios-filled/18/000000/recurring-appointment.png" />
-          </button>
+          <div className="icontext">
+            <button type="submit" onClick={this.handleClick} id="playbutton">
+              {this.state.isToggleOn ? (
+                <img src="https://img.icons8.com/metro/25/000000/play.png" />
+              ) : (
+                <img src="https://img.icons8.com/material-rounded/25/000000/pause.png" />
+              )}
+            </button>
+            Play/Pause
+          </div>
+          <div className="icontext">
+            <button type="submit" onClick={this.handleReset} id="playbutton">
+              <img src="https://img.icons8.com/ios-filled/24/000000/recurring-appointment.png" />
+            </button>
+            Reset
+          </div>
           <Tempo onChange={this.handleSliderChange} />
           <SaveButton />
           <CreateNewLoopButton />

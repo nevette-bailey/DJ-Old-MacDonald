@@ -36,6 +36,7 @@ class AuthPopup extends React.Component {
 
   handleSubmit(method, e) {
     e.preventDefault();
+    console.log(e);
     this.props.auth(this.state.email, this.state.password, method);
   }
 
