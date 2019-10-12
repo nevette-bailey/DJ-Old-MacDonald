@@ -4,10 +4,13 @@ import Navbar from './Navbar';
 import Tone from 'Tone';
 
 class Landing extends React.Component {
-  render() {
+  componentDidMount() {
     // the only time a user is expected to be here is on their first visit or when they log out, which is why we call Tone.Transport.cancel()
     // That said, if they hit back or edit the URL bar, the transport will be canceled and that could be an issue if they're in the middle of a loop
     Tone.Transport.cancel();
+  }
+
+  render() {
     return (
       <div id="landing-overlay" className="landing-wrapper">
         <Navbar />
