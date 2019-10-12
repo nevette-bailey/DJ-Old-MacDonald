@@ -10,8 +10,8 @@ class Landing extends React.Component {
       <div id="landing-overlay" className="landing-wrapper">
         <Navbar />
         <div className="landing-wrapper">
-          <h1>Some text to explain things</h1>
-          <p>A really fun tag line!</p>
+          <h1 id="landing-h1">A hip noise-making app</h1>
+          <p>Create your own beats using our unconventional sounds</p>
           <div className="cta-button-wrapper">
             <button type="button" id="landing-cta-button">
               <Link to="/grid">Get Started</Link>
