@@ -38,7 +38,7 @@ class Sequence extends React.Component {
         loop: true,
         loopStart: 0.2,
         loopEnd: 1.2,
-        volume: 25
+        volume: 17
       }).toMaster(),
       synth8: new Tone.Player({
         url: 'https://actions.google.com/sounds/v1/animals/owl_hooting.ogg',
