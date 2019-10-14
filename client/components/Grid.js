@@ -188,6 +188,7 @@ class Grid extends React.Component {
             record={this.recordForExport}
             recorder={this.props.recorder}
             isRecording={this.state.isRecording}
+            handleClick={this.handleClick}
           />
         </div>
       </div>
