@@ -16,35 +16,6 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-// router.post('/', async (req, res, next) => {
-//   try {
-//     const newloop = await Loop.findOrCreate({
-//       //create new loop in our loop model
-//       where: {
-//         title: req.body.title,
-//         sound1: req.body.sound1,
-//         sound2: req.body.sound2,
-//         sound3: req.body.sound3,
-//         sound4: req.body.sound4,
-//         sound5: req.body.sound5,
-//         sound6: req.body.sound6,
-//         sound7: req.body.sound7,
-//         sound8: req.body.sound8
-//       }
-//     });
-
-//     // const user = await User.findByPk(req.body.userId);
-//     const user = await User.findByPk(req.user.id);
-
-//     await newloop[0].setUser(user);
-//     //userId was created autommatically due to association
-
-//     res.json(newloop[0]);
-//   } catch (err) {
-//     next(err);
-//   }
-// });
-
 router.post('/', async (req, res, next) => {
   try {
     const newloop = await Loop.create({
@@ -88,12 +59,18 @@ router.put('/:id', async (req, res, next) => {
     console.log('INSIDE PUT: ', req.body);
     console.log('USERID', req.user.id);
     console.log('loop id: ', req.params.id);
+    // let title = ''
+    // if(req.body.title !== undefined){
     const [numAffectedRows, affectedRows] = await Loop.update(
       {
-        title: req.body.title,
         sound1: req.body.sound1,
         sound2: req.body.sound2,
-        sound3: req.body.sound3
+        sound3: req.body.sound3,
+        sound4: req.body.sound4,
+        sound5: req.body.sound5,
+        sound6: req.body.sound6,
+        sound7: req.body.sound7,
+        sound8: req.body.sound8
       },
       {
         where: {
@@ -105,6 +82,24 @@ router.put('/:id', async (req, res, next) => {
       }
     );
     res.status(204).send();
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.delete('/:id', async (req, res, next) => {
+  try {
+    const numAffectedRows = await Loop.destroy({
+      where: {
+        userId: req.user.id,
+        id: req.params.id
+      }
+    });
+    if (numAffectedRows) {
+      res.status(200).send();
+    } else {
+      res.status(404).send();
+    }
   } catch (err) {
     next(err);
   }

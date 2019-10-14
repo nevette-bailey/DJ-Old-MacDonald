@@ -1,5 +1,93 @@
+/* ---------------------------
+  General Site Styles
+------------------------------ */
+
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: 'Quicksand', sans-serif;
+  background: #f6f5f7;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding: 10px;
+  /* background: #f6f5f7;
+  height: 100vh; */
+}
+
+h1 {
+  font-weight: bold;
+  margin: 0;
+}
+
+h2 {
+  text-align: center;
+}
+
+p {
+  font-size: 14px;
+  font-weight: 100;
+  line-height: 20px;
+  letter-spacing: 0.5px;
+  margin: 20px 0 30px;
+}
+
+span {
+  font-size: 12px;
+}
+
+a {
+  color: #333;
+  font-size: 14px;
+  text-decoration: none;
+  margin: 15px 0;
+}
+
+button {
+  border-radius: 20px;
+  border: 1px solid tomato;
+  background-color: tomato;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 12px 45px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: transform 80ms ease-in;
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+button:focus {
+  outline: none;
+}
+
+button.ghost {
+  background-color: transparent;
+  border-color: #ffffff;
+}
+
+form {
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 50px;
+  height: 100%;
+  text-align: center;
+}
+
+input {
+  background-color: #eee;
+  border: none;
+  padding: 12px 15px;
+  margin: 8px 0;
+  width: 100%;
 }
 
 a {
@@ -10,9 +98,81 @@ label {
   display: block;
 }
 
-.nav-wrapper {
+form div {
+  margin: 1em;
+  display: inline-block;
+}
+
+/* ---------------------------
+  Landing Page Styles
+------------------------------ */
+
+#landing-overlay {
+  position: fixed;
+  /* background-color: #78909c; */
+  background-color: #607d8b;
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  padding-top: 10px;
+  padding-left: 5px;
+}
+
+#landing-overlay a {
+  color: #90a4ae;
+}
+
+#landing-overlay a:hover {
+  color: #eceff1;
+}
+
+.landing-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-self: center;
+  margin: auto 0;
+}
+
+.landing-wrapper h1,
+.landing-wrapper p {
+  color: #eceff1;
+  text-align: center;
+}
+
+#landing-h1 {
+  font-family: ;
+  letter-spacing: 1.5px;
+  /* text-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22); */
+}
+
+.cta-button-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  margin-bottom: 40%;
+}
+
+#landing-cta-link {
+  color: #eceff1;
+  letter-spacing: 2px;
   margin: 0;
 }
+
+#landing-cta-button {
+  /* margin-bottom: 40%; */
+  margin: 10px auto;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  cursor: pointer;
+}
+
+/* ---------------------------
+  Main Navigation Styles
+------------------------------ */
 
 nav {
   display: flex;
@@ -23,15 +183,83 @@ nav div {
   margin: auto 20px;
 }
 
+.nav-wrapper {
+  margin: 0;
+}
+
+.link {
+  font-size: 20px;
+}
+
 .nav-links a {
   display: inline-block;
   margin: 1em;
+  font-size: 20px;
 }
 
-form div {
-  margin: 1em;
-  display: inline-block;
+.site-title-div p {
+  margin: 2px 0;
 }
+
+/* ---------------------------
+  Saved Loops Styles
+------------------------------ */
+
+.loops-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.single-loop-card {
+  background-color: #eceff1;
+  border: 1px solid #90a4ae;
+  /* border-radius: 5px; */
+  margin: 10px;
+  padding: 5px;
+  width: 300px;
+  box-shadow: 1px 1px 5px #cfd8dc;
+}
+
+.card-detail-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.card-detail-wrapper h3 {
+  margin: 7px;
+}
+
+.card-detail-wrapper h3 span {
+  font-style: italic;
+}
+
+.delete-loop {
+  margin-top: 0;
+  margin-right: 2px;
+  padding-right: 5px;
+  padding-left: 5px;
+  color: #90a4ae;
+  /* border-radius: 20px;
+  border: 1px solid #90a4ae;
+  background-color: #90a4ae;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 12px 45px;
+  letter-spacing: 1px;
+  text-transform: uppercase; */
+}
+
+.delete-loop:hover {
+  background-color: tomato;
+  color: black;
+}
+
+/* ---------------------------
+  InstrumentRow Styles
+------------------------------ */
 
 .row {
   display: flex;
@@ -48,11 +276,39 @@ form div {
 }
 
 .false {
+  background-color: #607d8b;
+}
+
+.sound1.true {
   background-color: tomato;
 }
 
-.true {
+.sound2.true {
   background-color: aquamarine;
+}
+
+.sound3.true {
+  background-color: #3d5afe;
+}
+
+.sound4.true {
+  background-color: #76ff03;
+}
+
+.sound5.true {
+  background-color: #ff4081;
+}
+
+.sound6.true {
+  background-color: #6200ea;
+}
+
+.sound7.true {
+  background-color: #ffff00;
+}
+
+.sound8.true {
+  background-color: #ff6f00;
 }
 
 .wrapper {
@@ -60,16 +316,44 @@ form div {
   margin: 10px;
 }
 
+/* ---------------------------
+  Grid button Styles
+------------------------------ */
+
 .button {
   background-color: white;
   color: black;
   border: 2px solid #555555;
   padding: 16px 32px;
-  font-size: 20px;
   top: 50%;
   margin: 10px;
   cursor: pointer;
 }
+
+.button:disabled {
+  color: #cfd8dc;
+  border: 2px solid #cfd8dc;
+  cursor: default;
+}
+
+.disabled-button-image {
+  opacity: 0.2;
+}
+
+#playbutton {
+  background-color: white;
+  color: black;
+  border: 2px solid #555555;
+  padding: 16px 32px;
+  top: 50%;
+  margin: 10px;
+  font-size: 40;
+  cursor: pointer;
+}
+
+/* ---------------------------
+  Sign up / Login Popup Styles ???????
+------------------------------ */
 
 .slidecontainer {
   width: 30%;
@@ -101,7 +385,7 @@ form div {
   width: 25px;
   height: 25px;
   border-radius: 50%;
-  background: #4caf50;
+  background: #546e7a;
   cursor: pointer;
 }
 
@@ -117,6 +401,174 @@ form div {
 .buttons {
   display: flex;
 }
+
+.popup-body {
+  background: #f6f5f7;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* height: 100vh; */
+  align-items: center;
+  font-family: 'Quicksand', sans-serif;
+  /* margin: -20px 0 50px; */
+  margin: 20px auto;
+}
+
+.container {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  position: relative;
+  overflow: hidden;
+  width: 768px;
+  max-width: 100%;
+  min-height: 480px;
+}
+
+.container1 {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 10px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  position: relative;
+  width: 700px;
+  max-width: 100%;
+  min-height: 400px;
+}
+
+.form-container {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  transition: all 0.6s ease-in-out;
+}
+
+.sign-in-container {
+  left: 0;
+  width: 50%;
+  z-index: 2;
+}
+
+.container.right-panel-active .sign-in-container {
+  transform: translateX(100%);
+}
+
+.sign-up-container {
+  left: 0;
+  width: 50%;
+  opacity: 0;
+  z-index: 1;
+}
+
+.container.right-panel-active .sign-up-container {
+  transform: translateX(100%);
+  opacity: 1;
+  z-index: 5;
+  animation: show 0.6s;
+}
+
+@keyframes show {
+  0%,
+  49.99% {
+    opacity: 0;
+    z-index: 1;
+  }
+
+  50%,
+  100% {
+    opacity: 1;
+    z-index: 5;
+  }
+}
+
+.overlay-container {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  transition: transform 0.6s ease-in-out;
+  z-index: 100;
+}
+
+.container.right-panel-active .overlay-container {
+  transform: translateX(-100%);
+}
+
+.overlay {
+  background: tomato;
+  background: -webkit-linear-gradient(to right, tomato, #de5832);
+  background: linear-gradient(to right, tomato, #de5832);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 0 0;
+  color: #ffffff;
+  position: relative;
+  left: -100%;
+  height: 100%;
+  width: 200%;
+  transform: translateX(0);
+  transition: transform 0.6s ease-in-out;
+}
+
+.container.right-panel-active .overlay {
+  transform: translateX(50%);
+}
+
+.overlay-panel {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 40px;
+  text-align: center;
+  top: 0;
+  height: 100%;
+  width: 50%;
+  transform: translateX(0);
+  transition: transform 0.6s ease-in-out;
+}
+
+.overlay-left {
+  transform: translateX(-20%);
+}
+
+.container.right-panel-active .overlay-left {
+  transform: translateX(0);
+}
+
+.overlay-right {
+  right: 0;
+  transform: translateX(0);
+}
+
+.container.right-panel-active .overlay-right {
+  transform: translateX(20%);
+}
+
+.social-container {
+  margin: 20px 0;
+}
+
+.social-container a {
+  border: 1px solid #dddddd;
+  border-radius: 50%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 5px;
+  height: 40px;
+  width: 40px;
+}
+
+/* ---------------------------
+  CreateNewLoop Popup Styles ?
+------------------------------ */
+
 .popup {
   position: fixed;
   width: 100%;
@@ -128,6 +580,7 @@ form div {
   margin: auto;
   background-color: rgba(0, 0, 0, 0.5);
 }
+
 .popup\_inner {
   position: absolute;
   left: 25%;
@@ -137,4 +590,24 @@ form div {
   margin: auto;
   border-radius: 20px;
   background: white;
+}
+
+.modal > .close {
+  cursor: pointer;
+  position: absolute;
+  display: block;
+  /* padding: 20px; */
+  padding: 2px 5px;
+  line-height: 20px;
+  right: -10px;
+  top: -25px;
+  font-size: 24px;
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid #cfcece;
+}
+
+.icontext {
+  display: flex;
+  flex-direction: column;
 }

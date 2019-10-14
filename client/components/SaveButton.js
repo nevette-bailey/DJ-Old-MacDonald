@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { saveLoopThunk } from '../store/reducers/loops';
 import { connect } from 'react-redux';
+import 'react-toastify/dist/ReactToastify.css';
+import { withRouter } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 class SaveButton extends Component {
   constructor(props) {
@@ -11,15 +14,35 @@ class SaveButton extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.saveLoopThunk(this.props.sounds, this.props.loopId);
+    //logged in and changes are made to the loops
+    if (this.props.user.id && !this.props.isSaved) {
+      //if it's a new loop, direct to loopsinfopopup
+      if (this.props.loopId === null) {
+        this.props.history.push('loopsinfopopup');
+      } else {
+        //if save an existing loop, forward the sound and id, title and description in null.
+        this.props.saveLoopThunk(this.props.sounds, this.props.loopId);
+        toast('Loop Saved!', {
+          position: 'bottom-right',
+          autoClose: 2000
+        });
+      }
+    } else {
+      //if not looged in and changes are made to the loops
+      console.log('historyyyyy', this.props.history);
+      this.props.history.push('authpopup');
+    }
   }
+
+  showPopup() {}
 
   render() {
     return (
-      <div>
+      <div className="icontext">
         <button type="submit" onClick={this.handleSubmit} className="button">
-          Save
+          <img src="https://img.icons8.com/material-rounded/28/000000/save.png" />
         </button>
+        Save
       </div>
     );
   }
@@ -28,7 +51,9 @@ class SaveButton extends Component {
 const mapStateToProps = state => {
   return {
     sounds: state.sounds,
-    loopId: state.loops.id
+    loopId: state.loops.id,
+    isSaved: state.isSaved,
+    user: state.user
   };
 };
 
@@ -37,4 +62,6 @@ const mapDispatchToProps = dispatch => {
     saveLoopThunk: (newLoop, id) => dispatch(saveLoopThunk(newLoop, id))
   };
 };
-export default connect(mapStateToProps, mapDispatchToProps)(SaveButton);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(SaveButton)
+);
