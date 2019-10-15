@@ -28,7 +28,7 @@ class SaveButton extends Component {
         });
       }
     } else {
-      //if not looged in and changes are made to the loops
+      //if not looged in and changes are made to the loops.
       console.log('historyyyyy', this.props.history);
       this.props.history.push('authpopup');
     }
@@ -37,7 +37,22 @@ class SaveButton extends Component {
   showPopup() {}
 
   render() {
-    return (
+    return this.props.isSaved ? (
+      <div className="icontext">
+        <button
+          type="submit"
+          onClick={this.handleSubmit}
+          className="button"
+          disabled
+        >
+          <img
+            className="disabled-button-image"
+            src="https://img.icons8.com/material-rounded/28/000000/save.png"
+          />
+        </button>
+        Save
+      </div>
+    ) : (
       <div className="icontext">
         <button type="submit" onClick={this.handleSubmit} className="button">
           <img src="https://img.icons8.com/material-rounded/28/000000/save.png" />
@@ -52,7 +67,7 @@ const mapStateToProps = state => {
   return {
     sounds: state.sounds,
     loopId: state.loops.id,
-    isSaved: state.isSaved,
+    isSaved: state.loops.isSaved,
     user: state.user
   };
 };

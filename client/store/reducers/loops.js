@@ -5,7 +5,8 @@ import {
   GET_ONE_LOOP,
   DELETE_LOOP,
   SAVED_FALSE,
-  CLEAR_LOOPS
+  CLEAR_LOOPS,
+  RESET_SOUND
 } from './index';
 import axios from 'axios';
 import { resetSound, getSavedSound } from './sounds';
@@ -133,6 +134,10 @@ export default function loops(state = initialState, action) {
     case CLEAR_LOOPS: {
       return initialState;
     }
+    case RESET_SOUND: {
+      if (!state.id) return { ...state, isSaved: true };
+    }
+
     default:
       return state;
   }
