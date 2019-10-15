@@ -284,31 +284,31 @@ nav div {
 }
 
 .sound2.true {
-  background-color: aquamarine;
+  background-color: #00bcd4;
 }
 
 .sound3.true {
-  background-color: #3d5afe;
+  background-color: #3f51b5;
 }
 
 .sound4.true {
-  background-color: #76ff03;
+  background-color: #8bc34a;
 }
 
 .sound5.true {
-  background-color: #ff4081;
+  background-color: #e91e63;
 }
 
 .sound6.true {
-  background-color: #6200ea;
+  background-color: #fdd835;
 }
 
 .sound7.true {
-  background-color: #ffff00;
+  background-color: #673ab7;
 }
 
 .sound8.true {
-  background-color: #ff6f00;
+  background-color: #ff9800;
 }
 
 .wrapper {

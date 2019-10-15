@@ -7,7 +7,8 @@ class AudioPlayer extends React.Component {
   constructor() {
     super();
     this.state = {
-      isRecording: false
+      isRecording: false,
+      hasRecorded: false
     };
     this.recordLoop = this.recordLoop.bind(this);
   }
@@ -15,11 +16,15 @@ class AudioPlayer extends React.Component {
     this.setState(prevState => ({
       isRecording: !prevState.isRecording
     }));
+    if (this.state.isRecording) {
+      this.setState({ hasRecorded: true });
+    }
     this.props.record();
   };
   render() {
+    console.log('PROPS', this.props);
     return (
-      <div className="icontext">
+      <div className="icontext" onClick={this.props.handleClick}>
         <Popup
           trigger={
             <button className="button" type="button">
@@ -42,15 +47,20 @@ class AudioPlayer extends React.Component {
                   type="button"
                   onClick={() => {
                     this.recordLoop();
-                    // close();
                   }}
                 >
                   {this.state.isRecording ? 'Stop' : 'Record'}
                 </button>
               </div>
               <div>
-                <audio src={this.props.src} controls />
+                {this.state.hasRecorded
+                  ? 'Press play to playback recorded loop, and click dots to download'
+                  : ''}
               </div>
+              <div>
+                <audio src={this.props.src} id="audio" controls />
+              </div>
+              {/* <div>{this.props.recorder.getCurrentDuration()}</div> */}
             </div>
           )}
         </Popup>

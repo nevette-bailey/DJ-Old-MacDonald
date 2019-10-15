@@ -43,9 +43,14 @@ class Grid extends React.Component {
 
   handleReset() {
     // Removes the Sequence created in playSounds method to completley clear the events/timeline
+    Tone.Transport.stop();
     Tone.Transport.cancel();
     // Resets the sound state back to all false
     this.props.resetSoundThunk();
+    this.setState({ isPlaying: false });
+    this.setState(prevState => ({
+      isToggleOn: !prevState.isToggleOn
+    }));
   }
 
   handleClick = () => {
@@ -183,6 +188,7 @@ class Grid extends React.Component {
             record={this.recordForExport}
             recorder={this.props.recorder}
             isRecording={this.state.isRecording}
+            handleClick={this.handleClick}
           />
         </div>
       </div>
