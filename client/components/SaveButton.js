@@ -37,6 +37,8 @@ class SaveButton extends Component {
   showPopup() {}
 
   render() {
+    console.log('loopId :', this.props.loopId);
+    console.log('isSaved :', this.props.isSaved);
     return this.props.isSaved ? (
       <div className="icontext">
         <button
