@@ -28,7 +28,7 @@ class SaveButton extends Component {
         });
       }
     } else {
-      //if not looged in and changes are made to the loops
+      //if not looged in and changes are made to the loops.
       console.log('historyyyyy', this.props.history);
       this.props.history.push('authpopup');
     }
