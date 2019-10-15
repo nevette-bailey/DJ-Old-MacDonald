@@ -605,6 +605,7 @@ nav div {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  height: 100%;
 }
 
 .card-detail-wrapper h3 {
