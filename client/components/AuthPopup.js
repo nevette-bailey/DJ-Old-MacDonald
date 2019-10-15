@@ -9,11 +9,15 @@ class AuthPopup extends React.Component {
     this.state = {
       isRightPanelVisible: true,
       email: '',
-      password: ''
+      emailError: '',
+      password: '',
+      passwordError: ''
     };
     this.toggleBox = this.toggleBox.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.emailValidate = this.emailValidate.bind(this);
+    this.passwordValidate = this.passwordValidate.bind(this);
     // this.checkError = this.checkError.bind(this);
   }
 
@@ -34,10 +38,35 @@ class AuthPopup extends React.Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
+  emailValidate = () => {
+    let isError = false;
+    if (this.state.email.indexOf('@') === -1) {
+      isError = true;
+      // this.setState({ emailError: 'Requires valid email' });
+      this.setState({ emailError: 'Requires valid email' });
+    }
+    return isError;
+  };
+
+  passwordValidate = () => {
+    let isError = false;
+    if (this.state.password.length < 5) {
+      isError = true;
+      // this.setState({ emailError: 'Requires valid email' });
+      this.setState({
+        passwordError: 'Password must be at least 5 characters'
+      });
+    }
+    return isError;
+  };
+
   handleSubmit(method, e) {
     e.preventDefault();
-    console.log(e);
-    this.props.auth(this.state.email, this.state.password, method);
+    const emailErr = this.emailValidate();
+    const passwordErr = this.passwordValidate();
+    if (!emailErr && !passwordErr) {
+      this.props.auth(this.state.email, this.state.password, method);
+    }
   }
 
   toggleBox = () => {
@@ -80,12 +109,14 @@ class AuthPopup extends React.Component {
                 placeholder="Email"
                 onChange={this.handleChange}
               />
+              {this.state.emailError}
               <input
                 type="password"
                 name="password"
                 placeholder="Password"
                 onChange={this.handleChange}
               />
+              {this.state.passwordError}
               <button
                 type="submit"
                 onClick={e => this.handleSubmit('/signup', e)}
@@ -116,12 +147,14 @@ class AuthPopup extends React.Component {
                 placeholder="Email"
                 onChange={this.handleChange}
               />
+              {this.state.emailError}
               <input
                 type="password"
                 name="password"
                 placeholder="Password"
                 onChange={this.handleChange}
               />
+              {this.state.passwordError}
               <button
                 type="submit"
                 onClick={e => this.handleSubmit('/login', e)}
