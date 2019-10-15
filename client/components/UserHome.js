@@ -44,9 +44,10 @@ class UserHome extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="my-loops-container">
+        {/* <hr /> */}
         <div>
-          <h2>Welcome, {this.props.email} !</h2>
+          <p className="username">Your Account: {this.props.email}</p>
         </div>
         {this.props.loops.length !== 0 ? (
           <div>
