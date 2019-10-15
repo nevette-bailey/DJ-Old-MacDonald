@@ -14,7 +14,8 @@ async function seed() {
 
   const loops = await Promise.all([
     Loop.create({
-      title: 'my sound',
+      title: 'My Sound',
+      description: 'My spookiest creation yet.',
       sound1: [
         true,
         false,
@@ -32,7 +33,31 @@ async function seed() {
         true,
         true,
         true
-      ]
+      ],
+      sound2: [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        false,
+        true,
+        true,
+        false,
+        true,
+        false,
+        false
+      ],
+      sound3: [],
+      sound4: [],
+      sound5: [],
+      sound6: [],
+      sound7: [],
+      sound8: []
     })
   ]);
 
