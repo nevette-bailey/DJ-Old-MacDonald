@@ -24,7 +24,6 @@ class Grid extends React.Component {
   }
 
   componentDidUpdate() {
-    console.log('isPlaying', this.state.isPlaying);
     if (this.state.isPlaying) {
       this.props.sequences.sequence1.start();
       this.props.sequences.sequence2.start();
@@ -91,13 +90,6 @@ class Grid extends React.Component {
       isRecording: !prevState.isRecording
     }));
   };
-  // setTempo = () => {
-  //   Tone.transport.bmp.value = 180
-  // }
-  // handleSliderChange = e => {
-  //   this.setState({ [bmp]: e.value });
-  //   Tone.Transport.bmp.value = value;
-  // };
 
   render() {
     return (

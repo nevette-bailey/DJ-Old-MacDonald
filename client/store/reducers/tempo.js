@@ -23,7 +23,7 @@ export const updateTempoThunk = tempo => {
 };
 
 //sub-reducer for tempo
-export default function tempo(state = 160, action) {
+export default function tempo(state = 120, action) {
   switch (action.type) {
     case UPDATE_TEMPO:
       return action.tempo;

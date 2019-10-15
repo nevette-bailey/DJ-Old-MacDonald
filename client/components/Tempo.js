@@ -7,7 +7,7 @@ class Tempo extends Component {
   constructor() {
     super();
     this.state = {
-      defaultValue: 160
+      defaultValue: 120
     };
   }
 
@@ -21,9 +21,9 @@ class Tempo extends Component {
       <div className="slidecontainer">
         <input
           type="range"
-          min="40"
-          max="280"
-          defaultValue="160"
+          min="20"
+          max="240"
+          defaultValue="120"
           className="slider"
           id="myRange"
           onChange={this.handleChange}
