@@ -6,7 +6,8 @@ import {
   DELETE_LOOP,
   SAVED_FALSE,
   CLEAR_LOOPS,
-  RESET_SOUND
+  RESET_SOUND,
+  IS_SAVED
 } from './index';
 import axios from 'axios';
 import { resetSound, getSavedSound } from './sounds';
@@ -39,6 +40,10 @@ export const isNotSaved = () => ({
   type: SAVED_FALSE
 });
 
+export const isSaved = () => ({
+  type: IS_SAVED
+});
+
 export const clearLoops = () => ({
   type: CLEAR_LOOPS
 });
@@ -54,8 +59,8 @@ export const saveLoopThunk = (sounds, loopId, title, description) => {
         const { data } = await axios.post('/api/loops/', sounds);
         dispatch(saveLoop(data));
       } else {
-        const { data } = await axios.put(`/api/loops/${loopId}`, sounds);
-        dispatch(saveLoop(data));
+        await axios.put(`/api/loops/${loopId}`, sounds);
+        dispatch(isSaved());
       }
     } catch (err) {
       console.log(err);
@@ -107,10 +112,14 @@ const initialState = {
   isSaved: true
 };
 
+// eslint-disable-next-line complexity
 export default function loops(state = initialState, action) {
   switch (action.type) {
     case SAVE_LOOP: {
       return { ...state, id: action.savedLoop.id, isSaved: true };
+    }
+    case IS_SAVED: {
+      return { ...state, isSaved: true };
     }
     case CREATE_NEW_LOOP: {
       return { ...state, id: null, isSaved: true };
