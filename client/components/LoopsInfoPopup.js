@@ -56,39 +56,39 @@ class LoopsInfoPopup extends React.Component {
 
   render() {
     return (
-      // <div className="popup-body">
-      <div className="container1">
-        {/* <div className="form-container sign-in-container"> */}
-        <form action="#">
-          <h1>Details</h1>
-          <span>Enter loop details below</span>
-          <br />
-          <input
-            type="title"
-            autoFocus={true}
-            placeholder="Title"
-            name="title"
-            value={this.state.title}
-            onChange={e => this.handleChange(e)}
-          />
-          <input
-            type="description"
-            placeholder="Description"
-            name="description"
-            onChange={e => this.handleChange(e)}
-          />
-          <br />
-          <button
-            type="submit"
-            id="button"
-            onClick={e => this.handleSubmit(e, this.props.close)}
-          >
-            {this.props.isCopy ? 'Create Copy' : 'Save Loop'}
-          </button>
-        </form>
-        {/* </div> */}
+      <div className="popup-body">
+        <div className="container1">
+          {/* <div className="form-container sign-in-container"> */}
+          <form action="#">
+            <h1>Details</h1>
+            <span>Enter loop details below</span>
+            <br />
+            <input
+              type="title"
+              autoFocus={true}
+              placeholder="Title"
+              name="title"
+              value={this.state.title}
+              onChange={e => this.handleChange(e)}
+            />
+            <input
+              type="description"
+              placeholder="Description"
+              name="description"
+              onChange={e => this.handleChange(e)}
+            />
+            <br />
+            <button
+              type="submit"
+              id="button"
+              onClick={e => this.handleSubmit(e, this.props.close)}
+            >
+              {this.props.isCopy ? 'Create Copy' : 'Save Loop'}
+            </button>
+          </form>
+          {/* </div> */}
+        </div>
       </div>
-      // </div>
     );
   }
 }
