@@ -49,7 +49,7 @@ class SaveButton extends Component {
         >
           <img
             className="disabled-button-image"
-            src="https://img.icons8.com/material-rounded/28/000000/save.png"
+            src="https://img.icons8.com/material-rounded/23/000000/save.png"
           />
         </button>
         Save
