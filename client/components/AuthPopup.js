@@ -134,7 +134,7 @@ class AuthPopup extends React.Component {
                 <a href="#" className="social">
                   <i className="fab fa-facebook-f" />
                 </a>
-                <a href="#" className="social">
+                <a href="/auth/google" className="social">
                   <i className="fab fa-google" />
                 </a>
               </div>
