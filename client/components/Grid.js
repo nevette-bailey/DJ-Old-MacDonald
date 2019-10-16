@@ -92,7 +92,7 @@ class Grid extends React.Component {
   };
 
   render() {
-    const title = this.props.title || '';
+    const title = this.props.title || '(Untitled)';
     return (
       <div>
         <div id="titlewrap">
