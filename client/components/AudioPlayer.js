@@ -22,7 +22,7 @@ class AudioPlayer extends React.Component {
     this.props.record();
   };
   render() {
-    console.log('PROPS', this.props);
+    // console.log('PROPS', this.props);
     return (
       <div className="icontext" onClick={this.props.handleClick}>
         <Popup

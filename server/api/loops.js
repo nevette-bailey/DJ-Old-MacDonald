@@ -21,6 +21,7 @@ router.post('/', async (req, res, next) => {
     const newloop = await Loop.create({
       //create new loop in our loop model
       title: req.body.title,
+      description: req.body.description,
       sound1: req.body.sound1,
       sound2: req.body.sound2,
       sound3: req.body.sound3,

@@ -32,7 +32,19 @@ class CreateNewLoopButton extends Component {
     });
   }
 
-  newLoopButton() {
+  newLoopButton(optionalClick) {
+    // if optionalClick isn't undefined, then we should add an onClick method directly to the button rather than opening the popup
+    if (optionalClick !== undefined) {
+      return (
+        <button
+          className="button"
+          type="submit"
+          onClick={event => this.handleCreate(event)}
+        >
+          <img src="https://img.icons8.com/material-rounded/26/000000/plus-math--v1.png" />
+        </button>
+      );
+    }
     // if the grid hasn't changed and the loop is already new (i.e. loopId is null) then disable the button
     if ((this.props.isSaved && !this.props.loopId) || !this.props.loopId) {
       return (
@@ -55,38 +67,43 @@ class CreateNewLoopButton extends Component {
   render() {
     return (
       <div className="icontext">
-        <Popup trigger={this.newLoopButton()} modal>
-          {close => (
-            <div className="modal">
-              <div className="content">
-                Do you want to save the current loop before creating a new one?
-              </div>
-              <div className="actions">
-                <button
-                  className="button"
-                  type="button"
-                  onClick={event => {
-                    this.handleSave(event);
-                    close();
-                  }}
-                >
-                  Yes
-                </button>
+        {this.props.isSaved && this.props.loopId ? (
+          this.newLoopButton('yes')
+        ) : (
+          <Popup trigger={this.newLoopButton()} modal>
+            {close => (
+              <div className="modal">
+                <div className="content">
+                  Do you want to save the current loop before creating a new
+                  one?
+                </div>
+                <div className="actions">
+                  <button
+                    className="button"
+                    type="button"
+                    onClick={event => {
+                      this.handleSave(event);
+                      close();
+                    }}
+                  >
+                    Yes
+                  </button>
 
-                <button
-                  className="button"
-                  onClick={event => {
-                    this.handleCreate(event);
-                    close();
-                  }}
-                  type="submit"
-                >
-                  No
-                </button>
+                  <button
+                    className="button"
+                    onClick={event => {
+                      this.handleCreate(event);
+                      close();
+                    }}
+                    type="submit"
+                  >
+                    No
+                  </button>
+                </div>
               </div>
-            </div>
-          )}
-        </Popup>
+            )}
+          </Popup>
+        )}
         Create new
       </div>
     );
