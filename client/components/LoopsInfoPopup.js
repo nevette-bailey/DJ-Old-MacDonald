@@ -13,7 +13,7 @@ class LoopsInfoPopup extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: this.props.title || '',
+      title: this.props.title ? `Copy of ${this.props.title}` : '',
       description: ''
     };
 
@@ -34,7 +34,7 @@ class LoopsInfoPopup extends React.Component {
         description: this.state.description
       });
       this.props.close();
-      toast('Loop Saved!', {
+      toast('Copy Created!', {
         position: 'bottom-right',
         autoClose: 2000
       });
@@ -47,25 +47,11 @@ class LoopsInfoPopup extends React.Component {
         this.state.description
       );
       this.props.history.push('grid');
-
       toast('Loop Saved!', {
         position: 'bottom-right',
         autoClose: 2000
       });
     }
-    // e.preventDefault();
-    // this.props.saveLoopThunk(
-    //   this.props.sounds,
-    //   this.props.loopId,
-    //   this.state.title,
-    //   this.state.description
-    // );
-    // this.props.history.push('grid');
-
-    // toast('Loop Saved!', {
-    //   position: 'bottom-right',
-    //   autoClose: 2000
-    // });
   }
 
   render() {
@@ -82,11 +68,7 @@ class LoopsInfoPopup extends React.Component {
             autoFocus={true}
             placeholder="Title"
             name="title"
-            // value={
-            //   this.props.isCopy
-            //     ? `Copy of ${this.state.title}`
-            //     : this.state.title
-            // }
+            value={this.state.title}
             onChange={e => this.handleChange(e)}
           />
           <input

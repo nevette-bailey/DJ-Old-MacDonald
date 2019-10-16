@@ -13,11 +13,7 @@ class SingleLoopCard extends React.Component {
     const title = this.props.loop.title || 'Untitled';
     const description = this.props.loop.description || '';
     return (
-      <div
-        className="single-loop-card"
-        // onClick={() => props.handleClick(id)}
-        key={this.props.loop.id}
-      >
+      <div className="single-loop-card" key={this.props.loop.id}>
         <div className="card-detail-wrapper">
           <div>
             <h3>
@@ -33,32 +29,32 @@ class SingleLoopCard extends React.Component {
             >
               Delete
             </button>
-            <Popup
-              trigger={
-                <button type="button" className="view-loop">
-                  Copy
-                </button>
-              }
-              modal
-            >
-              {close => (
-                // <div className="modal">
-                <LoopsInfoPopup
-                  close={close}
-                  title={title}
-                  isCopy={true}
-                  originalId={id}
-                />
-                // </div>
-              )}
-            </Popup>
-            <button
-              className="view-loop"
-              type="button"
-              onClick={() => this.props.handleClick(id)}
-            >
-              View
-            </button>
+            <div>
+              <Popup
+                trigger={
+                  <button type="button" className="view-loop">
+                    Copy
+                  </button>
+                }
+                modal
+              >
+                {close => (
+                  <LoopsInfoPopup
+                    close={close}
+                    title={title}
+                    isCopy={true}
+                    originalId={id}
+                  />
+                )}
+              </Popup>
+              <button
+                className="view-loop"
+                type="button"
+                onClick={() => this.props.handleClick(id)}
+              >
+                View
+              </button>
+            </div>
           </div>
         </div>
       </div>
