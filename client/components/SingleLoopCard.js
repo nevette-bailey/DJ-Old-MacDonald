@@ -1,41 +1,69 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import Popup from 'reactjs-popup';
+import LoopsInfoPopup from './LoopsInfoPopup';
 
-const SingleLoopCard = props => {
-  const id = props.loop.id;
-  const title = props.loop.title || 'Untitled';
-  const description = props.loop.description || '';
-  return (
-    <div
-      className="single-loop-card"
-      // onClick={() => props.handleClick(id)}
-      key={props.loop.id}
-    >
-      <div className="card-detail-wrapper">
-        <div>
-          <h3>
-            Title: <span>{title}</span>
-          </h3>
-          <p>{description}</p>
-        </div>
-        <div className="loop-button-div">
-          <button
-            className="delete-loop"
-            type="button"
-            onClick={event => props.deleteLoop(event, id)}
-          >
-            Delete
-          </button>
-          <button
-            className="view-loop"
-            type="button"
-            onClick={() => props.handleClick(id)}
-          >
-            View
-          </button>
+class SingleLoopCard extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    const id = this.props.loop.id;
+    const title = this.props.loop.title || 'Untitled';
+    const description = this.props.loop.description || '';
+    return (
+      <div
+        className="single-loop-card"
+        // onClick={() => props.handleClick(id)}
+        key={this.props.loop.id}
+      >
+        <div className="card-detail-wrapper">
+          <div>
+            <h3>
+              Title: <span>{title}</span>
+            </h3>
+            <p>{description}</p>
+          </div>
+          <div className="loop-button-div">
+            <button
+              className="delete-loop"
+              type="button"
+              onClick={event => this.props.deleteLoop(event, id)}
+            >
+              Delete
+            </button>
+            <Popup
+              trigger={
+                <button type="button" className="view-loop">
+                  Copy
+                </button>
+              }
+              modal
+            >
+              {close => (
+                // <div className="modal">
+                <LoopsInfoPopup
+                  close={close}
+                  title={title}
+                  isCopy={true}
+                  originalId={id}
+                />
+                // </div>
+              )}
+            </Popup>
+            <button
+              className="view-loop"
+              type="button"
+              onClick={() => this.props.handleClick(id)}
+            >
+              View
+            </button>
+          </div>
         </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 export default SingleLoopCard;

@@ -19,6 +19,7 @@ class UserHome extends React.Component {
     this.handleClick = this.handleClick.bind(this);
     this.createNewClick = this.createNewClick.bind(this);
     this.deleteLoop = this.deleteLoop.bind(this);
+    this.makeCopy = this.makeCopy.bind(this);
   }
 
   componentDidMount() {
@@ -28,6 +29,10 @@ class UserHome extends React.Component {
   deleteLoop(event, id) {
     this.props.deleteLoopThunk(id);
     event.stopPropagation();
+  }
+
+  makeCopy(id) {
+    console.log(id);
   }
 
   handleClick(id) {
@@ -59,6 +64,7 @@ class UserHome extends React.Component {
                   <SingleLoopCard
                     handleClick={this.handleClick}
                     deleteLoop={this.deleteLoop}
+                    makeCopy={this.makeCopy}
                     loop={loop}
                     key={loop.id}
                   />

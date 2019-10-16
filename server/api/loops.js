@@ -41,6 +41,35 @@ router.post('/', async (req, res, next) => {
   }
 });
 
+router.post('/copy/:id', async (req, res, next) => {
+  try {
+    const oneLoop = await Loop.findOne({
+      where: {
+        userId: req.user.id,
+        id: req.params.id
+      }
+    });
+    console.log(oneLoop);
+    const newCopy = await Loop.create({
+      title: req.body.title,
+      description: req.body.description,
+      sound1: oneLoop.sound1,
+      sound2: oneLoop.sound2,
+      sound3: oneLoop.sound3,
+      sound4: oneLoop.sound4,
+      sound5: oneLoop.sound5,
+      sound6: oneLoop.sound6,
+      sound7: oneLoop.sound7,
+      sound8: oneLoop.sound8
+    });
+    const user = await User.findByPk(req.user.id);
+    await newCopy.setUser(user);
+    res.json(newCopy);
+  } catch (err) {
+    next(err);
+  }
+});
+
 router.get('/:id', async (req, res, next) => {
   try {
     const oneLoop = await Loop.findOne({
