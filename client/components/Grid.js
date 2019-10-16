@@ -95,7 +95,9 @@ class Grid extends React.Component {
     const title = this.props.title || '';
     return (
       <div>
-        <span id="title">Title: {title} </span>
+        <div id="titlewrap">
+          <span id="title">Title: {title} </span>
+        </div>
         <div className="wrapper">
           <InstrumentRow
             name="sound1"
@@ -171,7 +173,7 @@ class Grid extends React.Component {
             </div>
             <div className="icontext">
               <button type="submit" onClick={this.handleReset} id="playbutton">
-                <img src="https://img.icons8.com/ios-filled/24/000000/recurring-appointment.png" />
+                <img src="https://img.icons8.com/ios-filled/25/000000/recurring-appointment.png" />
               </button>
               Reset
             </div>
