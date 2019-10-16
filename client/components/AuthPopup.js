@@ -76,8 +76,6 @@ class AuthPopup extends React.Component {
   };
 
   render() {
-    console.log('ERROR', this.props.error);
-    console.log('email & pw', this.state.email, this.state.password);
     let containerToggle = 'container';
     if (!this.state.isRightPanelVisible) {
       containerToggle = 'container right-panel-active';
@@ -92,7 +90,7 @@ class AuthPopup extends React.Component {
                 <a href="#" className="social">
                   <i className="fab fa-facebook-f" />
                 </a>
-                <a href="#" className="social">
+                <a href="/auth/google" className="social">
                   <i className="fab fa-google" />
                 </a>
               </div>
