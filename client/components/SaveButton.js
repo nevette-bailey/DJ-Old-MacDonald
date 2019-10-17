@@ -54,6 +54,15 @@ class SaveButton extends Component {
   }
 
   render() {
+    const popupStyle = {
+      position: 'relative',
+      background: 'rgba(0, 0, 0, 0)',
+      width: 'auto',
+      margin: 'auto',
+      border: 'none',
+      borderRadius: '50%',
+      padding: '-50px'
+    };
     return this.props.isSaved ? (
       // if there are no changes to the grid, render the disabled save button
       this.disabledSaveButton()
@@ -71,12 +80,12 @@ class SaveButton extends Component {
       </div>
     ) : this.props.user.id ? (
       // if a user is logged in and is editing a new loop, render save button that will show LoopsInfoPopup when clicked
-      <Popup trigger={this.popupSaveButton()} modal>
+      <Popup contentStyle={popupStyle} trigger={this.popupSaveButton()} modal>
         {close => <LoopsInfoPopup close={close} />}
       </Popup>
     ) : (
       // if user is a guest and has made changes to the grid, render save button that will show AuthPopup when clicked
-      <Popup trigger={this.popupSaveButton()} modal>
+      <Popup contentStyle={popupStyle} trigger={this.popupSaveButton()} modal>
         {close => <AuthPopup close={close} />}
       </Popup>
     );
