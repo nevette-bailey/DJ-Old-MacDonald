@@ -18,6 +18,7 @@ export const DELETE_LOOP = 'DELETE_LOOP';
 export const SAVED_FALSE = 'SAVED_FALSE';
 export const CLEAR_LOOPS = 'CLEAR_LOOPS';
 export const IS_SAVED = 'IS_SAVED';
+export const COPY_LOOP = 'COPY_LOOP';
 
 export const UPDATE_SEQUENCES = 'UPDATE_SEQUENCES';
 export const UPDATE_SEQUENCES_ERROR = 'UPDATE_SEQUENCES_ERROR';

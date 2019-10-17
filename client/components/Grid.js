@@ -92,96 +92,102 @@ class Grid extends React.Component {
   };
 
   render() {
+    const title = this.props.title || '(Untitled)';
     return (
-      <div className="wrapper">
-        <InstrumentRow
-          name="sound1"
-          sound={this.props.sounds.sound1}
-          note="C4"
-          sequenceName="sequence1"
-          sequence={this.props.sequences.sequence1}
-          id="sound1"
-        />
-        <InstrumentRow
-          name="sound2"
-          sound={this.props.sounds.sound2}
-          note="E4"
-          sequenceName="sequence2"
-          sequence={this.props.sequence2}
-        />
-        <InstrumentRow
-          name="sound3"
-          sound={this.props.sounds.sound3}
-          note="G4"
-          sequenceName="sequence3"
-          sequence={this.props.sequence3}
-        />
-        <InstrumentRow
-          name="sound4"
-          sound={this.props.sounds.sound4}
-          note="C5"
-          sequenceName="sequence4"
-          sequence={this.props.sequence4}
-        />
-        <InstrumentRow
-          name="sound5"
-          sound={this.props.sounds.sound5}
-          note={this.props.synth5}
-          duration={0.6}
-          sequenceName="sequence5"
-          sequence={this.props.sequence5}
-        />
-        <InstrumentRow
-          name="sound6"
-          sound={this.props.sounds.sound6}
-          note={this.props.synth6}
-          duration={1}
-          sequenceName="sequence6"
-          sequence={this.props.sequence6}
-        />
-        <InstrumentRow
-          name="sound7"
-          sound={this.props.sounds.sound7}
-          note={this.props.synth7}
-          duration={1}
-          sequenceName="sequence7"
-          sequence={this.props.sequence7}
-        />
-        <InstrumentRow
-          name="sound8"
-          sound={this.props.sounds.sound8}
-          note={this.props.synth8}
-          duration={1}
-          sequenceName="sequence8"
-          sequence={this.props.sequence8}
-        />
-        <div className="buttons">
-          <div className="icontext">
-            <button type="submit" onClick={this.handleClick} id="playbutton">
-              {this.state.isToggleOn ? (
-                <img src="https://img.icons8.com/metro/25/000000/play.png" />
-              ) : (
-                <img src="https://img.icons8.com/material-rounded/25/000000/pause.png" />
-              )}
-            </button>
-            Play/Pause
-          </div>
-          <div className="icontext">
-            <button type="submit" onClick={this.handleReset} id="playbutton">
-              <img src="https://img.icons8.com/ios-filled/24/000000/recurring-appointment.png" />
-            </button>
-            Reset
-          </div>
-          <Tempo onChange={this.handleSliderChange} />
-          <SaveButton />
-          <CreateNewLoopButton />
-          <AudioPlayer
-            src={this.props.audioSRC}
-            record={this.recordForExport}
-            recorder={this.props.recorder}
-            isRecording={this.state.isRecording}
-            handleClick={this.handleClick}
+      <div>
+        <div id="titlewrap">
+          <span id="title">Title: {title} </span>
+        </div>
+        <div className="wrapper">
+          <InstrumentRow
+            name="sound1"
+            sound={this.props.sounds.sound1}
+            note="C4"
+            sequenceName="sequence1"
+            sequence={this.props.sequences.sequence1}
+            id="sound1"
           />
+          <InstrumentRow
+            name="sound2"
+            sound={this.props.sounds.sound2}
+            note="E4"
+            sequenceName="sequence2"
+            sequence={this.props.sequence2}
+          />
+          <InstrumentRow
+            name="sound3"
+            sound={this.props.sounds.sound3}
+            note="G4"
+            sequenceName="sequence3"
+            sequence={this.props.sequence3}
+          />
+          <InstrumentRow
+            name="sound4"
+            sound={this.props.sounds.sound4}
+            note="C5"
+            sequenceName="sequence4"
+            sequence={this.props.sequence4}
+          />
+          <InstrumentRow
+            name="sound5"
+            sound={this.props.sounds.sound5}
+            note={this.props.synth5}
+            duration={0.6}
+            sequenceName="sequence5"
+            sequence={this.props.sequence5}
+          />
+          <InstrumentRow
+            name="sound6"
+            sound={this.props.sounds.sound6}
+            note={this.props.synth6}
+            duration={1}
+            sequenceName="sequence6"
+            sequence={this.props.sequence6}
+          />
+          <InstrumentRow
+            name="sound7"
+            sound={this.props.sounds.sound7}
+            note={this.props.synth7}
+            duration={1}
+            sequenceName="sequence7"
+            sequence={this.props.sequence7}
+          />
+          <InstrumentRow
+            name="sound8"
+            sound={this.props.sounds.sound8}
+            note={this.props.synth8}
+            duration={1}
+            sequenceName="sequence8"
+            sequence={this.props.sequence8}
+          />
+          <div className="buttons">
+            <div className="icontext">
+              <button type="submit" onClick={this.handleClick} id="playbutton">
+                {this.state.isToggleOn ? (
+                  <img src="https://img.icons8.com/metro/23/000000/play.png" />
+                ) : (
+                  <img src="https://img.icons8.com/material-rounded/23/000000/pause.png" />
+                )}
+              </button>
+              Play/Pause
+            </div>
+            <div className="icontext">
+              <button type="submit" onClick={this.handleReset} id="playbutton">
+                <img src="https://img.icons8.com/ios-filled/23/000000/recurring-appointment.png" />
+              </button>
+              Reset
+            </div>
+            <Tempo onChange={this.handleSliderChange} />
+            <SaveButton />
+            <CreateNewLoopButton />
+            <AudioPlayer
+              src={this.props.audioSRC}
+              record={this.recordForExport}
+              recorder={this.props.recorder}
+              isRecording={this.state.isRecording}
+              handleClick={this.handleClick}
+            />
+          </div>
         </div>
       </div>
     );
@@ -192,7 +198,8 @@ const mapStateToProps = state => {
   return {
     sounds: state.sounds,
     sequences: state.sequences,
-    tempo: state.tempo
+    tempo: state.tempo,
+    title: state.loops.title
   };
 };
 
