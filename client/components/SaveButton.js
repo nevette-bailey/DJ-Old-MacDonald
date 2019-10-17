@@ -11,13 +11,12 @@ import AuthPopup from './AuthPopup';
 class SaveButton extends Component {
   constructor(props) {
     super(props);
-
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.disabledSaveButton = this.disabledSaveButton.bind(this);
     this.saveExisting = this.saveExisting.bind(this);
+    this.disabledSaveButton = this.disabledSaveButton.bind(this);
+    this.popupSaveButton = this.popupSaveButton.bind(this);
   }
 
-  //if user is logged in & saving an existing loop, forward the sound and id, title and description in null.
+  // if user is logged in & saving an existing loop, forward the sound and id, title and description in null.
   saveExisting(event) {
     event.preventDefault();
     this.props.saveLoopThunk(this.props.sounds, this.props.loopId);
@@ -27,41 +26,23 @@ class SaveButton extends Component {
     });
   }
 
-  // // if user logged in & saving a new loop
-  // saveNew() {
-
-  // }
-
-  handleSubmit(event) {
-    event.preventDefault();
-    //logged in and changes are made to the loops
-    if (this.props.user.id && !this.props.isSaved) {
-      //if it's a new loop, direct to loopsinfopopup
-      if (this.props.loopId === null) {
-        this.props.history.push('loopsinfopopup');
-      } else {
-        //if save an existing loop, forward the sound and id, title and description in null.
-        this.props.saveLoopThunk(this.props.sounds, this.props.loopId);
-        toast('Loop Saved!', {
-          position: 'bottom-right',
-          autoClose: 2000
-        });
-      }
-    } else {
-      //if not looged in and changes are made to the loops.
-      this.props.history.push('authpopup');
-    }
+  // method to render the save button that's wrapped in the popup
+  popupSaveButton() {
+    return (
+      <div className="icontext">
+        <button type="submit" className="button">
+          <img src="https://img.icons8.com/material-rounded/23/000000/save.png" />
+        </button>
+        Save
+      </div>
+    );
   }
 
+  // method to render the disabled save button when there are no changes to the grid
   disabledSaveButton() {
     return (
       <div className="icontext">
-        <button
-          type="submit"
-          onClick={this.handleSubmit}
-          className="button"
-          disabled
-        >
+        <button type="submit" className="button" disabled>
           <img
             className="disabled-button-image"
             src="https://img.icons8.com/material-rounded/23/000000/save.png"
@@ -73,51 +54,29 @@ class SaveButton extends Component {
   }
 
   render() {
-    console.log('loopId :', this.props.loopId);
-    console.log('isSaved :', this.props.isSaved);
     return this.props.isSaved ? (
+      // if there are no changes to the grid, render the disabled save button
       this.disabledSaveButton()
     ) : this.props.loopId ? (
+      // if the user is logged in and editing an existing loop, render save button with click handler to save an existing loop
       <div className="icontext">
         <button
           type="submit"
           onClick={event => this.saveExisting(event)}
           className="button"
         >
-          <img src="https://img.icons8.com/material-rounded/28/000000/save.png" />
+          <img src="https://img.icons8.com/material-rounded/23/000000/save.png" />
         </button>
         Save
       </div>
     ) : this.props.user.id ? (
-      <Popup
-        trigger={
-          <div className="icontext">
-            <button
-              type="submit"
-              // onClick={this.handleSubmit}
-              className="button"
-            >
-              <img src="https://img.icons8.com/material-rounded/28/000000/save.png" />
-            </button>
-            Save
-          </div>
-        }
-        modal
-      >
+      // if a user is logged in and is editing a new loop, render save button that will show LoopsInfoPopup when clicked
+      <Popup trigger={this.popupSaveButton()} modal>
         {close => <LoopsInfoPopup close={close} />}
       </Popup>
     ) : (
-      <Popup
-        trigger={
-          <div className="icontext">
-            <button type="submit" className="button">
-              <img src="https://img.icons8.com/material-rounded/28/000000/save.png" />
-            </button>
-            Save
-          </div>
-        }
-        modal
-      >
+      // if user is a guest and has made changes to the grid, render save button that will show AuthPopup when clicked
+      <Popup trigger={this.popupSaveButton()} modal>
         {close => <AuthPopup close={close} />}
       </Popup>
     );
