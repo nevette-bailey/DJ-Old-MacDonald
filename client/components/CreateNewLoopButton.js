@@ -45,7 +45,11 @@ class CreateNewLoopButton extends Component {
           type="submit"
           onClick={event => this.handleCreate(event)}
         >
-          <img src="https://img.icons8.com/material-rounded/23/000000/plus-math--v1.png" />
+          <img
+            src="https://image.flaticon.com/icons/svg/149/149156.svg"
+            width="20"
+            height="20"
+          />
         </button>
       );
     }
@@ -55,14 +59,20 @@ class CreateNewLoopButton extends Component {
         <button className="button" type="submit" disabled>
           <img
             className="disabled-button-image"
-            src="https://img.icons8.com/material-rounded/23/000000/plus-math--v1.png"
+            src="https://image.flaticon.com/icons/svg/149/149156.svg"
+            width="20"
+            height="20"
           />
         </button>
       );
     } else {
       return (
         <button className="button" type="submit">
-          <img src="https://img.icons8.com/material-rounded/23/000000/plus-math--v1.png" />
+          <img
+            src="https://image.flaticon.com/icons/svg/149/149156.svg"
+            width="20"
+            height="20"
+          />
         </button>
       );
     }
