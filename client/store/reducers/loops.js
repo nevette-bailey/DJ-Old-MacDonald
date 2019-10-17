@@ -7,7 +7,8 @@ import {
   SAVED_FALSE,
   CLEAR_LOOPS,
   RESET_SOUND,
-  IS_SAVED
+  IS_SAVED,
+  COPY_LOOP
 } from './index';
 import axios from 'axios';
 import { resetSound, getSavedSound } from './sounds';
@@ -47,6 +48,25 @@ export const isSaved = () => ({
 export const clearLoops = () => ({
   type: CLEAR_LOOPS
 });
+
+export const copyLoop = newLoopCopy => ({
+  type: COPY_LOOP,
+  newLoopCopy
+});
+
+export const copyLoopThunk = (originalId, newDetails) => {
+  return async dispatch => {
+    try {
+      const { data } = await axios.post(
+        `/api/loops/copy/${originalId}`,
+        newDetails
+      );
+      dispatch(copyLoop(data));
+    } catch (err) {
+      console.error(err);
+    }
+  };
+};
 
 export const saveLoopThunk = (sounds, loopId, title, description) => {
   return async dispatch => {
@@ -109,26 +129,37 @@ export const deleteLoopThunk = id => {
 const initialState = {
   id: null,
   allLoops: [],
-  isSaved: true
+  isSaved: true,
+  title: null
 };
 
 // eslint-disable-next-line complexity
 export default function loops(state = initialState, action) {
   switch (action.type) {
     case SAVE_LOOP: {
-      return { ...state, id: action.savedLoop.id, isSaved: true };
+      return {
+        ...state,
+        id: action.savedLoop.id,
+        isSaved: true,
+        title: action.savedLoop.title
+      };
+    }
+    case COPY_LOOP: {
+      const updatedAllLoops = [...state.allLoops];
+      updatedAllLoops.push(action.newLoopCopy);
+      return { ...state, allLoops: updatedAllLoops };
     }
     case IS_SAVED: {
       return { ...state, isSaved: true };
     }
     case CREATE_NEW_LOOP: {
-      return { ...state, id: null, isSaved: true };
+      return { ...state, id: null, isSaved: true, title: null };
     }
     case GET_LOOPS: {
       return { ...state, allLoops: action.allLoops };
     }
     case GET_ONE_LOOP: {
-      return { ...state, id: action.oneLoop.id };
+      return { ...state, id: action.oneLoop.id, title: action.oneLoop.title };
     }
     case DELETE_LOOP: {
       {
@@ -146,7 +177,6 @@ export default function loops(state = initialState, action) {
     case RESET_SOUND: {
       if (!state.id) return { ...state, isSaved: true };
     }
-
     default:
       return state;
   }

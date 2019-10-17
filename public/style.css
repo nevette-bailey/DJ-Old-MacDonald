@@ -293,6 +293,7 @@ nav div {
   margin: 10px;
   font-size: 40;
   cursor: pointer;
+  box-shadow: 1px 1px 5px #cfd8dc;
 }
 
 /* ---------------------------
@@ -554,6 +555,10 @@ nav div {
 .icontext {
   display: flex;
   flex-direction: column;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-size: 11px;
+  text-align: center;
 }
 
 /* ---------------------------
@@ -575,6 +580,15 @@ nav div {
   padding: 0 20px;
 }
 
+.back {
+  display: inline;
+  font-size: 14px;
+  font-weight: 100;
+  line-height: normal;
+  letter-spacing: 0.5px;
+  margin: 20px 0 30px;
+}
+
 .my-loops-container div h2 {
   color: rgb(51, 51, 51);
 }
@@ -591,10 +605,8 @@ nav div {
 }
 
 .single-loop-card {
-  /* background-color: #eceff1; */
   background-color: white;
   border: 1px solid #90a4ae;
-  /* border-radius: 5px; */
   margin: 10px;
   padding: 5px;
   width: 300px;
@@ -616,11 +628,6 @@ nav div {
   padding: 0 7px;
   font-size: 0.8em;
 }
-
-/* .card-detail-wrapper h3,
-.card-detail-wrapper p {
-  margin: 7px;
-} */
 
 .card-detail-wrapper h3 span {
   font-style: italic;
@@ -661,3 +668,29 @@ nav div {
   background-color: #607d8b;
   color: white;
 }
+
+#title {
+  /* border-radius: 5px;
+  border: 1px solid black; */
+  color: black;
+  font-size: 12px;
+  font-weight: bold;
+  /* padding: 12px 10px; */
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  /* transition: transform 80ms ease-in; */
+  text-align: left;
+  margin-left: 18px;
+  box-sizing: border-box;
+}
+
+/* #titlewrap {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-top: 1px solid lightslategrey;
+  border-left: 1px solid lightslategrey;
+  border-right: 1px solid lightslategrey;
+  width: 190px;
+  margin-left: 15px;
+  padding: 12px 0px 0px;
+} */
