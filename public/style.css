@@ -569,6 +569,14 @@ nav div {
   Saved Loops Styles
 ------------------------------ */
 
+.loops-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
 .my-loops-container {
   display: flex;
   flex-direction: column;
@@ -599,13 +607,6 @@ nav div {
 
 .username {
   margin: 0 10px;
-}
-
-.loops-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  flex-wrap: wrap;
 }
 
 .single-loop-card {
