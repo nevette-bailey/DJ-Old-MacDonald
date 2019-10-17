@@ -1,16 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { saveLoopThunk, getOneLoopThunk } from '../store/reducers/loops';
+import {
+  saveLoopThunk,
+  getOneLoopThunk,
+  copyLoopThunk
+} from '../store/reducers/loops';
 import 'react-toastify/dist/ReactToastify.css';
 import { withRouter } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 class LoopsInfoPopup extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      title: null,
-      description: null
+      title: this.props.title ? `Copy of ${this.props.title}` : '',
+      description: ''
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -22,19 +26,32 @@ class LoopsInfoPopup extends React.Component {
   }
 
   handleSubmit(e) {
-    e.preventDefault();
-    this.props.saveLoopThunk(
-      this.props.sounds,
-      this.props.loopId,
-      this.state.title,
-      this.state.description
-    );
-    this.props.history.push('grid');
-
-    toast('Loop Saved!', {
-      position: 'bottom-right',
-      autoClose: 2000
-    });
+    // isCopy is only defined if this is loaded from the SingleLoopCard
+    if (this.props.isCopy) {
+      e.preventDefault();
+      this.props.copyLoopThunk(this.props.originalId, {
+        title: this.state.title,
+        description: this.state.description
+      });
+      this.props.close();
+      toast('Copy Created!', {
+        position: 'bottom-right',
+        autoClose: 2000
+      });
+    } else {
+      e.preventDefault();
+      this.props.saveLoopThunk(
+        this.props.sounds,
+        this.props.loopId,
+        this.state.title,
+        this.state.description
+      );
+      this.props.history.push('grid');
+      toast('Loop Saved!', {
+        position: 'bottom-right',
+        autoClose: 2000
+      });
+    }
   }
 
   render() {
@@ -48,8 +65,10 @@ class LoopsInfoPopup extends React.Component {
             <br />
             <input
               type="title"
+              autoFocus={true}
               placeholder="Title"
               name="title"
+              value={this.state.title}
               onChange={e => this.handleChange(e)}
             />
             <input
@@ -62,9 +81,9 @@ class LoopsInfoPopup extends React.Component {
             <button
               type="submit"
               id="button"
-              onClick={e => this.handleSubmit(e)}
+              onClick={e => this.handleSubmit(e, this.props.close)}
             >
-              Save Loop
+              {this.props.isCopy ? 'Create Copy' : 'Save Loop'}
             </button>
           </form>
           {/* </div> */}
@@ -85,6 +104,8 @@ const mapDispatchToProps = dispatch => {
   return {
     saveLoopThunk: (sounds, loopId, title, description) =>
       dispatch(saveLoopThunk(sounds, loopId, title, description)),
+    copyLoopThunk: (originalId, newDetails) =>
+      dispatch(copyLoopThunk(originalId, newDetails)),
     getOneLoopThunk: loopId => dispatch(getOneLoopThunk(loopId))
   };
 };

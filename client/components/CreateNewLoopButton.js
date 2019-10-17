@@ -116,16 +116,13 @@ const mapStateToProps = state => {
     isSaved: state.loops.isSaved
   };
 };
+
 const mapDispatchToProps = dispatch => {
   return {
     saveLoopThunk: (newLoop, id) => dispatch(saveLoopThunk(newLoop, id)),
     createNewLoopThunk: () => dispatch(createNewLoopThunk())
   };
 };
-
-// export default connect(mapStateToProps, mapDispatchToProps)(
-//   CreateNewLoopButton
-// );
 
 export default withRouter(
   connect(mapStateToProps, mapDispatchToProps)(CreateNewLoopButton)
