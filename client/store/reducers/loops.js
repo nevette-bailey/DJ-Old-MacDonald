@@ -129,14 +129,20 @@ export const deleteLoopThunk = id => {
 const initialState = {
   id: null,
   allLoops: [],
-  isSaved: true
+  isSaved: true,
+  title: null
 };
 
 // eslint-disable-next-line complexity
 export default function loops(state = initialState, action) {
   switch (action.type) {
     case SAVE_LOOP: {
-      return { ...state, id: action.savedLoop.id, isSaved: true };
+      return {
+        ...state,
+        id: action.savedLoop.id,
+        isSaved: true,
+        title: action.savedLoop.title
+      };
     }
     case COPY_LOOP: {
       const updatedAllLoops = [...state.allLoops];
@@ -147,13 +153,13 @@ export default function loops(state = initialState, action) {
       return { ...state, isSaved: true };
     }
     case CREATE_NEW_LOOP: {
-      return { ...state, id: null, isSaved: true };
+      return { ...state, id: null, isSaved: true, title: null };
     }
     case GET_LOOPS: {
       return { ...state, allLoops: action.allLoops };
     }
     case GET_ONE_LOOP: {
-      return { ...state, id: action.oneLoop.id };
+      return { ...state, id: action.oneLoop.id, title: action.oneLoop.title };
     }
     case DELETE_LOOP: {
       {

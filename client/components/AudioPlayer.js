@@ -28,7 +28,7 @@ class AudioPlayer extends React.Component {
         <Popup
           trigger={
             <button className="button" type="button">
-              <img src="https://img.icons8.com/ios-glyphs/26/000000/export.png" />
+              <img src="https://img.icons8.com/ios-glyphs/23/000000/export.png" />
             </button>
           }
           modal
@@ -64,7 +64,7 @@ class AudioPlayer extends React.Component {
             </div>
           )}
         </Popup>
-        Export loop
+        Export
       </div>
     );
   }
