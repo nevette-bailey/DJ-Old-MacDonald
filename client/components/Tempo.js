@@ -21,7 +21,7 @@ class Tempo extends Component {
       <div className="slidecontainer">
         <input
           type="range"
-          min="20"
+          min="0"
           max="240"
           defaultValue="120"
           className="slider"

@@ -28,7 +28,11 @@ class AudioPlayer extends React.Component {
         <Popup
           trigger={
             <button className="button" type="button">
-              <img src="https://img.icons8.com/ios-glyphs/23/000000/export.png" />
+              <img
+                src="https://image.flaticon.com/icons/svg/154/154608.svg"
+                width="20"
+                height="20"
+              />
             </button>
           }
           modal

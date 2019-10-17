@@ -164,16 +164,28 @@ class Grid extends React.Component {
             <div className="icontext">
               <button type="submit" onClick={this.handleClick} id="playbutton">
                 {this.state.isToggleOn ? (
-                  <img src="https://img.icons8.com/metro/23/000000/play.png" />
+                  <img
+                    src="https://image.flaticon.com/icons/svg/31/31128.svg"
+                    width="20"
+                    height="20"
+                  />
                 ) : (
-                  <img src="https://img.icons8.com/material-rounded/23/000000/pause.png" />
+                  <img
+                    src="https://image.flaticon.com/icons/svg/109/109605.svg"
+                    width="20"
+                    height="20"
+                  />
                 )}
               </button>
               Play/Pause
             </div>
             <div className="icontext">
               <button type="submit" onClick={this.handleReset} id="playbutton">
-                <img src="https://img.icons8.com/ios-filled/23/000000/recurring-appointment.png" />
+                <img
+                  src="https://image.flaticon.com/icons/svg/126/126561.svg"
+                  width="20"
+                  height="20"
+                />
               </button>
               Reset
             </div>
