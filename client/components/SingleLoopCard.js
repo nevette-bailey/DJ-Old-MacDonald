@@ -9,6 +9,15 @@ class SingleLoopCard extends React.Component {
   }
 
   render() {
+    const popupStyle = {
+      position: 'relative',
+      background: 'rgba(0, 0, 0, 0)',
+      width: 'auto',
+      margin: 'auto',
+      border: 'none',
+      borderRadius: '50%',
+      padding: '-50px'
+    };
     const id = this.props.loop.id;
     const title = this.props.loop.title || 'Untitled';
     const description = this.props.loop.description || '';
@@ -36,6 +45,7 @@ class SingleLoopCard extends React.Component {
                     Copy
                   </button>
                 }
+                contentStyle={popupStyle}
                 modal
               >
                 {close => (

@@ -81,8 +81,7 @@ class UserHome extends React.Component {
         ) : (
           <div className="section">
             <h2>Your Loops</h2>
-            <p>You don't have any saved loops.</p>
-            <p>Create one now!</p>
+            <p>You don't have any saved loops. Create one now!</p>
             <button
               type="button"
               className="button"

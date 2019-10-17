@@ -20,16 +20,20 @@ class CreateNewLoopButton extends Component {
     event.preventDefault();
     this.props.createNewLoopThunk();
     Tone.Transport.cancel();
+    toast('New loop created!', {
+      position: 'bottom-right',
+      autoClose: 2000
+    });
   }
 
   handleSave(event) {
     event.preventDefault();
     this.props.saveLoopThunk(this.props.sounds, this.props.loopId);
-    this.handleCreate(event);
-    toast('Loop Saved!', {
+    toast('Loop saved!', {
       position: 'bottom-right',
       autoClose: 2000
     });
+    this.handleCreate(event);
   }
 
   newLoopButton(optionalClick) {
