@@ -64,7 +64,7 @@ class AudioPlayer extends React.Component {
             </div>
           )}
         </Popup>
-        Export loop
+        Export
       </div>
     );
   }
