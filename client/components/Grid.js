@@ -101,7 +101,7 @@ class Grid extends React.Component {
           <InstrumentRow
             name="sound1"
             sound={this.props.sounds.sound1}
-            note="C4"
+            note="C5"
             sequenceName="sequence1"
             sequence={this.props.sequences.sequence1}
             id="sound1"
@@ -109,21 +109,21 @@ class Grid extends React.Component {
           <InstrumentRow
             name="sound2"
             sound={this.props.sounds.sound2}
-            note="E4"
+            note="G4"
             sequenceName="sequence2"
             sequence={this.props.sequence2}
           />
           <InstrumentRow
             name="sound3"
             sound={this.props.sounds.sound3}
-            note="G4"
+            note="E4"
             sequenceName="sequence3"
             sequence={this.props.sequence3}
           />
           <InstrumentRow
             name="sound4"
             sound={this.props.sounds.sound4}
-            note="C5"
+            note="C4"
             sequenceName="sequence4"
             sequence={this.props.sequence4}
           />
@@ -196,6 +196,7 @@ class Grid extends React.Component {
               record={this.recordForExport}
               recorder={this.props.recorder}
               isRecording={this.state.isRecording}
+              isPlaying={this.state.isPlaying}
               handleClick={this.handleClick}
             />
           </div>

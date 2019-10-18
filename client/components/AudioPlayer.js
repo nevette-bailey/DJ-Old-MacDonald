@@ -23,7 +23,10 @@ class AudioPlayer extends React.Component {
   };
   render() {
     return (
-      <div className="icontext" onClick={this.props.handleClick}>
+      <div
+        className="icontext"
+        onClick={this.props.isPlaying ? this.props.handleClick : null}
+      >
         <Popup
           trigger={
             <button className="button" type="button">
