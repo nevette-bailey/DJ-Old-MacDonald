@@ -69,7 +69,6 @@ class Grid extends React.Component {
       this.setState({ isPlaying: true });
     } else {
       // Stops the sequence if one is playing
-
       Tone.Transport.stop();
       this.setState({ isPlaying: false });
       // Tone.Transport.cancel();
@@ -78,9 +77,9 @@ class Grid extends React.Component {
       isToggleOn: !prevState.isToggleOn
     }));
   };
+
   recordForExport = () => {
     this.handleClick();
-    console.log(this.state.isRecording);
     if (!this.state.isRecording) {
       this.props.recorder.start();
     } else if (this.state.isRecording) {
@@ -102,7 +101,7 @@ class Grid extends React.Component {
           <InstrumentRow
             name="sound1"
             sound={this.props.sounds.sound1}
-            note="C4"
+            note="C5"
             sequenceName="sequence1"
             sequence={this.props.sequences.sequence1}
             id="sound1"
@@ -110,21 +109,21 @@ class Grid extends React.Component {
           <InstrumentRow
             name="sound2"
             sound={this.props.sounds.sound2}
-            note="E4"
+            note="G4"
             sequenceName="sequence2"
             sequence={this.props.sequence2}
           />
           <InstrumentRow
             name="sound3"
             sound={this.props.sounds.sound3}
-            note="G4"
+            note="E4"
             sequenceName="sequence3"
             sequence={this.props.sequence3}
           />
           <InstrumentRow
             name="sound4"
             sound={this.props.sounds.sound4}
-            note="C5"
+            note="C4"
             sequenceName="sequence4"
             sequence={this.props.sequence4}
           />
@@ -164,16 +163,28 @@ class Grid extends React.Component {
             <div className="icontext">
               <button type="submit" onClick={this.handleClick} id="playbutton">
                 {this.state.isToggleOn ? (
-                  <img src="https://img.icons8.com/metro/23/000000/play.png" />
+                  <img
+                    src="https://image.flaticon.com/icons/svg/31/31128.svg"
+                    width="20"
+                    height="20"
+                  />
                 ) : (
-                  <img src="https://img.icons8.com/material-rounded/23/000000/pause.png" />
+                  <img
+                    src="https://image.flaticon.com/icons/svg/109/109605.svg"
+                    width="20"
+                    height="20"
+                  />
                 )}
               </button>
               Play/Pause
             </div>
             <div className="icontext">
               <button type="submit" onClick={this.handleReset} id="playbutton">
-                <img src="https://img.icons8.com/ios-filled/23/000000/recurring-appointment.png" />
+                <img
+                  src="https://image.flaticon.com/icons/svg/126/126561.svg"
+                  width="20"
+                  height="20"
+                />
               </button>
               Reset
             </div>
@@ -185,6 +196,7 @@ class Grid extends React.Component {
               record={this.recordForExport}
               recorder={this.props.recorder}
               isRecording={this.state.isRecording}
+              isPlaying={this.state.isPlaying}
               handleClick={this.handleClick}
             />
           </div>

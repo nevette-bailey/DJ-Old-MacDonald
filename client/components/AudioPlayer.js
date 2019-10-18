@@ -22,13 +22,19 @@ class AudioPlayer extends React.Component {
     this.props.record();
   };
   render() {
-    // console.log('PROPS', this.props);
     return (
-      <div className="icontext" onClick={this.props.handleClick}>
+      <div
+        className="icontext"
+        onClick={this.props.isPlaying ? this.props.handleClick : null}
+      >
         <Popup
           trigger={
             <button className="button" type="button">
-              <img src="https://img.icons8.com/ios-glyphs/23/000000/export.png" />
+              <img
+                src="https://image.flaticon.com/icons/svg/154/154608.svg"
+                width="20"
+                height="20"
+              />
             </button>
           }
           modal
@@ -60,7 +66,6 @@ class AudioPlayer extends React.Component {
               <div>
                 <audio src={this.props.src} id="audio" controls />
               </div>
-              {/* <div>{this.props.recorder.getCurrentDuration()}</div> */}
             </div>
           )}
         </Popup>

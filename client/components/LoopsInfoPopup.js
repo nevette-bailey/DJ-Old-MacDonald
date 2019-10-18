@@ -58,9 +58,10 @@ class LoopsInfoPopup extends React.Component {
     return (
       <div className="popup-body">
         <div className="container1">
-          {/* <div className="form-container sign-in-container"> */}
           <form action="#">
-            <h1>Details</h1>
+            <h1>
+              {this.props.isCopy ? 'Duplicate your loop' : 'Save your loop'}
+            </h1>
             <span>Enter loop details below</span>
             <br />
             <input
@@ -86,7 +87,6 @@ class LoopsInfoPopup extends React.Component {
               {this.props.isCopy ? 'Create Copy' : 'Save Loop'}
             </button>
           </form>
-          {/* </div> */}
         </div>
       </div>
     );

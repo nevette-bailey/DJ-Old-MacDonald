@@ -39,7 +39,6 @@ class Sequence extends React.Component {
         loopStart: 0.2,
         loopEnd: 1.2,
         volume: 10
-
       }).toMaster(),
       synth8: new Tone.Player({
         url: 'https://actions.google.com/sounds/v1/animals/owl_hooting.ogg',
@@ -60,7 +59,7 @@ class Sequence extends React.Component {
       },
       this.props.sounds.sound1.map(elem => {
         if (elem) {
-          return 'C4';
+          return 'C5';
         } else {
           return null;
         }
@@ -75,7 +74,7 @@ class Sequence extends React.Component {
       },
       this.props.sounds.sound2.map(elem => {
         if (elem) {
-          return 'E4';
+          return 'G4';
         } else {
           return null;
         }
@@ -90,7 +89,7 @@ class Sequence extends React.Component {
       },
       this.props.sounds.sound3.map(elem => {
         if (elem) {
-          return 'G4';
+          return 'E4';
         } else {
           return null;
         }
@@ -105,7 +104,7 @@ class Sequence extends React.Component {
       },
       this.props.sounds.sound4.map(elem => {
         if (elem) {
-          return 'C5';
+          return 'C4';
         } else {
           return null;
         }

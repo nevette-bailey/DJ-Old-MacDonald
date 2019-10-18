@@ -3,64 +3,101 @@ import { saveLoopThunk } from '../store/reducers/loops';
 import { connect } from 'react-redux';
 import 'react-toastify/dist/ReactToastify.css';
 import { withRouter } from 'react-router-dom';
+import Popup from 'reactjs-popup';
 import { toast } from 'react-toastify';
+import LoopsInfoPopup from './LoopsInfoPopup';
+import AuthPopup from './AuthPopup';
 
 class SaveButton extends Component {
   constructor(props) {
     super(props);
-
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.saveExisting = this.saveExisting.bind(this);
+    this.disabledSaveButton = this.disabledSaveButton.bind(this);
+    this.popupSaveButton = this.popupSaveButton.bind(this);
   }
 
-  handleSubmit(event) {
+  // if user is logged in & saving an existing loop, forward the sound and id, title and description in null.
+  saveExisting(event) {
     event.preventDefault();
-    //logged in and changes are made to the loops
-    if (this.props.user.id && !this.props.isSaved) {
-      //if it's a new loop, direct to loopsinfopopup
-      if (this.props.loopId === null) {
-        this.props.history.push('loopsinfopopup');
-      } else {
-        //if save an existing loop, forward the sound and id, title and description in null.
-        this.props.saveLoopThunk(this.props.sounds, this.props.loopId);
-        toast('Loop Saved!', {
-          position: 'bottom-right',
-          autoClose: 2000
-        });
-      }
-    } else {
-      //if not looged in and changes are made to the loops.
-      console.log('historyyyyy', this.props.history);
-      this.props.history.push('authpopup');
-    }
+    this.props.saveLoopThunk(this.props.sounds, this.props.loopId);
+    toast('Loop Saved!', {
+      position: 'bottom-right',
+      autoClose: 2000
+    });
   }
 
-  showPopup() {}
-
-  render() {
-    console.log('loopId :', this.props.loopId);
-    console.log('isSaved :', this.props.isSaved);
-    return this.props.isSaved ? (
+  // method to render the save button that's wrapped in the popup
+  popupSaveButton() {
+    return (
       <div className="icontext">
-        <button
-          type="submit"
-          onClick={this.handleSubmit}
-          className="button"
-          disabled
-        >
+        <button type="submit" className="button">
           <img
-            className="disabled-button-image"
-            src="https://img.icons8.com/material-rounded/23/000000/save.png"
+            src="https://image.flaticon.com/icons/svg/60/60959.svg"
+            width="20"
+            height="20"
           />
         </button>
         Save
       </div>
-    ) : (
+    );
+  }
+
+  // method to render the disabled save button when there are no changes to the grid
+  disabledSaveButton() {
+    return (
       <div className="icontext">
-        <button type="submit" onClick={this.handleSubmit} className="button">
-          <img src="https://img.icons8.com/material-rounded/28/000000/save.png" />
+        <button type="submit" className="button" disabled>
+          <img
+            className="disabled-button-image"
+            src="https://image.flaticon.com/icons/svg/60/60959.svg"
+            width="20"
+            height="20"
+          />
         </button>
         Save
       </div>
+    );
+  }
+
+  render() {
+    const popupStyle = {
+      position: 'relative',
+      background: 'rgba(0, 0, 0, 0)',
+      width: 'auto',
+      margin: 'auto',
+      border: 'none',
+      borderRadius: '50%',
+      padding: '-50px'
+    };
+    return this.props.isSaved ? (
+      // if there are no changes to the grid, render the disabled save button
+      this.disabledSaveButton()
+    ) : this.props.loopId ? (
+      // if the user is logged in and editing an existing loop, render save button with click handler to save an existing loop
+      <div className="icontext">
+        <button
+          type="submit"
+          onClick={event => this.saveExisting(event)}
+          className="button"
+        >
+          <img
+            src="https://image.flaticon.com/icons/svg/60/60959.svg"
+            width="20"
+            height="20"
+          />
+        </button>
+        Save
+      </div>
+    ) : this.props.user.id ? (
+      // if a user is logged in and is editing a new loop, render save button that will show LoopsInfoPopup when clicked
+      <Popup contentStyle={popupStyle} trigger={this.popupSaveButton()} modal>
+        {close => <LoopsInfoPopup close={close} />}
+      </Popup>
+    ) : (
+      // if user is a guest and has made changes to the grid, render save button that will show AuthPopup when clicked
+      <Popup contentStyle={popupStyle} trigger={this.popupSaveButton()} modal>
+        {close => <AuthPopup close={close} />}
+      </Popup>
     );
   }
 }
@@ -79,6 +116,7 @@ const mapDispatchToProps = dispatch => {
     saveLoopThunk: (newLoop, id) => dispatch(saveLoopThunk(newLoop, id))
   };
 };
+
 export default withRouter(
   connect(mapStateToProps, mapDispatchToProps)(SaveButton)
 );

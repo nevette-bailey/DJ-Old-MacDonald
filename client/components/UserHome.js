@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import {
   gotLoopsThunk,
   getOneLoopThunk,
@@ -20,7 +19,6 @@ class UserHome extends React.Component {
     this.handleClick = this.handleClick.bind(this);
     this.createNewClick = this.createNewClick.bind(this);
     this.deleteLoop = this.deleteLoop.bind(this);
-    this.makeCopy = this.makeCopy.bind(this);
   }
 
   componentDidMount() {
@@ -30,10 +28,6 @@ class UserHome extends React.Component {
   deleteLoop(event, id) {
     this.props.deleteLoopThunk(id);
     event.stopPropagation();
-  }
-
-  makeCopy(id) {
-    console.log(id);
   }
 
   handleClick(id) {
@@ -52,11 +46,6 @@ class UserHome extends React.Component {
     return (
       <div className="my-loops-container">
         <hr />
-        {/* <div className="section">
-          <Link to="/grid">
-            <p className="back">Return to music player</p>
-          </Link>
-        </div> */}
         <div className="section">
           <h2>Your Account</h2>
           <p className="username">{this.props.email}</p>
@@ -81,8 +70,7 @@ class UserHome extends React.Component {
         ) : (
           <div className="section">
             <h2>Your Loops</h2>
-            <p>You don't have any saved loops.</p>
-            <p>Create one now!</p>
+            <p>You don't have any saved loops. Create one now!</p>
             <button
               type="button"
               className="button"
