@@ -31,7 +31,6 @@ router.post('/', async (req, res, next) => {
       sound7: req.body.sound7,
       sound8: req.body.sound8
     });
-    // const user = await User.findByPk(req.body.userId);
     const user = await User.findByPk(req.user.id);
     await newloop.setUser(user);
     //userId was created autommatically due to association
@@ -49,7 +48,6 @@ router.post('/copy/:id', async (req, res, next) => {
         id: req.params.id
       }
     });
-    console.log(oneLoop);
     const newCopy = await Loop.create({
       title: req.body.title,
       description: req.body.description,
@@ -86,11 +84,6 @@ router.get('/:id', async (req, res, next) => {
 
 router.put('/:id', async (req, res, next) => {
   try {
-    console.log('INSIDE PUT: ', req.body);
-    console.log('USERID', req.user.id);
-    console.log('loop id: ', req.params.id);
-    // let title = ''
-    // if(req.body.title !== undefined){
     const [numAffectedRows, affectedRows] = await Loop.update(
       {
         sound1: req.body.sound1,

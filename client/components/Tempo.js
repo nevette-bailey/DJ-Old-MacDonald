@@ -29,7 +29,6 @@ class Tempo extends Component {
           onChange={this.handleChange}
         />
         BPM: {this.state.defaultValue}
-        {/* <span id="demo" /> */}
       </div>
     );
   }
