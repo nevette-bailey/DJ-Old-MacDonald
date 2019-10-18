@@ -5,7 +5,6 @@ import {
   GET_SOUND,
   GET_SAVED_SOUND
 } from './index';
-
 import { isNotSaved } from './loops';
 
 //action creators
@@ -35,7 +34,6 @@ export const getSavedSound = savedSound => ({
 });
 
 //thunk creators - currently not making any calls to backend, no Axios
-
 export const getSoundThunk = soundId => {
   return dispatch => {
     dispatch(getSound(soundId));

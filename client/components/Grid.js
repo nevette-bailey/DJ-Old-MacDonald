@@ -69,7 +69,6 @@ class Grid extends React.Component {
       this.setState({ isPlaying: true });
     } else {
       // Stops the sequence if one is playing
-
       Tone.Transport.stop();
       this.setState({ isPlaying: false });
       // Tone.Transport.cancel();
@@ -78,9 +77,9 @@ class Grid extends React.Component {
       isToggleOn: !prevState.isToggleOn
     }));
   };
+
   recordForExport = () => {
     this.handleClick();
-    console.log(this.state.isRecording);
     if (!this.state.isRecording) {
       this.props.recorder.start();
     } else if (this.state.isRecording) {

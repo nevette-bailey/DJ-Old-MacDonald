@@ -18,7 +18,6 @@ class AuthPopup extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.emailValidate = this.emailValidate.bind(this);
     this.passwordValidate = this.passwordValidate.bind(this);
-    // this.checkError = this.checkError.bind(this);
   }
 
   componentDidUpdate(prevProps) {
@@ -42,7 +41,6 @@ class AuthPopup extends React.Component {
     let isError = false;
     if (this.state.email.indexOf('@') === -1) {
       isError = true;
-      // this.setState({ emailError: 'Requires valid email' });
       this.setState({ emailError: 'Requires valid email' });
     }
     return isError;
@@ -52,7 +50,6 @@ class AuthPopup extends React.Component {
     let isError = false;
     if (this.state.password.length < 5) {
       isError = true;
-      // this.setState({ emailError: 'Requires valid email' });
       this.setState({
         passwordError: 'Password must be at least 5 characters'
       });
@@ -95,12 +92,6 @@ class AuthPopup extends React.Component {
                 </a>
               </div>
               <span>or use your email for registration</span>
-              {/* <input
-                type="text"
-                name="name"
-                placeholder="Name"
-                onChange={this.handleChange}
-              /> */}
               <input
                 type="email"
                 name="email"
@@ -209,8 +200,6 @@ const mapDispatchToProps = dispatch => {
     auth: (email, password, method) => dispatch(auth(email, password, method))
   };
 };
-
-// export default connect(mapStateToProps, mapDispatchToProps)(AuthPopup);
 
 export default withRouter(
   connect(mapStateToProps, mapDispatchToProps)(AuthPopup)

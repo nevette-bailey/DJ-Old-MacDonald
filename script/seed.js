@@ -12,55 +12,6 @@ async function seed() {
     User.create({ email: 'murphy@email.com', password: '123' })
   ]);
 
-  // const loops = await Promise.all([
-  //   Loop.create({
-  //     title: 'My Sound',
-  //     description: 'My spookiest creation yet.',
-  //     sound1: [
-  //       true,
-  //       false,
-  //       true,
-  //       true,
-  //       false,
-  //       true,
-  //       false,
-  //       false,
-  //       true,
-  //       true,
-  //       true,
-  //       true,
-  //       true,
-  //       true,
-  //       true,
-  //       true
-  //     ],
-  //     sound2: [
-  //       true,
-  //       true,
-  //       true,
-  //       true,
-  //       true,
-  //       true,
-  //       true,
-  //       true,
-  //       true,
-  //       false,
-  //       true,
-  //       true,
-  //       false,
-  //       true,
-  //       false,
-  //       false
-  //     ],
-  //     sound3: [],
-  //     sound4: [],
-  //     sound5: [],
-  //     sound6: [],
-  //     sound7: [],
-  //     sound8: []
-  //   })
-  // ]);
-
   console.log(`seeded ${users.length} users`);
   // console.log(`seeded ${loops.length} loops`);
   console.log(`seeded successfully`);

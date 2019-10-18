@@ -13,7 +13,6 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
             DJ Old MacDonald
           </Link>
         </h1>
-        {/* <p>A hip noise-making app</p> */}
       </div>
       {isLoggedIn ? (
         <div className="nav-links">
@@ -37,7 +36,6 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
         </div>
       )}
     </nav>
-    {/* <hr /> */}
   </div>
 );
 

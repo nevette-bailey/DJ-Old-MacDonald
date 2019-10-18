@@ -123,6 +123,7 @@ class CreateNewLoopButton extends Component {
     );
   }
 }
+
 const mapStateToProps = state => {
   return {
     sounds: state.sounds,
