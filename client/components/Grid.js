@@ -47,9 +47,9 @@ class Grid extends React.Component {
     // Resets the sound state back to all false
     this.props.resetSoundThunk();
     this.setState({ isPlaying: false });
-    this.setState(prevState => ({
-      isToggleOn: !prevState.isToggleOn
-    }));
+    this.setState({
+      isToggleOn: true
+    });
   }
 
   handleClick = () => {
