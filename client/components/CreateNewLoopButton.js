@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Popup from 'reactjs-popup';
 import LoopsInfoPopup from './LoopsInfoPopup';
 import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+//import 'react-toastify/dist/ReactToastify.css';
 import { withRouter } from 'react-router-dom';
 const Tone = require('Tone');
 

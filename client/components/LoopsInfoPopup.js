@@ -5,7 +5,6 @@ import {
   getOneLoopThunk,
   copyLoopThunk
 } from '../store/reducers/loops';
-import 'react-toastify/dist/ReactToastify.css';
 import { withRouter } from 'react-router-dom';
 import { toast } from 'react-toastify';
 

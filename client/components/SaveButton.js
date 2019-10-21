@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { saveLoopThunk } from '../store/reducers/loops';
 import { connect } from 'react-redux';
-import 'react-toastify/dist/ReactToastify.css';
+// import 'react-toastify/dist/ReactToastify.css';
 import { withRouter } from 'react-router-dom';
 import Popup from 'reactjs-popup';
 import { toast } from 'react-toastify';
