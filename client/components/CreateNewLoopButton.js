@@ -3,7 +3,7 @@ import { createNewLoopThunk, saveLoopThunk } from '../store/reducers/loops';
 import { connect } from 'react-redux';
 import Popup from 'reactjs-popup';
 import LoopsInfoPopup from './LoopsInfoPopup';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 //import 'react-toastify/dist/ReactToastify.css';
 import { withRouter } from 'react-router-dom';
 const Tone = require('Tone');

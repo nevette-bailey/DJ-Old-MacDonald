@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { saveLoopThunk } from '../store/reducers/loops';
 import { connect } from 'react-redux';
-import 'react-toastify/dist/ReactToastify.css';
+// import 'react-toastify/dist/ReactToastify.css';
 import { withRouter } from 'react-router-dom';
 import Popup from 'reactjs-popup';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import LoopsInfoPopup from './LoopsInfoPopup';
 import AuthPopup from './AuthPopup';
 

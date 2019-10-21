@@ -5,9 +5,8 @@ import {
   getOneLoopThunk,
   copyLoopThunk
 } from '../store/reducers/loops';
-//import 'react-toastify/dist/ReactToastify.css';
 import { withRouter } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 class LoopsInfoPopup extends React.Component {
   constructor(props) {
