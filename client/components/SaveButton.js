@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import 'react-toastify/dist/ReactToastify.css';
 import { withRouter } from 'react-router-dom';
 import Popup from 'reactjs-popup';
-import { toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import LoopsInfoPopup from './LoopsInfoPopup';
 import AuthPopup from './AuthPopup';
 
